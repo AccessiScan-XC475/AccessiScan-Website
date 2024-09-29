@@ -14,3 +14,4 @@ This project consists of three pieces: 1) chrome extension 2) core website and 3
 ### Running locally 
 - Use the command ```npm install``` to ensure you have all dependencies installed
 - Use the command ```npm run dev```. Lines starting with "[0]" are output from the frontend and lines starting with "[1]" are output from the backend
+- The website should now be accessible at [http://localhost:3000](http://localhost:3000)
