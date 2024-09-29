@@ -3,8 +3,8 @@ This project consists of three pieces: 1) chrome extension 2) core website and 3
 
 ## Dev Docs
 ### Requirements:
-- Golang 1.23 
-- Node 22.9 
+- [Golang 1.23](https://go.dev/doc/install)
+- [Node 22.9 ](https://nodejs.org/en/download/prebuilt-installer)
 - [Air](https://github.com/air-verse/air) ``` go install github.com/air-verse/air@latest ```
 ### Configure .env.local 
 - Set the following variables 
