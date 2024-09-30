@@ -15,3 +15,7 @@ This project consists of three pieces: 1) chrome extension 2) core website and 3
 - Use the command ```npm install``` to ensure you have all dependencies installed
 - Use the command ```npm run dev```. Lines starting with "[0]" are output from the frontend and lines starting with "[1]" are output from the backend
 - The website should now be accessible at [http://localhost:3000](http://localhost:3000)
+### System Architecture 
+- Learn more about our [chrome extension](https://github.com/AccessiScan-XC475/AccessiScan-Chrome-Extension)
+- Learn more about out [scanner API](https://github.com/AccessiScan-XC475/AccessiScan-Scanner)
+![image](https://github.com/user-attachments/assets/3d158fa5-a971-407c-a71f-b19ecd0981c3)
