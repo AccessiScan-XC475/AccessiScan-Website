@@ -8,9 +8,11 @@ This project consists of three pieces: 1) chrome extension 2) core website and 3
 - [Air](https://github.com/air-verse/air) ``` go install github.com/air-verse/air@latest ```
 ### Configure .env.local 
 - Set the following variables 
-    - ENVIRONMENT="dev"
-    - DB_NAME="AccessiScan-"
-    - MONGO_URI="mongodb_srv..." // get this full value from MongoDB website after selecting Golang as the driver
+```
+  ENVIRONMENT="dev"
+  DB_NAME="AccessiScan-"
+  MONGO_URI="mongodb_srv..." # get this full value from MongoDB website after selecting Golang as the driver
+```
 ### Running locally 
 - Use the command ```npm install``` to ensure you have all dependencies installed
 - Use the command ```npm run dev```. Lines starting with "[0]" are output from the frontend and lines starting with "[1]" are output from the backend
@@ -18,4 +20,5 @@ This project consists of three pieces: 1) chrome extension 2) core website and 3
 ### System Architecture 
 - Learn more about our [chrome extension](https://github.com/AccessiScan-XC475/AccessiScan-Chrome-Extension)
 - Learn more about out [scanner API](https://github.com/AccessiScan-XC475/AccessiScan-Scanner)
+
 ![image](https://github.com/user-attachments/assets/3d158fa5-a971-407c-a71f-b19ecd0981c3)
