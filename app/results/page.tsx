@@ -6,17 +6,18 @@ import { BarChart } from '@mui/x-charts/BarChart';
 type Result = {
   name: string;
   count: number;
-}
+};
 
 export default function ResultsPage() {
-  const [results, setResults] = useState<Result[]>([])
+  const [results, setResults] = useState<Result[]>([]);
 
   useEffect(() => {
     // Fetch accessibility selection data from the API
     fetch("/api/accessibility-selection")
       .then(res => res.json())
       .then(data => setResults(data)) // Update state with fetched data
-  }, [])
+  }, []);
+
 
   return (
     <div>
@@ -38,5 +39,5 @@ export default function ResultsPage() {
         }
       </div>
     </div>
-  )
+  );
 }
