@@ -1,9 +1,9 @@
-const TeamMember = ({name, role}: {name: string, role: string}) => (
+const TeamMember = ({ name, role }: { name: string; role: string }) => (
   <div className="p-2 m-6">
     <h4>Hi, I&apos;m {name}</h4>
     <p>I am a {role}</p>
   </div>
-)
+);
 
 export default function AboutPage() {
   return (
@@ -17,6 +17,5 @@ export default function AboutPage() {
         <TeamMember name="Josie" role="Developer" />
       </div>
     </div>
-  )
+  );
 }
-
