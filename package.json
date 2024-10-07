@@ -11,7 +11,7 @@
   "dependencies": {
     "@emotion/react": "^11.13.3",
     "@emotion/styled": "^11.13.0",
-    "@mui/material": "^6.1.1",
+    "@mui/material": "^6.1.2",
     "@mui/x-charts": "^7.18.0",
     "concurrently": "^9.0.1",
     "next": "14.2.13",

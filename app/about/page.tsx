@@ -1,23 +1,46 @@
+"use client";
+import { Card, CardContent, Typography, Grid } from '@mui/material';
+
 const TeamMember = ({ name, role, age, major }: { name: string; role: string; age: number; major: string }) => (
-  <div className="p-2 m-6">
-    <h4>Hi, I&apos;m {name}</h4>
-    <p>I am a {role}</p>
-    <p>I am {age} years old</p>
-    <p>My major is {major}</p> {/* Display the major */}
-  </div>
+  <Card variant="outlined" className="m-4">
+    <CardContent>
+      <Typography variant="h5" component="div">
+        Hi, I&apos;m {name}
+      </Typography>
+      <Typography variant="body2" color="text.secondary">
+        I am a {role}
+      </Typography>
+      <Typography variant="body2" color="text.secondary">
+        I am {age} years old
+      </Typography>
+      <Typography variant="body2" color="text.secondary">
+        My major is {major}
+      </Typography>
+    </CardContent>
+  </Card>
 );
 
 export default function AboutPage() {
   return (
     <div>
-      <h2 className="text-center text-2xl">Meet our team!</h2>
-      <div className="flex flex-wrap">
-        <TeamMember name="Amelia" role="Product Owner" age={20} major="Computer Science" />
-        <TeamMember name="Jeffrey" role="Developer" age={21} major="Computer Science" />
-        <TeamMember name="Hangi" role="Designer" age={23} major="Graphic Design" />
-        <TeamMember name="Ethan" role="Developer" age={20} major="Computer Science" />
-        <TeamMember name="Josie" role="Developer" age={22} major="Data Science" />
-      </div>
+      <Typography variant="h2" className="text-center my-4">Meet our team!</Typography>
+      <Grid container spacing={2} justifyContent="center">
+        <Grid item xs={12} sm={6} md={4}>
+          <TeamMember name="Amelia" role="Product Owner" age={20} major="Computer Science" />
+        </Grid>
+        <Grid item xs={12} sm={6} md={4}>
+          <TeamMember name="Jeffrey" role="Developer" age={21} major="Computer Science" />
+        </Grid>
+        <Grid item xs={12} sm={6} md={4}>
+          <TeamMember name="Hangi" role="Designer" age={23} major="Graphic Design" />
+        </Grid>
+        <Grid item xs={12} sm={6} md={4}>
+          <TeamMember name="Ethan" role="Developer" age={20} major="Computer Science" />
+        </Grid>
+        <Grid item xs={12} sm={6} md={4}>
+          <TeamMember name="Josie" role="Developer" age={22} major="Data Science" />
+        </Grid>
+      </Grid>
     </div>
   );
 }
