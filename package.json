@@ -3,10 +3,9 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
-    "dev": "concurrently \"next dev\" \"air || ~/go/bin/air\"",
-    "build": "next build",
-    "start": "next start",
-    "lint": "next lint"
+    "dev": "concurrently \"next dev\" \"air\"",
+    "build": "go build && next build",
+    "start": "concurrently \"next start\" \"./AccessiScan-Website\""
   },
   "dependencies": {
     "@emotion/react": "^11.13.3",
