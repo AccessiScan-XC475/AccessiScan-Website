@@ -8,6 +8,6 @@ import (
 )
 
 func HandlerFunc(w http.ResponseWriter, r *http.Request) {
-    server := server.NewServer()
-    server.Handler.ServeHTTP(w, r)
+	server := server.NewServer()
+	server.Handler.ServeHTTP(w, r)
 }
