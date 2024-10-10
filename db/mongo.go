@@ -91,6 +91,7 @@ func AllAccessibilitySelection() ([]AccessibilitySelection, error) {
 		selectionList = append(selectionList, curSelection)
 	}
 
+	// if selection is not present in db, manually add element for it with count of 0
 	for _, selection := range AccessibilitySelections {
 		if !slices.ContainsFunc(selectionList, func(dbSel AccessibilitySelection) bool {
 			return dbSel.Name == selection

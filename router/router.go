@@ -8,14 +8,17 @@ import (
 	"strings"
 )
 
+// declare api routes
 func Router() *http.ServeMux {
 	router := http.NewServeMux()
 
+	// health endpoint to check if its up
 	router.HandleFunc("GET /api/health", func(w http.ResponseWriter, r *http.Request) {
 		w.WriteHeader(http.StatusOK)
 		w.Write([]byte("OK"))
 	})
 
+	// returns array representing accessibility selection statistics
 	router.HandleFunc("GET /api/accessibility-selection", func(w http.ResponseWriter, r *http.Request) {
 		allSelections, err := db.AllAccessibilitySelection()
 		if err != nil {
@@ -29,6 +32,7 @@ func Router() *http.ServeMux {
 		return
 	})
 
+	// endpoint to add to accessibility selection count
 	router.HandleFunc("POST /api/accessibility-selection", func(w http.ResponseWriter, r *http.Request) {
 		selectionName := strings.ToLower(r.URL.Query().Get("name"))
 		if selectionName == "" || !slices.Contains(db.AccessibilitySelections, selectionName) {
