@@ -4,6 +4,7 @@ import (
 	"context"
 	"log"
 	"os"
+	"slices"
 	"time"
 
 	"github.com/joho/godotenv"
@@ -12,9 +13,11 @@ import (
 	"go.mongodb.org/mongo-driver/mongo/options"
 )
 
+var AccessibilitySelections []string = []string{"audio", "visual", "mobility"}
+
 type AccessibilitySelection struct {
-	Name string `bson:"name" json:"name"`
-	Count int `bson:"count" json:"count"`
+	Name  string `bson:"name" json:"name"`
+	Count int    `bson:"count" json:"count"`
 }
 
 func ConnectDB() *mongo.Client {
@@ -52,8 +55,8 @@ func getCollection(collectionName string) *mongo.Collection {
 		return collection
 	}
 
-	collection = db.Database(os.Getenv("DB_NAME")+env).Collection(collectionName)
-	collectionCache[collectionName] = collection 
+	collection = db.Database(os.Getenv("DB_NAME") + env).Collection(collectionName)
+	collectionCache[collectionName] = collection
 	return collection
 }
 
@@ -63,13 +66,13 @@ const ACCESSIBILITY_SELECTION_COLLECTION = "AccessibilitySelectionCollection"
 func InsertAccessibilitySeletion(name string) error {
 	filter := bson.M{"name": name}
 	update := bson.M{"$inc": bson.M{"count": 1}} // increment count field by 1
-	opts := options.Update().SetUpsert(true) // create obj if not found in db 
+	opts := options.Update().SetUpsert(true)     // create obj if not found in db
 
 	_, err := getCollection(ACCESSIBILITY_SELECTION_COLLECTION).UpdateOne(context.Background(), filter, update, opts)
 	if err != nil {
 		return err
 	}
-	
+
 	return nil
 }
 
@@ -86,6 +89,18 @@ func AllAccessibilitySelection() ([]AccessibilitySelection, error) {
 			return nil, err
 		}
 		selectionList = append(selectionList, curSelection)
+	}
+
+	// if selection is not present in db, manually add element for it with count of 0
+	for _, selection := range AccessibilitySelections {
+		if !slices.ContainsFunc(selectionList, func(dbSel AccessibilitySelection) bool {
+			return dbSel.Name == selection
+		}) {
+			selectionList = append(selectionList, AccessibilitySelection{
+				Name:  selection,
+				Count: 0,
+			})
+		}
 	}
 
 	return selectionList, nil

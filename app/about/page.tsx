@@ -1,7 +1,17 @@
 "use client";
-import { Card, CardContent, Typography } from '@mui/material';
+import { Card, CardContent, Typography } from "@mui/material";
 
-const TeamMember = ({ name, role, age, major }: { name: string; role: string; age: number; major: string }) => (
+const TeamMember = ({
+  name,
+  role,
+  age,
+  major,
+}: {
+  name: string;
+  role: string;
+  age: number;
+  major: string;
+}) => (
   <Card variant="outlined" className="m-4">
     <CardContent>
       <Typography variant="h5" component="div">
@@ -21,25 +31,51 @@ const TeamMember = ({ name, role, age, major }: { name: string; role: string; ag
 );
 
 export default function AboutPage() {
-  // You can use CSS Flexbox for layout
   return (
     <div>
-      <Typography variant="h2" className="text-center my-4">Meet our team!</Typography>
+      <Typography variant="h2" className="text-center my-4">
+        Meet our team!
+      </Typography>
       <div className="flex flex-wrap justify-center">
         <div className="m-2 w-full sm:w-1/2 md:w-1/3">
-          <TeamMember name="Amelia" role="Product Owner" age={20} major="Computer Science" />
+          <TeamMember
+            name="Amelia"
+            role="Product Owner"
+            age={20}
+            major="Computer Science"
+          />
         </div>
         <div className="m-2 w-full sm:w-1/2 md:w-1/3">
-          <TeamMember name="Jeffrey" role="Developer" age={21} major="Computer Science" />
+          <TeamMember
+            name="Jeffrey"
+            role="Developer"
+            age={20}
+            major="Computer Science"
+          />
         </div>
         <div className="m-2 w-full sm:w-1/2 md:w-1/3">
-          <TeamMember name="Hangi" role="Designer" age={23} major="Graphic Design" />
+          <TeamMember
+            name="Hangi"
+            role="Designer"
+            age={23}
+            major="Graphic Design"
+          />
         </div>
         <div className="m-2 w-full sm:w-1/2 md:w-1/3">
-          <TeamMember name="Ethan" role="Developer" age={20} major="Computer Science" />
+          <TeamMember
+            name="Ethan"
+            role="Developer"
+            age={20}
+            major="Computer Science"
+          />
         </div>
         <div className="m-2 w-full sm:w-1/2 md:w-1/3">
-          <TeamMember name="Josie" role="Developer" age={22} major="Data Science" />
+          <TeamMember
+            name="Josie"
+            role="Developer"
+            age={22}
+            major="Data Science"
+          />
         </div>
       </div>
     </div>
