@@ -24,6 +24,7 @@ export default function HomePage() {
         </div>
         <button
           onClick={() => {
+            // sent to backend for statistics
             fetch(`/api/accessibility-selection?name=${selection}`, {
               method: "POST",
             });
