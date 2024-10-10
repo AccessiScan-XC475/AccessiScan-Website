@@ -4,8 +4,14 @@
   "private": true,
   "scripts": {
     "dev": "concurrently \"next dev\" \"air\"",
-    "build": "go build && next build",
-    "start": "concurrently \"next start\" \"./AccessiScan-Website\""
+    "build": "next build",
+    "build-frontend": "next build",
+    "build-backend": "go build",
+    "local-build": "go build && next build",
+    "start": "next start",
+    "start-frontend": "next start",
+    "start-backend": "./AccessiScan-Website",
+    "local-start": "concurrently \"next start\" \"./AccessiScan-Website\""
   },
   "dependencies": {
     "@emotion/react": "^11.13.3",
