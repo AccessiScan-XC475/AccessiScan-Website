@@ -7,6 +7,7 @@ import (
 	"github.com/joho/godotenv"
 )
 
+// entrypoint for local development
 func main() {
 	godotenv.Load(".env.local")
 
