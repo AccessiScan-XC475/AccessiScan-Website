@@ -32,7 +32,6 @@ const TeamMember = ({
 
 export default function AboutPage() {
   return (
-    <div>
       <Typography variant="h2" className="text-center my-4">
         Meet our team!
       </Typography>
