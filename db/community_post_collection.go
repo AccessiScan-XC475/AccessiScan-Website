@@ -11,13 +11,13 @@ import (
 const COMMUNITY_POST_COLLECTION = "CommunityPostCollection"
 
 type CommunityPost struct {
-	Id        primitive.ObjectID   `bson:"_id,omitempty" json:"id,omitempty"`
+	Id        primitive.ObjectID   `bson:"_id,omitempty" json:"id"`
 	Author    string               `bson:"author" json:"author"`
 	Title     string               `bson:"title" json:"title"`
 	Content   string               `bson:"content" json:"content"`
-	Upvotes   int                  `bson:"upvotes" json:"upvotes,omitempty"`
-	Downvotes int                  `bson:"downvotes" json:"downvotes,omitempty"`
-	Replies   []CommunityPostReply `bson:"replies" json:"replies,omitempty"`
+	Upvotes   int                  `bson:"upvotes" json:"upvotes"`
+	Downvotes int                  `bson:"downvotes" json:"downvotes"`
+	Replies   []CommunityPostReply `bson:"replies" json:"replies"`
 }
 
 type CommunityPostNumReplies struct {
@@ -25,18 +25,18 @@ type CommunityPostNumReplies struct {
 	Author     string             `json:"author"`
 	Title      string             `json:"title"`
 	Content    string             `json:"content"`
-	Upvotes    int                `json:"upvotes,omitempty"`
-	Downvotes  int                `json:"downvotes,omitempty"`
-	NumReplies int                `json:"numReplies,omitempty"`
+	Upvotes    int                `json:"upvotes"`
+	Downvotes  int                `json:"downvotes"`
+	NumReplies int                `json:"numReplies"`
 }
 
 type CommunityPostReply struct {
-	ParentId  primitive.ObjectID `bson:"parentId" json:"parentId,omitempty"`
-	Id        primitive.ObjectID `bson:"_id,omitempty" json:"id,omitempty"`
+	ParentId  primitive.ObjectID `bson:"parentId" json:"parentId"`
+	Id        primitive.ObjectID `bson:"_id,omitempty" json:"id"`
 	Author    string             `bson:"author" json:"author"`
 	Content   string             `bson:"content" json:"content"`
-	Upvotes   int                `bson:"upvotes" json:"upvotes,omitempty"`
-	Downvotes int                `bson:"downvotes" json:"downvotes,omitempty"`
+	Upvotes   int                `bson:"upvotes" json:"upvotes"`
+	Downvotes int                `bson:"downvotes" json:"downvotes"`
 }
 
 // function needs the author/user attempting to create a new post
@@ -108,4 +108,18 @@ func AllCommunityPosts() ([]CommunityPostNumReplies, error) {
 	}
 
 	return communityPostList, nil
+}
+
+func FindPostById(id primitive.ObjectID) (CommunityPost, error) {
+	collection := getCollection(COMMUNITY_POST_COLLECTION)
+
+	res := collection.FindOne(context.Background(), bson.M{"_id": id})
+
+	var communityPost CommunityPost
+	err := res.Decode(&communityPost)
+	if err != nil {
+		return CommunityPost{}, err
+	}
+
+	return communityPost, nil
 }
