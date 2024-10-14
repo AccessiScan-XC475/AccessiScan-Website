@@ -22,7 +22,6 @@ export default function NewPost({
         onChange={(e) => setContent(e.target.value)}
       />
       <button
-        type="submit"
         onClick={() => {
           submitFunc(title, content).then((success) => {
             if (success) {
