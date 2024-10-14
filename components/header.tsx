@@ -7,7 +7,7 @@ const NavLink = ({
   href: string;
   children: React.ReactNode;
 }) => (
-  <Link href={href} className="p-1 m-2 text-lg">
+  <Link href={href} className="p-1 m-2 text-lg hover:underline transition-all">
     {children}
   </Link>
 );
@@ -19,6 +19,7 @@ const Header = () => (
     </Link>
     <nav>
       <NavLink href="/results">Results</NavLink>
+      <NavLink href="/community">Community</NavLink>
       <NavLink href="/about">About</NavLink>
     </nav>
   </header>
