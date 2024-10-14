@@ -8,7 +8,6 @@ func CreateStack(xs ...func(http.Handler) http.Handler) func(http.Handler) http.
 		for i := len(xs) - 1; i >= 0; i-- {
 			x := xs[i]
 			next = x(next)
-		}
 		return next
 	}
 }
