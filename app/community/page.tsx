@@ -7,8 +7,8 @@ import { CircularProgress } from "@mui/material";
 import NewPost from "@/components/new-post";
 
 export default function CommunityPage() {
-  const [postPreviewList, setpostPreviewList] = useState<
-    CommunityPostPreviewProps[]
+  const [postPreviewList, setPostPreviewList] = useState<
+    CommunityPostPreviewProps[] | null
   >([]);
 
   const createNewPost = async (
@@ -30,13 +30,15 @@ export default function CommunityPage() {
     });
 
     if (res.status === 200) {
-      setpostPreviewList([
-        ...postPreviewList,
-        {
-          ...newPost,
-          id: await res.text(),
-        },
-      ]);
+      const createdPost = {
+        ...newPost,
+        id: await res.text(),
+      };
+      if (postPreviewList === null) {
+        setPostPreviewList([createdPost]);
+      } else {
+        setPostPreviewList([...postPreviewList, createdPost]);
+      }
       return true;
     }
 
@@ -44,9 +46,13 @@ export default function CommunityPage() {
   };
 
   useEffect(() => {
-    fetch("/api/community-post")
-      .then((res) => res.json())
-      .then((posts) => setpostPreviewList(posts));
+    try {
+      fetch("/api/community-post")
+        .then((res) => res.json())
+        .then((posts) => setPostPreviewList(posts));
+    } catch {
+      setPostPreviewList(null);
+    }
   }, []);
 
   return (
@@ -54,7 +60,9 @@ export default function CommunityPage() {
       <h1 className="text-5xl font-bold">Community Board</h1>
       <div>
         <NewPost submitFunc={createNewPost} />
-        {postPreviewList.length !== 0 ? (
+        {postPreviewList === null ? (
+          <p>There are no posts. Be the first to say something!</p>
+        ) : postPreviewList.length !== 0 ? (
           postPreviewList.map((preview) => (
             <CommunityPostPreview postPreview={preview} key={preview.id} />
           ))
