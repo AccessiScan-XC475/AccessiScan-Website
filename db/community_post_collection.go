@@ -43,6 +43,10 @@ type CommunityPostReply struct {
 // as well as the title and content of that post
 // returns the id of the newly created post or an error
 func CreateNewPost(author, title, content string) (primitive.ObjectID, error) {
+	if author == "" || title == "" || content == "" {
+		return primitive.ObjectID{}, fmt.Errorf("author, title, or content missing")
+	}
+
 	newPost := CommunityPost{
 		Author:    author,
 		Title:     title,
@@ -61,6 +65,9 @@ func CreateNewPost(author, title, content string) (primitive.ObjectID, error) {
 }
 
 func ReplyToPost(parentId primitive.ObjectID, author, content string) error {
+	if author == "" || content == "" {
+		return fmt.Errorf("autho content missing")
+	}
 	collection := getCollection(COMMUNITY_POST_COLLECTION)
 
 	newReply := CommunityPostReply{
