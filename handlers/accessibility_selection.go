@@ -10,6 +10,7 @@ import (
 
 // returns array representing accessibility selection statistics
 func GetAccessibilitySelections(w http.ResponseWriter, r *http.Request) {
+	// retrieve data on all selections
 	allSelections, err := db.AllAccessibilitySelection()
 	if err != nil {
 		w.WriteHeader(http.StatusInternalServerError)
@@ -25,13 +26,16 @@ func GetAccessibilitySelections(w http.ResponseWriter, r *http.Request) {
 // endpoint to add to accessibility selection count
 func PostAccessibilitySelection(w http.ResponseWriter, r *http.Request) {
 	selectionName := strings.ToLower(r.URL.Query().Get("name"))
+
+	// check if valid selection
 	if selectionName == "" || !slices.Contains(db.AccessibilitySelections, selectionName) {
 		w.WriteHeader(http.StatusBadRequest)
 		w.Write([]byte("invalid selection"))
 		return
 	}
 
-	err := db.InsertAccessibilitySeletion(selectionName)
+	// uppdate count for this selection
+	err := db.IncrementAccessibilitySelection(selectionName)
 	if err != nil {
 		w.WriteHeader(http.StatusInternalServerError)
 		w.Write([]byte("something went wrong, please try again."))

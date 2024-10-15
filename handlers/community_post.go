@@ -13,10 +13,9 @@ import (
 // or the full version of a single community post if an id is provided
 func GetCommunityPost(w http.ResponseWriter, r *http.Request) {
 	idString := r.URL.Query().Get("id")
-	log.Println(idString)
 
 	if idString == "" {
-		log.Println("getting all posts")
+		// retrieve a preview of all posts
 		allCommunityPosts, err := db.AllCommunityPosts()
 		if err != nil {
 			w.WriteHeader(http.StatusInternalServerError)
@@ -24,13 +23,12 @@ func GetCommunityPost(w http.ResponseWriter, r *http.Request) {
 			return
 		}
 
-		log.Println("posts", allCommunityPosts)
-
 		w.WriteHeader(http.StatusOK)
 		json.NewEncoder(w).Encode(allCommunityPosts)
 		return
 	} else {
-		log.Println("getting a particular post")
+		// retrieve a particular post
+		// convert input post id to correct type
 		postId, err := primitive.ObjectIDFromHex(idString)
 		if err != nil {
 			w.WriteHeader(http.StatusBadRequest)
@@ -38,6 +36,7 @@ func GetCommunityPost(w http.ResponseWriter, r *http.Request) {
 			return
 		}
 
+		// get the specific post from database
 		communityPost, err := db.FindPostById(postId)
 		if err != nil {
 			w.WriteHeader(http.StatusBadRequest)
@@ -57,6 +56,7 @@ func PostCommunityPost(w http.ResponseWriter, r *http.Request) {
 
 	if parentIdString == "" {
 		// create a new post
+		// parse the new post data
 		var postData db.CommunityPost
 		err := json.NewDecoder(r.Body).Decode(&postData)
 		if err != nil {
@@ -65,6 +65,7 @@ func PostCommunityPost(w http.ResponseWriter, r *http.Request) {
 			return
 		}
 
+		// create a new post
 		id, err := db.CreateNewPost(postData.Author, postData.Title, postData.Content)
 		if err != nil {
 			log.Println(err.Error())
@@ -78,14 +79,7 @@ func PostCommunityPost(w http.ResponseWriter, r *http.Request) {
 		return
 	} else {
 		// create a new reply
-		var replyData db.CommunityPostReply
-		err := json.NewDecoder(r.Body).Decode(&replyData)
-		if err != nil {
-			w.WriteHeader(http.StatusBadRequest)
-			w.Write([]byte("incomplete reply information"))
-			return
-		}
-
+		// convert input parentId to correct type
 		parentId, err := primitive.ObjectIDFromHex(parentIdString)
 		if err != nil {
 			w.WriteHeader(http.StatusBadRequest)
@@ -93,6 +87,16 @@ func PostCommunityPost(w http.ResponseWriter, r *http.Request) {
 			return
 		}
 
+		// parse reply data
+		var replyData db.CommunityPostReply
+		err = json.NewDecoder(r.Body).Decode(&replyData)
+		if err != nil {
+			w.WriteHeader(http.StatusBadRequest)
+			w.Write([]byte("incomplete reply information"))
+			return
+		}
+
+		// reply to the parent post
 		err = db.ReplyToPost(parentId, replyData.Author, replyData.Content)
 		if err != nil {
 			w.WriteHeader(http.StatusInternalServerError)
