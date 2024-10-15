@@ -31,7 +31,7 @@ export default function NewPost({
           });
         }}
         className="rounded-xl p-2 bg-green-200 disabled:bg-gray-200 m-2"
-        disabled={title.length === 0 && content.length === 0}
+        disabled={title.length === 0 || content.length === 0}
       >
         Create
       </button>
