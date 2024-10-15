@@ -1,7 +1,7 @@
 "use client";
 import CommunityPostFull, {
   CommunityPostFullProps,
-} from "@/components/community-post-full";
+} from "@/components/community/community-post-full";
 import { CircularProgress } from "@mui/material";
 import { useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
