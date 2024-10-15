@@ -1,10 +1,10 @@
 "use client";
 import CommunityPostPreview, {
   CommunityPostPreviewProps,
-} from "@/components/community-post-preview";
+} from "@/components/community/community-post-preview";
 import { useEffect, useState } from "react";
 import { CircularProgress } from "@mui/material";
-import NewPost from "@/components/new-post";
+import NewPost from "@/components/community/new-post";
 
 export default function CommunityPage() {
   const [postPreviewList, setPostPreviewList] = useState<

@@ -64,6 +64,7 @@ func CreateNewPost(author, title, content string) (primitive.ObjectID, error) {
 	return res.InsertedID.(primitive.ObjectID), nil
 }
 
+// create a new reply to the post associated with the id parentId
 func ReplyToPost(parentId primitive.ObjectID, author, content string) error {
 	if author == "" || content == "" {
 		return fmt.Errorf("autho content missing")
@@ -91,12 +92,14 @@ func ReplyToPost(parentId primitive.ObjectID, author, content string) error {
 	return nil
 }
 
+// returns a preview of all parent community posts
 func AllCommunityPosts() ([]CommunityPostNumReplies, error) {
 	cursor, err := getCollection(COMMUNITY_POST_COLLECTION).Find(context.Background(), bson.M{})
 	if err != nil {
 		return []CommunityPostNumReplies{}, err
 	}
 
+	// iterate over all parent posts from database
 	var communityPostList []CommunityPostNumReplies
 	for cursor.Next(context.Background()) {
 		var curCommunityPost CommunityPost
@@ -117,6 +120,7 @@ func AllCommunityPosts() ([]CommunityPostNumReplies, error) {
 	return communityPostList, nil
 }
 
+// returns the full data for a particular post
 func FindPostById(id primitive.ObjectID) (CommunityPost, error) {
 	collection := getCollection(COMMUNITY_POST_COLLECTION)
 

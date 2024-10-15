@@ -17,11 +17,11 @@ type AccessibilitySelection struct {
 	Count int    `bson:"count" json:"count"`
 }
 
-// specific db stuff should probably be moved to its own file in the future
-func InsertAccessibilitySeletion(name string) error {
+// increments the count for the input selection
+func IncrementAccessibilitySelection(name string) error {
 	filter := bson.M{"name": name}
 	update := bson.M{"$inc": bson.M{"count": 1}} // increment count field by 1
-	opts := options.Update().SetUpsert(true)     // create obj if not found in db
+	opts := options.Update().SetUpsert(true)     // create obj if not yet in db
 
 	_, err := getCollection(ACCESSIBILITY_SELECTION_COLLECTION).UpdateOne(context.Background(), filter, update, opts)
 	if err != nil {
@@ -31,12 +31,14 @@ func InsertAccessibilitySeletion(name string) error {
 	return nil
 }
 
+// returns stats for all accessibility selections
 func AllAccessibilitySelection() ([]AccessibilitySelection, error) {
 	cursor, err := getCollection(ACCESSIBILITY_SELECTION_COLLECTION).Find(context.Background(), bson.M{})
 	if err != nil {
 		return nil, err
 	}
 
+	// iterate over all selections from database
 	var selectionList []AccessibilitySelection
 	for cursor.Next(context.Background()) {
 		var curSelection AccessibilitySelection
