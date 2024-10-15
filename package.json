@@ -3,7 +3,9 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
-    "dev": "concurrently \"next dev\" \"air\"",
+    "dev": "concurrently \"next dev\" \"air || ~/go/bin/air || go run main.go\"",
+    "dev-frontend": "next dev",
+    "dev-backend": "air || ~/go/bin/air || go run main.go",
     "build": "next build",
     "build-frontend": "next build",
     "build-backend": "go build",
