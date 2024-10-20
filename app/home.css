@@ -9,3 +9,10 @@
     color: #1B6AAA;
     font-size: 16pt;
 }
+
+.resources-title {
+    color: #1B6AAA;
+    font-size: 20pt;
+    justify-content: left;
+    position: relative;
+}
