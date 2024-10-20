@@ -1,12 +1,5 @@
 /* Home page styling */
-.green-theme {
-    color: #54BD86;
-  }
-  
-.dark-blue-theme {
-    color: #1B6AAA;
-}
-  
+ 
 .header {
     display: flex;
     justify-content: space-between;
@@ -60,7 +53,6 @@
 }
   
 .nav-item {
-    font-family: 'Lexend', sans-serif;
     font-size: 16pt;
     color: #1B6AAA ; 
     border-radius: 0px !important;
