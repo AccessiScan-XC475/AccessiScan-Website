@@ -1,11 +1,15 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+@import url("https://fonts.googleapis.com/css2?family=Lexend:wght@100..900&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Work+Sans:ital,wght@0,100..900;1,100..900&display=swap");
 
 :root {
   --background: #ffffff;
   --foreground: #171717;
+  font-family: 'Lexend', sans-serif;
 }
+
 
 @media (prefers-color-scheme: dark) {
   :root {
@@ -17,11 +21,18 @@
 body {
   color: var(--foreground);
   background: var(--background);
-  font-family: Arial, Helvetica, sans-serif;
 }
 
 @layer utilities {
   .text-balance {
     text-wrap: balance;
   }
+}
+
+h1, h2, h3, h4, h5, h6, p, button {
+  font-family: 'Lexend', sans-serif;
+}
+
+* {
+  font-family: 'Lexend', sans-serif;
 }

@@ -1,4 +1,5 @@
 import Link from "next/link";
+import { Button } from "@mui/material";
 
 const NavLink = ({
   href,
@@ -7,22 +8,32 @@ const NavLink = ({
   href: string;
   children: React.ReactNode;
 }) => (
-  <Link href={href} className="p-1 m-2 text-lg hover:underline transition-all">
-    {children}
+  <Link href={href} passHref>
+    <Button variant="contained" className="nav-item">
+      {children}
+    </Button>
   </Link>
 );
 
-const Header = () => (
-  <header className="flex w-full justify-between items-center my-2 mx-4 py-1 px-4">
-    <Link href="/" className="text-4xl">
-      AccessiScan
-    </Link>
-    <nav>
-      <NavLink href="/results">Results</NavLink>
-      <NavLink href="/community">Community</NavLink>
-      <NavLink href="/about">About</NavLink>
+const Header = () => {
+  return (
+    <nav className="navbar">
+      <Link href="/" className="home-title">
+        AccessiScan
+      </Link>
+      <ul className="nav-links">
+        <li>
+          <NavLink href="/results">RESULTS</NavLink>
+        </li>
+        <li>
+          <NavLink href="/community">COMMUNITY</NavLink>
+        </li>
+        <li>
+          <NavLink href="/about">ABOUT</NavLink>
+        </li>
+      </ul>
     </nav>
-  </header>
-);
+  );
+};
 
 export default Header;

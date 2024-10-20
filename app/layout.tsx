@@ -1,5 +1,7 @@
 import type { Metadata } from "next";
 import "./globals.css";
+import "./header.css";
+import "./home.css";
 import Header from "@/components/header";
 
 export const metadata: Metadata = {
@@ -14,9 +16,9 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className="min-h-screen min-w-screen flex flex-col items-center">
+      <body className="min-h-screen flex flex-col">
         <Header />
-        {children}
+        <main className="flex-grow">{children}</main>
       </body>
     </html>
   );
