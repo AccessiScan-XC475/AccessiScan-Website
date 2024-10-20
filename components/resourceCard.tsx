@@ -1,18 +1,23 @@
 import React from "react";
-import { Card, CardContent, CardMedia, Typography, Button } from "@mui/material";
+import { Card, CardContent, Typography, Button, Chip } from "@mui/material";
 
 interface ResourceCardProps {
   title: string;
   description: string;
   link: string;
-  imageUrl: string; // Optional, if you want to include an image
+  accessibilityType: string; // New prop for accessibility tag
 }
 
-const ResourceCard: React.FC<ResourceCardProps> = ({ title, description, link, imageUrl }) => {
+const ResourceCard: React.FC<ResourceCardProps> = ({ title, description, link, accessibilityType }) => {
   return (
     <Card sx={{ maxWidth: 345, margin: 2 }}>
-      {imageUrl && <CardMedia component="img" height="140" image={imageUrl} alt={title} />}
       <CardContent>
+        {/* Accessibility Tag */}
+        <Chip
+          label={accessibilityType}
+          color="primary" // You can choose the color, or customize it as needed
+          sx={{ marginBottom: 1 }}
+        />
         <Typography gutterBottom variant="h5" component="div">
           {title}
         </Typography>
