@@ -41,3 +41,52 @@ body {
     text-wrap: balance;
   }
 }
+
+/* Home page styling */
+.green-theme {
+  color: #54BD86;
+}
+
+.dark-blue-theme {
+  color: #1B6AAA;
+}
+
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center; 
+  margin: 0.5rem 1rem;
+  padding: 0.5rem 1rem;
+}
+
+.home-title {
+  color: #54BD86;
+  font-size: 2.25rem; /* 36px */
+  line-height: 2.5rem; /* 40px */
+  margin: 0 
+}
+
+.navbar {
+  display: flex;
+  justify-content: space-between; 
+  align-items: center; 
+  width: 100%; 
+  padding: 0.5rem 1rem; 
+}
+
+.nav-links {
+  display: flex;
+  list-style: none; 
+  margin-left: auto; 
+  padding: 0; 
+}
+
+.nav-links li {
+  list-style: none;
+}
+
+.nav-links li a {
+  display: block; 
+  padding: 0.5rem;
+  margin: 0 0.5rem; 
+}
