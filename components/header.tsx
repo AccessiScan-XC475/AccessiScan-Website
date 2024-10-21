@@ -9,7 +9,20 @@ const NavLink = ({
   children: React.ReactNode;
 }) => (
   <Link href={href} passHref>
-    <Button variant="contained" className="nav-item">
+    <Button
+      variant="contained"
+      sx={{
+        fontSize: "16pt",
+        color: "#1b6aaa",
+        borderRadius: "0px !important",
+        backgroundColor: "transparent",
+        border: "3px solid transparent",
+        borderImage:
+          "linear-gradient(45deg, #1b6aaa, #54bd86, #9b8bf4, #8babf1) 1",
+        borderImageSlice: "1",
+        textTransform: "none !important",
+      }}
+    >
       {children}
     </Button>
   </Link>
