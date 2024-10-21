@@ -9,3 +9,17 @@
     color: #1B6AAA;
     font-size: 16pt;
 }
+
+.resources-title {
+    color: #1B6AAA;
+    font-size: 20pt;
+    justify-content: left;
+    position: relative;
+    font-weight: 700;
+}
+
+h3 {
+    font-size: 16pt;
+    color: #8275c9;
+    font-weight: 700;
+}

@@ -8,6 +8,9 @@
   --background: #ffffff;
   --foreground: #171717;
   font-family: 'Lexend', sans-serif;
+  --primary-color: #1B6AAA; 
+  --card-background: #ffffff; 
+  --card-text: #171717; 
 }
 
 
@@ -15,6 +18,9 @@
   :root {
     --background: #0a0a0a;
     --foreground: #ededed;
+    --primary-color: #8dd2dd; 
+    --card-background: #000000; 
+    --card-text: #ffffff; 
   }
 }
 
