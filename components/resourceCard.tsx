@@ -10,18 +10,18 @@ interface ResourceCardProps {
 
 const ResourceCard: React.FC<ResourceCardProps> = ({ title, description, link, accessibilityType }) => {
   return (
-    <Card className="m-4 w-full md:w-1/3 lg:w-1/4">
+    <Card className="m-4 w-full md:w-1/3 lg:w-1/4" style={{ backgroundColor: 'var(--card-background)', color: 'var(--card-text)' }}>
       <CardContent style={{ fontSize: '16pt' }}>
-        <Typography gutterBottom variant="h5" component="div" style={{ fontSize: '16pt' }}>
+        <Typography gutterBottom variant="h5" component="div" style={{ fontSize: '16pt', color: 'var(--card-text)'}}>
           {title}
         </Typography>
-        <Typography variant="body2" color="text.secondary" style={{ fontSize: '14pt' }}>
+        <Typography variant="body2" color="text.secondary" style={{ fontSize: '14pt', color: 'var(--card-text)' }}>
           {description}
         </Typography>
         <div className="flex flex-col items-start mt-4"> 
           <Button
             size="small"
-            style={{ color: '#1B6AAA', marginTop: '10px', fontSize: '16pt' }}
+            style={{ color: 'var(--primary-color)', marginTop: '10px', fontSize: '16pt' }}
             href={link}
             target="_blank"
             rel="noopener noreferrer"
