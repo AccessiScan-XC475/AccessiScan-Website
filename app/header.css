@@ -1,69 +1,70 @@
 /* Home page styling */
- 
+
 .header {
-    display: flex;
-    justify-content: space-between;
-    align-items: center; 
-    margin: 0.5rem 1rem;
-    padding: 0.5rem 1rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin: 0.5rem 1rem;
+  padding: 0.5rem 1rem;
 }
-  
+
 .home-title {
-    color: #54BD86;
-    font-size: 2.25rem; /* 36px */
-    font-weight: 700;
-    line-height: 2.5rem; /* 40px */
-    margin: 0 
+  color: #54bd86;
+  font-size: 2.25rem; /* 36px */
+  font-weight: 700;
+  line-height: 2.5rem; /* 40px */
+  margin: 0;
 }
-  
+
 .navbar {
-    display: flex;
-    justify-content: space-between; 
-    align-items: center; 
-    width: 100%; 
-    padding: 0.5rem 1rem; 
-    position: relative;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+  padding: 0.5rem 1rem;
+  position: relative;
 }
-  
+
 .navbar::after {
-    content: "";
-    position: absolute;
-    bottom: 0;
-    left: 0;
-    width: 100%;
-    height: 3px; 
-    background: linear-gradient(90deg, #1B6AAA, #54BD86, #9b8bf4, #8babf1);
+  content: "";
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 3px;
+  background: linear-gradient(90deg, #1b6aaa, #54bd86, #9b8bf4, #8babf1);
 }
-  
+
 .nav-links {
-    display: flex;
-    list-style: none; 
-    margin-left: auto; 
-    padding: 0; 
+  display: flex;
+  list-style: none;
+  margin-left: auto;
+  padding: 0;
 }
-  
+
 .nav-links li {
-    list-style: none;
+  list-style: none;
 }
-  
+
 .nav-links li a {
-    display: block; 
-    padding: 0.5rem;
-    margin: 0 0.5rem; 
+  display: block;
+  padding: 0.5rem;
+  margin: 0 0.5rem;
 }
-  
+
 .nav-item {
-    font-size: 16pt;
-    color: #1B6AAA;
-    border-radius: 0px !important;
-    background-color: transparent;
-    border: 3px solid transparent;
-    border-image: linear-gradient(45deg, #1B6AAA, #54BD86, #9b8bf4, #8babf1) 1;
-    border-image-slice: 1;
-    text-transform: none !important; 
+  font-size: 16pt;
+  color: #1b6aaa;
+  border-radius: 0px !important;
+  background-color: transparent;
+  border: 3px solid transparent;
+  border-image: linear-gradient(45deg, #1b6aaa, #54bd86, #9b8bf4, #8babf1) 1;
+  border-image-slice: 1;
+  text-transform: none !important;
 }
-  
+
 .nav-item:hover {
-    background-color: #54BD86;
-    color: white;
+  background-color: #54bd86;
+  color: white;
 }
+
