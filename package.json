@@ -13,7 +13,8 @@
     "start": "next start",
     "start-frontend": "next start",
     "start-backend": "./AccessiScan-Website",
-    "local-start": "concurrently \"next start\" \"./AccessiScan-Website\""
+    "local-start": "concurrently \"next start\" \"./AccessiScan-Website\"",
+    "lint": "next lint"
   },
   "dependencies": {
     "@emotion/react": "^11.13.3",
