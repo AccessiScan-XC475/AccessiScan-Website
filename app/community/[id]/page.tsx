@@ -25,6 +25,8 @@ export default function CommunityPostPage({
       // if invalid id, push to community board
       router.push("/community");
     }
+
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   return (
