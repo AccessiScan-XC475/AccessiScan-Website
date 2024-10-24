@@ -37,7 +37,7 @@ export default function CommunityPage() {
       if (postPreviewList === null) {
         setPostPreviewList([createdPost]);
       } else {
-        setPostPreviewList([...postPreviewList, createdPost]);
+        setPostPreviewList([createdPost, ...postPreviewList]);
       }
       return true;
     }

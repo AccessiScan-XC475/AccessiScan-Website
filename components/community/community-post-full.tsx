@@ -39,11 +39,11 @@ export default function CommunityPostFull({
 
     if (res.status === 200) {
       setReplies([
-        ...replies,
         {
           ...newPost,
           id: await res.text(),
         },
+        ...replies,
       ]);
       return true;
     }
@@ -64,8 +64,8 @@ export default function CommunityPostFull({
       <div className="bg-blue-200 p-2 m-1">
         <h4 className="text-xl font-medium">Replies</h4>
         <NewReply submitFunc={createNewReply} />
-        {replies.map((reply) => (
-          <CommunityPostReply postReply={reply} />
+        {replies.map((reply, i) => (
+          <CommunityPostReply postReply={reply} key={i} />
         ))}
       </div>
     </div>

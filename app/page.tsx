@@ -1,6 +1,4 @@
 "use client";
-import { MenuItem, Select } from "@mui/material";
-import { useState } from "react";
 import ResourceCard from "@/components/resourceCard";
 
 const overviewResources = [
@@ -115,7 +113,6 @@ const mobilityResources = [
 ];
 
 export default function HomePage() {
-  const [selection, setSelection] = useState("");
   const h3Styles = { fontSize: "16pt", color: "#8275C9", fontWeight: 700 };
 
   return (
