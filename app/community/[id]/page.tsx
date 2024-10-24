@@ -1,28 +1,39 @@
-import CommunityPostFull from "@/components/community/community-post-full";
-import { DOMAIN } from "@/domain";
-import { redirect } from "next/navigation";
+"use client";
+import { useRouter } from "next/navigation";
+import { use, useState, useEffect } from "react";
+import CommunityPostFull, {
+  CommunityPostFullProps,
+} from "@/components/community/community-post-full";
+import { CircularProgress } from "@mui/material";
 
-export default async function CommunityPostPage({
+export default function CommunityPostPage({
   params,
 }: {
   params: Promise<{ id: string }>;
 }) {
-  const { id } = await params;
+  const router = useRouter();
+  const { id } = use(params);
+  const [post, setPost] = useState<CommunityPostFullProps | null>(null);
 
-  const res = await fetch(`${DOMAIN}/api/community-post?id=${id}`);
+  useEffect(() => {
+    async function getPostById() {
+      const res = await fetch(`/api/community-post?id=${id}`);
+      if (res.status !== 200) {
+        router.push("/community");
+      }
+      setPost(await res.json());
+    }
+    try {
+      getPostById();
+    } catch (e) {
+      console.error(e);
+      router.push("/community");
+    }
+  }, []); // eslint-disable-line react-hooks/exhaustive-deps
 
-  if (res.status !== 200) {
-    redirect("/community");
-  }
-
-  try {
-    const fullPost = await res.json();
-    return (
-      <div>
-        <CommunityPostFull post={fullPost} />
-      </div>
-    );
-  } catch {
-    redirect("/community");
-  }
+  return post === null ? (
+    <CircularProgress />
+  ) : (
+    <CommunityPostFull post={post} />
+  );
 }
