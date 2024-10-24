@@ -3,6 +3,7 @@ package db
 import (
 	"context"
 	"fmt"
+	"slices"
 
 	"go.mongodb.org/mongo-driver/bson"
 	"go.mongodb.org/mongo-driver/bson/primitive"
@@ -116,6 +117,8 @@ func AllCommunityPosts() ([]CommunityPostNumReplies, error) {
 			NumReplies: len(curCommunityPost.Replies),
 		})
 	}
+
+	slices.Reverse(communityPostList)
 
 	return communityPostList, nil
 }
