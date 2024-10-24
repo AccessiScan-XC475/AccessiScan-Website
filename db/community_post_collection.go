@@ -135,5 +135,7 @@ func FindPostById(id primitive.ObjectID) (CommunityPost, error) {
 		return CommunityPost{}, err
 	}
 
+	slices.Reverse(communityPost.Replies)
+
 	return communityPost, nil
 }

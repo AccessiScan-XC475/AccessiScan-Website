@@ -39,11 +39,11 @@ export default function CommunityPostFull({
 
     if (res.status === 200) {
       setReplies([
-        ...replies,
         {
           ...newPost,
           id: await res.text(),
         },
+        ...replies,
       ]);
       return true;
     }
