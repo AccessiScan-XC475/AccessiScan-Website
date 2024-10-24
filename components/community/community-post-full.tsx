@@ -65,7 +65,7 @@ export default function CommunityPostFull({
         <h4 className="text-xl font-medium">Replies</h4>
         <NewReply submitFunc={createNewReply} />
         {replies.map((reply) => (
-          <CommunityPostReply postReply={reply} />
+          <CommunityPostReply postReply={reply} key={reply.id} />
         ))}
       </div>
     </div>
