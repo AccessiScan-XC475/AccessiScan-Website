@@ -17,5 +17,9 @@ func Router() *http.ServeMux {
 	router.HandleFunc(("GET /api/community-post"), handlers.GetCommunityPost)
 	router.HandleFunc(("POST /api/community-post"), handlers.PostCommunityPost)
 
+	// perhaps enable OAuth with other providers in the future
+	router.HandleFunc(("GET /api/login/github"), handlers.RedirectGHLogin)
+	router.HandleFunc(("/api/callback/github"), handlers.GitHubCallback)
+
 	return router
 }
