@@ -21,22 +21,24 @@ func ExchangeCode(code string) (string, error) {
 		"client_secret": GITHUB_CLIENT_SECRET,
 		"code":          code,
 	}
-
 	jsonData, err := json.Marshal(data)
 	if err != nil {
 		log.Println("error creating json data to send to github")
 		return "", err
 	}
 
+	// create request to github
 	req, err := http.NewRequest("POST", "https://github.com/login/oauth/access_token", bytes.NewBuffer(jsonData))
 	if err != nil {
 		log.Println("error creating json data to send to github")
 		return "", err
 	}
 
+	// set headers
 	req.Header.Set("Content-Type", "application/json")
 	req.Header.Set("Accept", "application/json")
 
+	// perform request
 	res, err := http.DefaultClient.Do(req)
 	if err != nil {
 		log.Println("error in post request to github")
