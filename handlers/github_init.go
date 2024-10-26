@@ -1,7 +1,9 @@
 package handlers
 
 import (
+	"AccessiScan-Website/db"
 	gh "AccessiScan-Website/github"
+	"AccessiScan-Website/middleware"
 	"log"
 	"net/http"
 )
@@ -28,6 +30,29 @@ func GitHubCallback(w http.ResponseWriter, r *http.Request) {
 
 	log.Println(token)
 
+	userGithubProfile, err := gh.GetUserInfo(token)
+	if err != nil {
+		w.WriteHeader(http.StatusInternalServerError)
+		w.Write([]byte("something went wrong, please try again."))
+		return
+	}
+
+	log.Println(userGithubProfile)
+
+	user := db.AccessiScanUser{
+		GitHubProfile:     userGithubProfile,
+		GitHubAccessToken: token,
+	}
+
+	sessionId, err := db.GetSessionId(user)
+	if err != nil {
+		w.WriteHeader(http.StatusInternalServerError)
+		w.Write([]byte("something went wrong, please try again."))
+		return
+	}
+
+	middleware.SetSessionId(w, sessionId)
+
 	w.WriteHeader(http.StatusOK)
-	w.Write([]byte("github callback"))
+	w.Write([]byte(sessionId))
 }

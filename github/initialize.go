@@ -18,6 +18,7 @@ func Initialize() {
 
 func LoginUrl() string {
 	params := url.Values{
+		// "scope": {"read:user"},
 		"scope":     {"user:email"},
 		"client_id": {GITHUB_CLIENT_ID},
 	}

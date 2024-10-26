@@ -3,6 +3,7 @@ package gh
 import (
 	"bytes"
 	"encoding/json"
+	"fmt"
 	"log"
 	"net/http"
 )
@@ -42,6 +43,9 @@ func ExchangeCode(code string) (string, error) {
 	if err != nil {
 		log.Println("error in post request to github")
 		return "", err
+	} else if res.StatusCode != 200 {
+		log.Println("received status code" + string(res.StatusCode) + "from github")
+		return "", fmt.Errorf("bad response from github")
 	}
 	defer res.Body.Close()
 
@@ -51,8 +55,10 @@ func ExchangeCode(code string) (string, error) {
 	if err != nil {
 		log.Println("error reading response from github")
 		return "", err
+	} else if result.AccessToken == "" {
+		log.Println("did not receive access token from github")
+		return "", fmt.Errorf("did not received access token")
 	}
 
-	log.Println(result)
 	return result.AccessToken, nil
 }
