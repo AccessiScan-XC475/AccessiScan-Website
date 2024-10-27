@@ -37,16 +37,20 @@ export default function ProfilePage() {
       <p>{profile.username}</p>
       <div className="bg-sky-100 rounded-xl p-4">
         <h3 className="text-xl">Score History</h3>
-        <LineChart
-          xAxis={[{ data: profile.scoreHistory.map((_, i) => i + 1) }]}
-          series={[
-            {
-              data: profile.scoreHistory.map((score) => score),
-            },
-          ]}
-          width={500}
-          height={300}
-        />
+        {profile.scoreHistory.length === 0 ? (
+          <p>No Score History</p>
+        ) : (
+          <LineChart
+            xAxis={[{ data: profile.scoreHistory.map((_, i) => i + 1) }]}
+            series={[
+              {
+                data: profile.scoreHistory.map((score) => score),
+              },
+            ]}
+            width={500}
+            height={300}
+          />
+        )}
       </div>
     </div>
   );
