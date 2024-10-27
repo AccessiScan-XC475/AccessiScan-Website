@@ -52,7 +52,7 @@ export default function CommunityPostFull({
   };
 
   return (
-    <div className="bg-emerald-300 p-6 mx-auto my-4 max-w-4xl">
+    <div className="bg-[#90D8B2] p-6 mx-auto my-4 max-w-4xl">
       <div>
         <h3 className="text-3xl font-semibold">{post.title}</h3>
         <p>{post.content}</p>
