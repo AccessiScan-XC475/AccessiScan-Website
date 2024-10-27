@@ -118,3 +118,22 @@ func GetSessionId(user AccessiScanUser) (string, error) {
 
 	return sessionId, nil
 }
+
+func AppendScore(id primitive.ObjectID, score int) bool {
+	collection := getCollection(USERS_COLLECTION)
+
+	res, err := collection.UpdateOne(context.Background(), bson.M{"_id": id}, bson.M{
+		"$push": bson.M{"scoreHistory": score},
+	})
+	if err != nil {
+		log.Println("error with mongodb operation", err.Error())
+		return false
+	}
+
+	if res.ModifiedCount != 1 {
+		log.Println("did not update 1 document")
+		return false
+	}
+
+	return true
+}
