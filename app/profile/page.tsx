@@ -1,6 +1,7 @@
 "use client";
 import { DOMAIN } from "@/domain";
 import { CircularProgress } from "@mui/material";
+import { LineChart } from "@mui/x-charts";
 import Link from "next/link";
 import { useEffect, useState } from "react";
 
@@ -34,7 +35,19 @@ export default function ProfilePage() {
       <p>{profile.id}</p>
       <p>{profile.name}</p>
       <p>{profile.username}</p>
-      <p>{profile.scoreHistory}</p>
+      <div className="bg-sky-100 rounded-xl p-4">
+        <h3 className="text-xl">Score History</h3>
+        <LineChart
+          xAxis={[{ data: profile.scoreHistory.map((_, i) => i + 1) }]}
+          series={[
+            {
+              data: profile.scoreHistory.map((score) => score),
+            },
+          ]}
+          width={500}
+          height={300}
+        />
+      </div>
     </div>
   );
 }
