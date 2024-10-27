@@ -15,7 +15,7 @@ export default function CommunityPostReply({
   postReply: CommunityPostReplyProps;
 }) {
   return (
-    <div className="bg-blue-300 rounded-xl p-2 m-2">
+    <div className="bg-blue-300 rounded-xl p-2 mx-auto my-2 max-w-4xl">
       <h4 className="text-lg font-medium">{postReply.author}</h4>
       <p>{postReply.content}</p>
       <UpvotesDownvotesDisplay

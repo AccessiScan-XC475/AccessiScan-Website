@@ -52,7 +52,7 @@ export default function CommunityPostFull({
   };
 
   return (
-    <div className="bg-emerald-300 p-6 m-2 w-[60vw]">
+    <div className="bg-emerald-300 p-6 mx-auto my-4 max-w-4xl">
       <div>
         <h3 className="text-3xl font-semibold">{post.title}</h3>
         <p>{post.content}</p>
@@ -61,7 +61,7 @@ export default function CommunityPostFull({
         upvotes={post.upvotes}
         downvotes={post.downvotes}
       />
-      <div className="bg-blue-200 p-2 m-1">
+      <div className="bg-blue-200 p-2 my-2">
         <h4 className="text-xl font-medium">Replies</h4>
         <NewReply submitFunc={createNewReply} />
         {replies.map((reply, i) => (
