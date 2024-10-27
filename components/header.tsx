@@ -1,3 +1,4 @@
+"use client";
 import Link from "next/link";
 import { Button } from "@mui/material";
 
@@ -40,6 +41,9 @@ const Header = () => {
         </li>
         <li>
           <NavLink href="/community">COMMUNITY</NavLink>
+        </li>
+        <li>
+          <NavLink href="/profile">PROFILE</NavLink>
         </li>
         <li>
           <NavLink href="/about">ABOUT</NavLink>
