@@ -21,7 +21,10 @@ func Router() *http.ServeMux {
 	router.HandleFunc(("GET /api/login/github"), handlers.RedirectGHLogin)
 	router.HandleFunc(("/api/callback/github"), handlers.GitHubCallback)
 
-	router.HandleFunc(("GET /api/auth/profile"), handlers.GetProfile)
+	// get own profile
+	router.HandleFunc(("GET /api/auth/profile"), handlers.GetProfileSelf)
+	// get a profile of particular id but with less information
+	router.HandleFunc(("GET /api/profile"), handlers.GetProfileOther)
 
 	return router
 }

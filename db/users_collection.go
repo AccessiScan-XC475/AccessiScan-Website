@@ -40,8 +40,23 @@ func genSessionId() (string, error) {
 	return base64.RawURLEncoding.EncodeToString(bytes)[:length], nil
 }
 
+// get a user by their database id
+func GetUserById(id primitive.ObjectID) (AccessiScanUser, error) {
+	collection := getCollection(USERS_COLLECTION)
+
+	res := collection.FindOne(context.Background(), bson.M{"_id": id})
+
+	var user AccessiScanUser
+	err := res.Decode(&user)
+	if err != nil {
+		return AccessiScanUser{}, err
+	}
+
+	return user, nil
+}
+
 // get a user by their sessionId
-func GetUser(sessionId string) (AccessiScanUser, error) {
+func GetUserBySessionId(sessionId string) (AccessiScanUser, error) {
 	collection := getCollection(USERS_COLLECTION)
 
 	res := collection.FindOne(context.Background(), bson.M{"sessionId": sessionId})
@@ -66,7 +81,7 @@ func GetSessionId(user AccessiScanUser) (string, error) {
 	}
 	// ensure unique session id
 	for {
-		_, err := GetUser(sessionId)
+		_, err := GetUserBySessionId(sessionId)
 		if err != nil {
 			log.Println("found unique sessionId")
 			break

@@ -30,7 +30,7 @@ func Auth(next http.Handler) http.Handler {
 			return
 		}
 
-		user, err := db.GetUser(sessionId)
+		user, err := db.GetUserBySessionId(sessionId)
 		if err != nil {
 			log.Println("no user in db")
 			// change to redirect
