@@ -1,9 +1,10 @@
 package handlers
 
 import (
+	"AccessiScan-Website/cookies"
 	"AccessiScan-Website/db"
+	"AccessiScan-Website/domain"
 	gh "AccessiScan-Website/github"
-	"AccessiScan-Website/middleware"
 	"log"
 	"net/http"
 )
@@ -51,8 +52,7 @@ func GitHubCallback(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 
-	middleware.SetSessionId(w, sessionId)
+	cookies.SetSessionId(w, sessionId)
 
-	w.WriteHeader(http.StatusOK)
-	w.Write([]byte(sessionId))
+	http.Redirect(w, r, domain.DOMAIN+"/profile", http.StatusTemporaryRedirect)
 }

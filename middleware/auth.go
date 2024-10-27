@@ -1,34 +1,47 @@
 package middleware
 
 import (
+	"AccessiScan-Website/cookies"
+	"AccessiScan-Website/db"
+	"context"
+	"log"
 	"net/http"
-	"os"
+	"strings"
 )
 
-const SESSION_ID_COOKIE_NAME = "AccessiScan-session-id"
+func Auth(next http.Handler) http.Handler {
+	return http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
+		// only certain routes need this middleware
+		if !strings.HasPrefix(r.URL.Path, "/api/auth") {
+			log.Println("not auth route")
+			next.ServeHTTP(w, r)
+			return
+		}
 
-func SetSessionId(w http.ResponseWriter, sessionId string) {
-	var secure bool
-	if os.Getenv("ENVIRONMENT") == "dev" {
-		secure = false
-	} else {
-		secure = true
-	}
-	cookie := http.Cookie{
-		Name:     SESSION_ID_COOKIE_NAME,
-		Value:    sessionId,
-		Secure:   secure,
-		HttpOnly: true,
-	}
+		log.Println("auth route", r.URL.Path)
 
-	http.SetCookie(w, &cookie)
-}
+		// get user from db
+		sessionId := cookies.GetSessionId(r)
+		if sessionId == "" {
+			log.Println("no session id cookie")
+			// change to redirect
+			w.WriteHeader(http.StatusUnauthorized)
+			w.Write([]byte(http.StatusText(http.StatusUnauthorized)))
+			return
+		}
 
-func GetSessionId(r *http.Request) string {
-	cookie, err := r.Cookie(SESSION_ID_COOKIE_NAME)
-	if err != nil {
-		return ""
-	}
+		user, err := db.GetUser(sessionId)
+		if err != nil {
+			log.Println("no user in db")
+			// change to redirect
+			w.WriteHeader(http.StatusUnauthorized)
+			w.Write([]byte(http.StatusText(http.StatusUnauthorized)))
+			return
+		}
 
-	return cookie.Value
+		ctx := context.WithValue(r.Context(), "user", user)
+
+		// call next handlers with new context
+		next.ServeHTTP(w, r.WithContext(ctx))
+	})
 }
