@@ -14,7 +14,8 @@ export default function NewReply({
         value={content}
         placeholder="Content"
         onChange={(e) => setContent(e.target.value)}
-        className="mb-2 text-[#1B6AAA]"
+        className="mb-2 text-[#1B6AAA] rounded-xl border border-gray-300 p-2"
+        
       />
       <button
         onClick={() => {
@@ -24,7 +25,9 @@ export default function NewReply({
             }
           });
         }}
-        className="rounded-xl p-2 bg-green-200 disabled:bg-gray-200 m-2"
+        className={`rounded-xl p-2 bg-[#1B6AAA] disabled:bg-gray-200 m-2 ${
+           content.length === 0 ? 'text-[#1B6AAA]' : 'text-white'
+        }`}
         disabled={content.length === 0}
       >
         Reply
