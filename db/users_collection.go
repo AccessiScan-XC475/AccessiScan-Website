@@ -34,18 +34,40 @@ type AccessiScanUser struct {
 }
 
 func genSessionId() (string, error) {
-	const length int = 128
-	// create byte slice of length 128
-	bytes := make([]byte, length)
+	newSessionId := func() (string, error) {
+		const length int = 128
+		// create byte slice of length 128
+		bytes := make([]byte, length)
 
-	// read random bytes from crypto/rand
-	_, err := rand.Read(bytes)
+		// read random bytes from crypto/rand
+		_, err := rand.Read(bytes)
+		if err != nil {
+			return "", err
+		}
+
+		// encode bytes to a base64 string
+		return base64.RawURLEncoding.EncodeToString(bytes)[:length], nil
+	}
+
+	// create new session id
+	sessionId, err := newSessionId()
 	if err != nil {
 		return "", err
 	}
-
-	// encode bytes to a base64 string
-	return base64.RawURLEncoding.EncodeToString(bytes)[:length], nil
+	// ensure unique session id
+	for {
+		_, err := GetUserBySessionId(sessionId)
+		if err != nil {
+			log.Println("found unique sessionId")
+			break
+		}
+		log.Println("creating new sessionId")
+		sessionId, err = newSessionId()
+		if err != nil {
+			return "", err
+		}
+	}
+	return sessionId, nil
 }
 
 // get a user by their database id
@@ -115,23 +137,9 @@ func GetUserBySessionId(sessionId string) (AccessiScanUser, error) {
 
 // insert/update user in database and receive a new sessionId
 func GetSessionId(user AccessiScanUser) (string, error) {
-	// create session id
 	sessionId, err := genSessionId()
 	if err != nil {
 		return "", err
-	}
-	// ensure unique session id
-	for {
-		_, err := GetUserBySessionId(sessionId)
-		if err != nil {
-			log.Println("found unique sessionId")
-			break
-		}
-		log.Println("creating new sessionId")
-		sessionId, err = genSessionId()
-		if err != nil {
-			return "", err
-		}
 	}
 
 	expires := time.Now().Add(24 * time.Hour)
