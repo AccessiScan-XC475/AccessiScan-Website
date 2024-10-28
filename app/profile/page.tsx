@@ -1,5 +1,4 @@
 "use client";
-import { DOMAIN } from "@/domain";
 import { CircularProgress } from "@mui/material";
 import { LineChart } from "@mui/x-charts";
 import Link from "next/link";
@@ -28,7 +27,7 @@ export default function ProfilePage() {
     <CircularProgress />
   ) : profile === null ? (
     <div>
-      <Link href={DOMAIN + "/api/login/github"}>Sign In with GitHub</Link>
+      <Link href={"/api/login/github"}>Sign In with GitHub</Link>
     </div>
   ) : (
     <div>

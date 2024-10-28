@@ -32,6 +32,13 @@ func Auth(next http.Handler) http.Handler {
 
 		user, err := db.GetUserBySessionId(sessionId)
 		if err != nil {
+			if err.Error() == "redirect" {
+				log.Println("expired sessionId")
+				// change to redirect
+				w.WriteHeader(http.StatusUnauthorized)
+				w.Write([]byte(http.StatusText(http.StatusUnauthorized)))
+				return
+			}
 			log.Println("no user in db")
 			// change to redirect
 			w.WriteHeader(http.StatusUnauthorized)
