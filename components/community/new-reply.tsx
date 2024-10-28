@@ -8,12 +8,13 @@ export default function NewReply({
   const [content, setContent] = useState("");
 
   return (
-    <div className="bg-[#90D8B2] rounded-xl p-4 mx-auto my-2 max-w-4xl flex flex-col">
-      <h4 className="text-2xl p-1 m-1">Reply to post</h4>
+    <div className="bg-[#C7EBD9] rounded-xl p-4 mx-auto my-2 max-w-4xl flex flex-col">
+      <h4 className="text-2xl p-1 m-1 text-[#1B6AAA]">Reply to post</h4>
       <textarea
         value={content}
         placeholder="Content"
         onChange={(e) => setContent(e.target.value)}
+        className="mb-2 text-[#1B6AAA]"
       />
       <button
         onClick={() => {
