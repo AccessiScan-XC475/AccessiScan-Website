@@ -35,7 +35,7 @@ func ConnectDB() *mongo.Client {
 var db *mongo.Client = ConnectDB()
 var collectionCache = map[string]*mongo.Collection{}
 
-func getCollection(collectionName string) *mongo.Collection {
+func GetCollection(collectionName string) *mongo.Collection {
 	env := os.Getenv("ENVIRONMENT")
 	if env == "" {
 		env = "dev"

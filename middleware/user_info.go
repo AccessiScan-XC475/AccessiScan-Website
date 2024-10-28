@@ -2,7 +2,7 @@ package middleware
 
 import (
 	"AccessiScan-Website/cookies"
-	"AccessiScan-Website/db"
+	"AccessiScan-Website/db/users_collection"
 	"context"
 	"log"
 	"net/http"
@@ -17,7 +17,7 @@ func UserInfo(next http.Handler) http.Handler {
 			return
 		}
 
-		user, err := db.GetUserBySessionId(sessionId)
+		user, err := users_collection.GetUserBySessionId(sessionId)
 		if err != nil {
 			if err.Error() == "redirect" {
 				log.Println("expired sessionId")

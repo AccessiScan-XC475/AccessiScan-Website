@@ -1,7 +1,7 @@
 package handlers
 
 import (
-	"AccessiScan-Website/db"
+	"AccessiScan-Website/db/users_collection"
 	"net/http"
 	"slices"
 	"strconv"
@@ -26,15 +26,15 @@ func AppendScore(w http.ResponseWriter, r *http.Request) {
 	}
 
 	ctx := r.Context()
-	var user db.AccessiScanUser
-	user, ok := ctx.Value("user").(db.AccessiScanUser)
+	var user users_collection.AccessiScanUser
+	user, ok := ctx.Value("user").(users_collection.AccessiScanUser)
 	if !ok || !slices.Contains(admin, user.GitHubProfile.Email) {
 		w.WriteHeader(http.StatusInternalServerError)
 		w.Write([]byte("something went wrong, please try again."))
 		return
 	}
 
-	success := db.AppendScore(user.Id, score)
+	success := users_collection.AppendScore(user.Id, score)
 	if !success {
 		w.WriteHeader(http.StatusInternalServerError)
 		w.Write([]byte("something went wrong, please try again."))

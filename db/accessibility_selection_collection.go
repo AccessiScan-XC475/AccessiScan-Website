@@ -23,7 +23,7 @@ func IncrementAccessibilitySelection(name string) error {
 	update := bson.M{"$inc": bson.M{"count": 1}} // increment count field by 1
 	opts := options.Update().SetUpsert(true)     // create obj if not yet in db
 
-	_, err := getCollection(ACCESSIBILITY_SELECTION_COLLECTION).UpdateOne(context.Background(), filter, update, opts)
+	_, err := GetCollection(ACCESSIBILITY_SELECTION_COLLECTION).UpdateOne(context.Background(), filter, update, opts)
 	if err != nil {
 		return err
 	}
@@ -33,7 +33,7 @@ func IncrementAccessibilitySelection(name string) error {
 
 // returns stats for all accessibility selections
 func AllAccessibilitySelection() ([]AccessibilitySelection, error) {
-	cursor, err := getCollection(ACCESSIBILITY_SELECTION_COLLECTION).Find(context.Background(), bson.M{})
+	cursor, err := GetCollection(ACCESSIBILITY_SELECTION_COLLECTION).Find(context.Background(), bson.M{})
 	if err != nil {
 		return nil, err
 	}

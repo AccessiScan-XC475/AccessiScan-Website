@@ -2,7 +2,7 @@ package handlers
 
 import (
 	"AccessiScan-Website/cookies"
-	"AccessiScan-Website/db"
+	"AccessiScan-Website/db/users_collection"
 	"AccessiScan-Website/domain"
 	gh "AccessiScan-Website/github"
 	"log"
@@ -40,12 +40,12 @@ func GitHubCallback(w http.ResponseWriter, r *http.Request) {
 
 	log.Println(userGithubProfile)
 
-	user := db.AccessiScanUser{
+	user := users_collection.AccessiScanUser{
 		GitHubProfile:     userGithubProfile,
 		GitHubAccessToken: token,
 	}
 
-	sessionId, err := db.GetSessionId(user)
+	sessionId, err := users_collection.GetSessionId(user)
 	if err != nil {
 		w.WriteHeader(http.StatusInternalServerError)
 		w.Write([]byte("something went wrong, please try again."))

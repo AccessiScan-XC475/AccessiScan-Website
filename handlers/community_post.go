@@ -1,7 +1,8 @@
 package handlers
 
 import (
-	"AccessiScan-Website/db"
+	"AccessiScan-Website/db/community_post_collection"
+	"AccessiScan-Website/db/users_collection"
 	"encoding/json"
 	"log"
 	"net/http"
@@ -38,7 +39,7 @@ func GetCommunityPost(w http.ResponseWriter, r *http.Request) {
 
 	if idString == "" {
 		// retrieve a preview of all posts
-		allCommunityPosts, err := db.AllCommunityPosts()
+		allCommunityPosts, err := community_post_collection.AllCommunityPosts()
 		if err != nil {
 			log.Println(err.Error())
 			w.WriteHeader(http.StatusInternalServerError)
@@ -51,7 +52,7 @@ func GetCommunityPost(w http.ResponseWriter, r *http.Request) {
 		return
 	} else {
 		ctx := r.Context()
-		user, userOk := ctx.Value("user").(db.AccessiScanUser)
+		user, userOk := ctx.Value("user").(users_collection.AccessiScanUser)
 
 		// retrieve a particular post
 		// convert input post id to correct type
@@ -63,7 +64,7 @@ func GetCommunityPost(w http.ResponseWriter, r *http.Request) {
 		}
 
 		// get the specific post from database
-		communityPostDB, err := db.FindPostById(postId)
+		communityPostDB, err := community_post_collection.FindPostById(postId)
 		if err != nil {
 			w.WriteHeader(http.StatusBadRequest)
 			w.Write([]byte("could not find post with this id"))
@@ -127,7 +128,7 @@ func PostCommunityPost(w http.ResponseWriter, r *http.Request) {
 	if parentIdString == "" {
 		// create a new post
 		// parse the new post data
-		var postData db.CommunityPostDB
+		var postData community_post_collection.CommunityPostDB
 		err := json.NewDecoder(r.Body).Decode(&postData)
 		if err != nil {
 			w.WriteHeader(http.StatusBadRequest)
@@ -136,7 +137,7 @@ func PostCommunityPost(w http.ResponseWriter, r *http.Request) {
 		}
 
 		// create a new post
-		id, err := db.CreateNewPost(postData.Author, postData.Title, postData.Content)
+		id, err := community_post_collection.CreateNewPost(postData.Author, postData.Title, postData.Content)
 		if err != nil {
 			log.Println(err.Error())
 			w.WriteHeader(http.StatusInternalServerError)
@@ -167,7 +168,7 @@ func PostCommunityPost(w http.ResponseWriter, r *http.Request) {
 		}
 
 		// reply to the parent post
-		err = db.ReplyToPost(parentId, replyData.Author, replyData.Content)
+		err = community_post_collection.ReplyToPost(parentId, replyData.Author, replyData.Content)
 		if err != nil {
 			w.WriteHeader(http.StatusInternalServerError)
 			w.Write([]byte("something went wrong, please try again."))
