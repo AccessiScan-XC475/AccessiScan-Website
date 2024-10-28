@@ -1,5 +1,5 @@
 import React from "react";
-import { Card, CardContent, Typography, Chip, Link } from "@mui/material";
+import { Card, CardContent, Typography, Button, Chip } from "@mui/material";
 import { OpenInNew } from "@mui/icons-material";
 
 interface ResourceCardProps {
@@ -50,8 +50,8 @@ const ResourceCard: React.FC<ResourceCardProps> = ({
           </Typography>
         </div>
         <div className="flex flex-col items-start mt-4">
-          <Link
-            // size="small"
+          <Button
+            size="small"
             sx={{
               "&:hover": {
                 textDecorationLine: "underline",
@@ -62,10 +62,10 @@ const ResourceCard: React.FC<ResourceCardProps> = ({
             }}
             href={link}
             target="_blank"
-            // rel="noopener noreferrer"
+            rel="noopener noreferrer"
           >
             Learn More <OpenInNew sx={{ padding: "2px" }} />
-          </Link>
+          </Button>
           <Chip
             label={accessibilityType}
             sx={{
