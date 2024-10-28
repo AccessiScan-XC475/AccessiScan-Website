@@ -10,7 +10,7 @@ export default function NewPost({
 
   return (
     <div className="bg-[#C7EBD9] rounded-xl p-4 mx-auto my-2 max-w-4xl flex flex-col shadow-lg">
-      <h4 className="text-2xl p-1 m-1 text-[#1B6AAA]">Create a new post</h4>
+      <h4 className="text-2xl p-1 m-1 text-[#1B6AAA]"><b>Create a new post</b></h4>
       <input
         value={title}
         placeholder="Title"
