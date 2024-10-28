@@ -19,7 +19,7 @@ export default function CommunityPostPreview({
 }) {
   return (
     <Link href={`/community/${postPreview.id}`}>
-      <div className="bg-[#C7EBD9] rounded-xl p-4 mx-auto my-2 max-w-4xl">
+      <div className="bg-[#C7EBD9] rounded-xl p-4 mx-auto my-2 max-w-4xl shadow-lg">
         <h4 className="text-xl font-semibold text-[#1B6AAA]">{postPreview.title}</h4>
         <p className="text-[#1B6AAA]">{postPreview.content}</p>
         <UpvotesDownvotesDisplay

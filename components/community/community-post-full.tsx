@@ -52,12 +52,13 @@ export default function CommunityPostFull({
   };
 
   return (
-    <div className="bg-[#C7EBD9] p-6 mx-auto my-4 max-w-4xl">
+    <div className="flex justify-center mt-4">
+    <div className="bg-[#C7EBD9] p-6 m-2 w-[60vw] rounded-xl shadow-lg">
       <div>
         <h3 className="text-3xl font-semibold text-[#1B6AAA]">{post.title}</h3>
         <p className="text-[#1B6AAA]">{post.content}</p>
       </div>
-      <div className="absolute bottom-4 right-4">
+      <div className="flex justify-between items-center mt-4">
         <UpvotesDownvotesDisplay
           upvotes={post.upvotes}
           downvotes={post.downvotes}
@@ -70,6 +71,7 @@ export default function CommunityPostFull({
           <CommunityPostReply postReply={reply} key={i} />
         ))}
       </div>
+    </div>
     </div>
   );
 }

@@ -9,7 +9,7 @@ export default function NewPost({
   const [content, setContent] = useState("");
 
   return (
-    <div className="bg-[#C7EBD9] rounded-xl p-4 mx-auto my-2 max-w-4xl flex flex-col">
+    <div className="bg-[#C7EBD9] rounded-xl p-4 mx-auto my-2 max-w-4xl flex flex-col shadow-lg">
       <h4 className="text-2xl p-1 m-1 text-[#1B6AAA]">Create a new post</h4>
       <input
         value={title}
