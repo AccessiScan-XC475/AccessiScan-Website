@@ -18,6 +18,7 @@ func GetCommunityPost(w http.ResponseWriter, r *http.Request) {
 		// retrieve a preview of all posts
 		allCommunityPosts, err := db.AllCommunityPosts()
 		if err != nil {
+			log.Println(err.Error())
 			w.WriteHeader(http.StatusInternalServerError)
 			w.Write([]byte("something went wrong, please try again."))
 			return
@@ -57,7 +58,7 @@ func PostCommunityPost(w http.ResponseWriter, r *http.Request) {
 	if parentIdString == "" {
 		// create a new post
 		// parse the new post data
-		var postData db.CommunityPost
+		var postData db.CommunityPostDB
 		err := json.NewDecoder(r.Body).Decode(&postData)
 		if err != nil {
 			w.WriteHeader(http.StatusBadRequest)

@@ -3,6 +3,7 @@ package db
 import (
 	"context"
 	"fmt"
+	"log"
 	"slices"
 
 	"go.mongodb.org/mongo-driver/bson"
@@ -11,13 +12,24 @@ import (
 
 const COMMUNITY_POST_COLLECTION = "CommunityPostCollection"
 
-type CommunityPost struct {
+type CommunityPostDB struct {
+	Id            primitive.ObjectID     `bson:"_id,omitempty" json:"id"`
+	Author        string                 `bson:"author" json:"author"`
+	Title         string                 `bson:"title" json:"title"`
+	Content       string                 `bson:"content" json:"content"`
+	UpvoteUsers   []primitive.ObjectID   `bson:"upvoteUsers" json:"upvoteUsers"`
+	DownvoteUsers []primitive.ObjectID   `bson:"downvoteUsers" json:"downvoteUsers"`
+	Replies       []CommunityPostReplyDB `bson:"replies" json:"replies"`
+}
+
+type CommunityPostFull struct {
 	Id        primitive.ObjectID   `bson:"_id,omitempty" json:"id"`
 	Author    string               `bson:"author" json:"author"`
 	Title     string               `bson:"title" json:"title"`
 	Content   string               `bson:"content" json:"content"`
 	Upvotes   int                  `bson:"upvotes" json:"upvotes"`
 	Downvotes int                  `bson:"downvotes" json:"downvotes"`
+	UserVote  *bool                `json:"userVote"`
 	Replies   []CommunityPostReply `bson:"replies" json:"replies"`
 }
 
@@ -31,6 +43,15 @@ type CommunityPostNumReplies struct {
 	NumReplies int                `json:"numReplies"`
 }
 
+type CommunityPostReplyDB struct {
+	ParentId      primitive.ObjectID   `bson:"parentId" json:"parentId"`
+	Id            primitive.ObjectID   `bson:"_id,omitempty" json:"id"`
+	Author        string               `bson:"author" json:"author"`
+	Content       string               `bson:"content" json:"content"`
+	UpvoteUsers   []primitive.ObjectID `bson:"upvoteUsers" json:"upvoteUsers"`
+	DownvoteUsers []primitive.ObjectID `bson:"downvoteUsers" json:"downvoteUsers"`
+}
+
 type CommunityPostReply struct {
 	ParentId  primitive.ObjectID `bson:"parentId" json:"parentId"`
 	Id        primitive.ObjectID `bson:"_id,omitempty" json:"id"`
@@ -38,6 +59,7 @@ type CommunityPostReply struct {
 	Content   string             `bson:"content" json:"content"`
 	Upvotes   int                `bson:"upvotes" json:"upvotes"`
 	Downvotes int                `bson:"downvotes" json:"downvotes"`
+	UserVote  *bool              `json:"userVote"`
 }
 
 // function needs the author/user attempting to create a new post
@@ -48,13 +70,13 @@ func CreateNewPost(author, title, content string) (primitive.ObjectID, error) {
 		return primitive.ObjectID{}, fmt.Errorf("author, title, or content missing")
 	}
 
-	newPost := CommunityPost{
-		Author:    author,
-		Title:     title,
-		Content:   content,
-		Upvotes:   0,
-		Downvotes: 0,
-		Replies:   []CommunityPostReply{},
+	newPost := CommunityPostDB{
+		Author:        author,
+		Title:         title,
+		Content:       content,
+		UpvoteUsers:   []primitive.ObjectID{},
+		DownvoteUsers: []primitive.ObjectID{},
+		Replies:       []CommunityPostReplyDB{},
 	}
 
 	res, err := getCollection(COMMUNITY_POST_COLLECTION).InsertOne(context.Background(), newPost)
@@ -72,12 +94,12 @@ func ReplyToPost(parentId primitive.ObjectID, author, content string) error {
 	}
 	collection := getCollection(COMMUNITY_POST_COLLECTION)
 
-	newReply := CommunityPostReply{
-		ParentId:  parentId,
-		Author:    author,
-		Content:   content,
-		Upvotes:   0,
-		Downvotes: 0,
+	newReply := CommunityPostReplyDB{
+		ParentId:      parentId,
+		Author:        author,
+		Content:       content,
+		UpvoteUsers:   []primitive.ObjectID{},
+		DownvoteUsers: []primitive.ObjectID{},
 	}
 
 	res, err := collection.UpdateByID(context.Background(), parentId, bson.M{
@@ -103,8 +125,11 @@ func AllCommunityPosts() ([]CommunityPostNumReplies, error) {
 	// iterate over all parent posts from database
 	var communityPostList []CommunityPostNumReplies
 	for cursor.Next(context.Background()) {
-		var curCommunityPost CommunityPost
+		log.Println("decoding a post")
+		var curCommunityPost CommunityPostDB
+		log.Println("decoding all")
 		if err := cursor.Decode(&curCommunityPost); err != nil {
+			log.Println("error decoding")
 			return []CommunityPostNumReplies{}, err
 		}
 		communityPostList = append(communityPostList, CommunityPostNumReplies{
@@ -112,8 +137,8 @@ func AllCommunityPosts() ([]CommunityPostNumReplies, error) {
 			Author:     curCommunityPost.Author,
 			Title:      curCommunityPost.Title,
 			Content:    curCommunityPost.Content,
-			Upvotes:    curCommunityPost.Upvotes,
-			Downvotes:  curCommunityPost.Downvotes,
+			Upvotes:    len(curCommunityPost.UpvoteUsers),
+			Downvotes:  len(curCommunityPost.DownvoteUsers),
 			NumReplies: len(curCommunityPost.Replies),
 		})
 	}
@@ -124,18 +149,42 @@ func AllCommunityPosts() ([]CommunityPostNumReplies, error) {
 }
 
 // returns the full data for a particular post
-func FindPostById(id primitive.ObjectID) (CommunityPost, error) {
+func FindPostById(id primitive.ObjectID) (CommunityPostFull, error) {
 	collection := getCollection(COMMUNITY_POST_COLLECTION)
 
 	res := collection.FindOne(context.Background(), bson.M{"_id": id})
 
-	var communityPost CommunityPost
-	err := res.Decode(&communityPost)
+	var communityPostDB CommunityPostDB
+	err := res.Decode(&communityPostDB)
 	if err != nil {
-		return CommunityPost{}, err
+		return CommunityPostFull{}, err
 	}
 
-	slices.Reverse(communityPost.Replies)
+	slices.Reverse(communityPostDB.Replies)
+
+	replies := []CommunityPostReply{}
+	for _, reply := range communityPostDB.Replies {
+		replies = append(replies, CommunityPostReply{
+			ParentId:  reply.ParentId,
+			Id:        reply.Id,
+			Author:    reply.Author,
+			Content:   reply.Content,
+			Upvotes:   len(reply.UpvoteUsers),
+			Downvotes: len(reply.DownvoteUsers),
+			UserVote:  nil,
+		})
+	}
+
+	communityPost := CommunityPostFull{
+		Id:        communityPostDB.Id,
+		Author:    communityPostDB.Author,
+		Title:     communityPostDB.Title,
+		Content:   communityPostDB.Content,
+		Upvotes:   len(communityPostDB.UpvoteUsers),
+		Downvotes: len(communityPostDB.DownvoteUsers),
+		UserVote:  nil,
+		Replies:   replies,
+	}
 
 	return communityPost, nil
 }
