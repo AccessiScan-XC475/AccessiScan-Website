@@ -17,5 +17,17 @@ func Router() *http.ServeMux {
 	router.HandleFunc(("GET /api/community-post"), handlers.GetCommunityPost)
 	router.HandleFunc(("POST /api/community-post"), handlers.PostCommunityPost)
 
+	// perhaps enable OAuth with other providers in the future
+	router.HandleFunc(("GET /api/login/github"), handlers.RedirectGHLogin)
+	router.HandleFunc(("/api/callback/github"), handlers.GitHubCallback)
+
+	// get own profile
+	router.HandleFunc(("GET /api/auth/profile"), handlers.GetProfileSelf)
+	// get a profile of particular id but with less information
+	router.HandleFunc(("GET /api/profile"), handlers.GetProfileOther)
+
+	// endpoint for manually testing score history
+	router.HandleFunc(("POST /api/auth/append"), handlers.AppendScore)
+
 	return router
 }
