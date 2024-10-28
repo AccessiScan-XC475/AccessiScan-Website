@@ -9,11 +9,18 @@ import (
 	"go.mongodb.org/mongo-driver/bson/primitive"
 )
 
+type GitHubUserInfoPub struct {
+	AvatarUrl string `json:"avatarUrl"`
+	Name      string `json:"name"`
+	Email     string `json:"email"`
+}
+
 type AccessiScanProfileSelf struct {
-	Id           string `json:"id"`
-	Username     string `json:"name"`
-	Name         string `json:"username"`
-	ScoreHistory []int  `json:"scoreHistory"`
+	Id            string            `json:"id"`
+	Username      string            `json:"name"`
+	Name          string            `json:"username"`
+	ScoreHistory  []int             `json:"scoreHistory"`
+	GitHubProfile GitHubUserInfoPub `json:"githubProfile"`
 }
 
 func GetProfileSelf(w http.ResponseWriter, r *http.Request) {
@@ -40,6 +47,11 @@ func GetProfileSelf(w http.ResponseWriter, r *http.Request) {
 		Username:     user.Username,
 		Name:         user.Name,
 		ScoreHistory: history,
+		GitHubProfile: GitHubUserInfoPub{
+			AvatarUrl: user.GitHubProfile.AvatarUrl,
+			Name:      user.GitHubProfile.Name,
+			Email:     user.GitHubProfile.Email,
+		},
 	}
 
 	w.WriteHeader(http.StatusOK)
