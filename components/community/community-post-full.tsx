@@ -52,22 +52,26 @@ export default function CommunityPostFull({
   };
 
   return (
-    <div className="bg-emerald-300 p-6 m-2 w-[60vw]">
+    <div className="flex justify-center mt-4">
+    <div className="bg-[#C7EBD9] p-6 m-2 w-[60vw] rounded-xl shadow-lg">
       <div>
-        <h3 className="text-3xl font-semibold">{post.title}</h3>
-        <p>{post.content}</p>
+        <h3 className="text-3xl font-semibold text-[#1B6AAA]">{post.title}</h3>
+        <p className="text-[#1B6AAA]">{post.content}</p>
       </div>
-      <UpvotesDownvotesDisplay
-        upvotes={post.upvotes}
-        downvotes={post.downvotes}
-      />
-      <div className="bg-blue-200 p-2 m-1">
-        <h4 className="text-xl font-medium">Replies</h4>
+      <div className="flex justify-between items-center mt-4">
+        <UpvotesDownvotesDisplay
+          upvotes={post.upvotes}
+          downvotes={post.downvotes}
+        />
+      </div>
+      <div className="bg-white p-2 my-2 rounded-xl">
+        <h4 className="text-xl font-medium text-[#1B6AAA]">Replies</h4>
         <NewReply submitFunc={createNewReply} />
         {replies.map((reply, i) => (
           <CommunityPostReply postReply={reply} key={i} />
         ))}
       </div>
+    </div>
     </div>
   );
 }
