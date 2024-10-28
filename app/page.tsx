@@ -2,7 +2,6 @@
 import ResourceCard from "@/components/resourceCard";
 import VideoIcon from "@mui/icons-material/VideoLibrary"; // Import Video Icon
 import DescriptionIcon from "@mui/icons-material/Description"; // Import Document Icon
-import { Typography } from "@mui/material";
 
 const overviewResources = [
   {
@@ -155,14 +154,13 @@ export default function HomePage() {
             return (
               <ResourceCard
                 key={index}
-                // @ts-ignore
-                title={
+                title={ 
                   <>
                     {icon}
                     <span style={{ marginLeft: "8px" }}>{label}</span>
                     {resource.title}
                   </>
-                }
+                } 
                 description={resource.description}
                 link={resource.link}
                 accessibilityType={resource.accessibilityType}
@@ -177,7 +175,6 @@ export default function HomePage() {
             return (
               <ResourceCard
                 key={index}
-                // @ts-ignore
                 title={
                   <>
                     {icon}
@@ -199,7 +196,6 @@ export default function HomePage() {
             return (
               <ResourceCard
                 key={index}
-                // @ts-ignore
                 title={
                   <>
                     {icon}
@@ -221,7 +217,6 @@ export default function HomePage() {
             return (
               <ResourceCard
                 key={index}
-                // @ts-ignore
                 title={
                   <>
                     {icon}

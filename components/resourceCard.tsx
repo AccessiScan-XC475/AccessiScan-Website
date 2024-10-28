@@ -2,7 +2,7 @@ import React from "react";
 import { Card, CardContent, Typography, Button, Chip } from "@mui/material";
 
 interface ResourceCardProps {
-  title: string;
+  title: React.ReactNode;
   description: string;
   link: string;
   accessibilityType: string; 
