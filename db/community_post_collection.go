@@ -22,17 +22,6 @@ type CommunityPostDB struct {
 	Replies       []CommunityPostReplyDB `bson:"replies" json:"replies"`
 }
 
-type CommunityPostFull struct {
-	Id        primitive.ObjectID   `bson:"_id,omitempty" json:"id"`
-	Author    string               `bson:"author" json:"author"`
-	Title     string               `bson:"title" json:"title"`
-	Content   string               `bson:"content" json:"content"`
-	Upvotes   int                  `bson:"upvotes" json:"upvotes"`
-	Downvotes int                  `bson:"downvotes" json:"downvotes"`
-	UserVote  *bool                `json:"userVote"`
-	Replies   []CommunityPostReply `bson:"replies" json:"replies"`
-}
-
 type CommunityPostNumReplies struct {
 	Id         primitive.ObjectID `json:"id,omitempty"`
 	Author     string             `json:"author"`
@@ -50,16 +39,6 @@ type CommunityPostReplyDB struct {
 	Content       string               `bson:"content" json:"content"`
 	UpvoteUsers   []primitive.ObjectID `bson:"upvoteUsers" json:"upvoteUsers"`
 	DownvoteUsers []primitive.ObjectID `bson:"downvoteUsers" json:"downvoteUsers"`
-}
-
-type CommunityPostReply struct {
-	ParentId  primitive.ObjectID `bson:"parentId" json:"parentId"`
-	Id        primitive.ObjectID `bson:"_id,omitempty" json:"id"`
-	Author    string             `bson:"author" json:"author"`
-	Content   string             `bson:"content" json:"content"`
-	Upvotes   int                `bson:"upvotes" json:"upvotes"`
-	Downvotes int                `bson:"downvotes" json:"downvotes"`
-	UserVote  *bool              `json:"userVote"`
 }
 
 // function needs the author/user attempting to create a new post
@@ -149,7 +128,7 @@ func AllCommunityPosts() ([]CommunityPostNumReplies, error) {
 }
 
 // returns the full data for a particular post
-func FindPostById(id primitive.ObjectID) (CommunityPostFull, error) {
+func FindPostById(id primitive.ObjectID) (CommunityPostDB, error) {
 	collection := getCollection(COMMUNITY_POST_COLLECTION)
 
 	res := collection.FindOne(context.Background(), bson.M{"_id": id})
@@ -157,34 +136,10 @@ func FindPostById(id primitive.ObjectID) (CommunityPostFull, error) {
 	var communityPostDB CommunityPostDB
 	err := res.Decode(&communityPostDB)
 	if err != nil {
-		return CommunityPostFull{}, err
+		return CommunityPostDB{}, err
 	}
 
 	slices.Reverse(communityPostDB.Replies)
 
-	replies := []CommunityPostReply{}
-	for _, reply := range communityPostDB.Replies {
-		replies = append(replies, CommunityPostReply{
-			ParentId:  reply.ParentId,
-			Id:        reply.Id,
-			Author:    reply.Author,
-			Content:   reply.Content,
-			Upvotes:   len(reply.UpvoteUsers),
-			Downvotes: len(reply.DownvoteUsers),
-			UserVote:  nil,
-		})
-	}
-
-	communityPost := CommunityPostFull{
-		Id:        communityPostDB.Id,
-		Author:    communityPostDB.Author,
-		Title:     communityPostDB.Title,
-		Content:   communityPostDB.Content,
-		Upvotes:   len(communityPostDB.UpvoteUsers),
-		Downvotes: len(communityPostDB.DownvoteUsers),
-		UserVote:  nil,
-		Replies:   replies,
-	}
-
-	return communityPost, nil
+	return communityPostDB, nil
 }
