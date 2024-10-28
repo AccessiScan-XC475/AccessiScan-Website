@@ -31,6 +31,7 @@ export default function CommunityPostFull({
       content: content,
       upvotes: 0,
       downvotes: 0,
+      userVote: null,
     };
 
     const res = await fetch(`/api/community-post?parentId=${post.id}`, {
