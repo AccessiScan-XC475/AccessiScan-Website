@@ -113,6 +113,7 @@ func GetCommunityPost(w http.ResponseWriter, r *http.Request) {
 				communityPost.UserVote = &vote
 			}
 		}
+
 		w.WriteHeader(http.StatusOK)
 		json.NewEncoder(w).Encode(communityPost)
 		return

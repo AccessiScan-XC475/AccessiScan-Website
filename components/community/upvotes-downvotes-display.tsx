@@ -8,11 +8,13 @@ import { Button } from "@mui/material";
 export default function UpvotesDownvotesDisplay({
   upvotes,
   downvotes,
+  userVote,
 }: {
   upvotes: number;
   downvotes: number;
+  userVote: boolean | null;
 }) {
-  const [vote, setVote] = useState<boolean | null>(null);
+  const [vote, setVote] = useState<boolean | null>(userVote);
 
   return (
     <div className="flex items-center">
