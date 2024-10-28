@@ -20,6 +20,7 @@ export default function CommunityPostReply({
       <h4 className="text-lg font-medium text-[#1B6AAA]">{postReply.author}</h4>
       <p className="text-[#1B6AAA]">{postReply.content}</p>
       <UpvotesDownvotesDisplay
+        id={postReply.id}
         upvotes={postReply.upvotes}
         downvotes={postReply.downvotes}
         userVote={postReply.userVote}

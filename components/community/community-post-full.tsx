@@ -64,6 +64,7 @@ export default function CommunityPostFull({
         </div>
         <div className="flex justify-between items-center mt-4">
           <UpvotesDownvotesDisplay
+            id={post.id}
             upvotes={post.upvotes}
             downvotes={post.downvotes}
             userVote={post.userVote}

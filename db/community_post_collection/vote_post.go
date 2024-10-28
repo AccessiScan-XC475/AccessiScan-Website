@@ -16,7 +16,7 @@ func UpvotePost(postId primitive.ObjectID, userId primitive.ObjectID) error {
 		// add to upvotes
 		"$push": bson.M{"upvoteUsers": userId},
 		// remove from dowvotes
-		"$pull": bson.M{"downvoteUsers": bson.M{"$elemMatch": userId}},
+		"$pull": bson.M{"downvoteUsers": userId},
 	})
 	if err != nil {
 		return err
@@ -36,7 +36,7 @@ func DownvotePost(postId primitive.ObjectID, userId primitive.ObjectID) error {
 		// add to downvotes
 		"$push": bson.M{"downvoteUsers": userId},
 		// remove from upvotes
-		"$pull": bson.M{"downvoteUsers": bson.M{"$elemMatch": userId}},
+		"$pull": bson.M{"upvoteUsers": userId},
 	})
 	if err != nil {
 		return err
@@ -55,8 +55,8 @@ func RemovePostVote(postId primitive.ObjectID, userId primitive.ObjectID) error 
 	res, err := collection.UpdateByID(context.Background(), postId, bson.M{
 		// remove from upvotes and dowvotes
 		"$pull": bson.M{
-			"upvoteUsers": bson.M{"$elemMatch": userId}, 
-			"downvoteUsers": bson.M{"$elemMatch": userId},
+			"upvoteUsers":   userId,
+			"downvoteUsers": userId,
 		},
 	})
 	if err != nil {
