@@ -7,6 +7,7 @@ export type CommunityPostReplyProps = {
   content: string;
   upvotes: number;
   downvotes: number;
+  userVote: boolean | null;
 };
 
 export default function CommunityPostReply({
@@ -21,6 +22,7 @@ export default function CommunityPostReply({
       <UpvotesDownvotesDisplay
         upvotes={postReply.upvotes}
         downvotes={postReply.downvotes}
+        userVote={postReply.userVote}
       />
     </div>
   );
