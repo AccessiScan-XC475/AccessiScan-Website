@@ -17,6 +17,7 @@ func CreateStack(xs ...func(http.Handler) http.Handler) func(http.Handler) http.
 func Stack() func(http.Handler) http.Handler {
 	return CreateStack(
 		Logger,
+		UserInfo,
 		Auth,
 	)
 }
