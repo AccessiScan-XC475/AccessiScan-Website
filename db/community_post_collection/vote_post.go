@@ -14,7 +14,7 @@ func UpvotePost(postId primitive.ObjectID, userId primitive.ObjectID) error {
 
 	res, err := collection.UpdateByID(context.Background(), postId, bson.M{
 		// add to upvotes
-		"$push": bson.M{"upvoteUsers": userId},
+		"$addToSet": bson.M{"upvoteUsers": userId},
 		// remove from dowvotes
 		"$pull": bson.M{"downvoteUsers": userId},
 	})
@@ -34,7 +34,7 @@ func DownvotePost(postId primitive.ObjectID, userId primitive.ObjectID) error {
 
 	res, err := collection.UpdateByID(context.Background(), postId, bson.M{
 		// add to downvotes
-		"$push": bson.M{"downvoteUsers": userId},
+		"$addToSet": bson.M{"downvoteUsers": userId},
 		// remove from upvotes
 		"$pull": bson.M{"upvoteUsers": userId},
 	})
