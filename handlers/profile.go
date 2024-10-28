@@ -27,11 +27,19 @@ func GetProfileSelf(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 
+	// only send the 10 most recent scores
+	var history []int
+	if len(user.ScoreHistory) <= 10 {
+		history = user.ScoreHistory
+	} else {
+		history = user.ScoreHistory[len(user.ScoreHistory)-10:]
+	}
+
 	profile := AccessiScanProfileSelf{
 		Id:           user.Id.Hex(),
 		Username:     user.Username,
 		Name:         user.Name,
-		ScoreHistory: user.ScoreHistory,
+		ScoreHistory: history,
 	}
 
 	w.WriteHeader(http.StatusOK)
