@@ -1,5 +1,8 @@
 "use client";
 import ResourceCard from "@/components/resourceCard";
+import VideoIcon from "@mui/icons-material/VideoLibrary"; // Import Video Icon
+import DescriptionIcon from "@mui/icons-material/Description"; // Import Document Icon
+import { Typography } from "@mui/material";
 
 const overviewResources = [
   {
@@ -115,6 +118,14 @@ const mobilityResources = [
 export default function HomePage() {
   const h3Styles = { fontSize: "16pt", color: "#8275C9", fontWeight: 700 };
 
+  const getIconAndLabel = (link: string) => {
+    if (link.includes("youtube")) {
+      return { icon: <VideoIcon />, label: "Video: " };
+    } else {
+      return { icon: <DescriptionIcon />, label: "Document: " };
+    }
+  };
+
   return (
     <div className="flex flex-col items-center px-4 md:px-8 lg:px-16 py-8">
       <h2 style={{ color: "#54BD86", fontSize: "24pt", fontWeight: 800 }}>
@@ -139,51 +150,91 @@ export default function HomePage() {
           </h2>
           <h3 style={h3Styles}>Accessibility Overview</h3>
           <div className="flex flex-wrap justify-start items-stretch">
-            {overviewResources.map((resource, index) => (
+          {overviewResources.map((resource, index) => {
+            const { icon, label } = getIconAndLabel(resource.link);
+            return (
               <ResourceCard
                 key={index}
-                title={resource.title}
+                // @ts-ignore
+                title={
+                  <>
+                    {icon}
+                    <span style={{ marginLeft: "8px" }}>{label}</span>
+                    {resource.title}
+                  </>
+                }
                 description={resource.description}
                 link={resource.link}
                 accessibilityType={resource.accessibilityType}
               />
-            ))}
+            );
+              })}
           </div>
           <h3 style={h3Styles}>Visual Accessibility</h3>
           <div className="flex flex-wrap justify-start items-stretch">
-            {visualResources.map((resource, index) => (
+            {visualResources.map((resource, index) => {
+            const { icon, label } = getIconAndLabel(resource.link);
+            return (
               <ResourceCard
                 key={index}
-                title={resource.title}
+                // @ts-ignore
+                title={
+                  <>
+                    {icon}
+                    <span style={{ marginLeft: "8px" }}>{label}</span>
+                    {resource.title}
+                  </>
+                }
                 description={resource.description}
                 link={resource.link}
                 accessibilityType={resource.accessibilityType}
               />
-            ))}
+            );  
+            })}
           </div>
           <h3 style={h3Styles}>Audio Accessibility</h3>
           <div className="flex flex-wrap justify-start items-stretch">
-            {audioResources.map((resource, index) => (
+            {audioResources.map((resource, index) => {
+            const { icon, label } = getIconAndLabel(resource.link);
+            return (
               <ResourceCard
                 key={index}
-                title={resource.title}
+                // @ts-ignore
+                title={
+                  <>
+                    {icon}
+                    <span style={{ marginLeft: "8px" }}>{label}</span>
+                    {resource.title}
+                  </>
+                }
                 description={resource.description}
                 link={resource.link}
                 accessibilityType={resource.accessibilityType}
               />
-            ))}
+            );
+            })}
           </div>
           <h3 style={h3Styles}>Mobility Resources</h3>
           <div className="flex flex-wrap justify-start items-stretch">
-            {mobilityResources.map((resource, index) => (
+            {mobilityResources.map((resource, index) => {
+            const { icon, label } = getIconAndLabel(resource.link);
+            return (
               <ResourceCard
                 key={index}
-                title={resource.title}
+                // @ts-ignore
+                title={
+                  <>
+                    {icon}
+                    <span style={{ marginLeft: "8px" }}>{label}</span>
+                    {resource.title}
+                  </>
+                }
                 description={resource.description}
                 link={resource.link}
                 accessibilityType={resource.accessibilityType}
               />
-            ))}
+            );
+            })}
           </div>
         </div>
       </div>
