@@ -57,7 +57,7 @@ export default function CommunityPage() {
 
   return (
     <div>
-      <h1 className="text-5xl font-bold">Community Board</h1>
+      <h1 className="text-5xl font-bold text-center mt-8 mb-8" style={{ color: '#54BD86' }}>Community Board</h1>
       <div>
         <NewPost submitFunc={createNewPost} />
         {postPreviewList === null ? (

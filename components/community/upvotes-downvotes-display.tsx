@@ -9,13 +9,11 @@ export default function UpvotesDownvotesDisplay({
   downvotes: number;
 }) {
   return (
-    <div className="flex">
-      <div>
-        {upvotes} <ThumbUpOffAltIcon />
-      </div>
-      <div>
-        {downvotes} <ThumbDownOffAltIcon />
-      </div>
+    <div className="flex items-center">
+      <span className="text-[#1B6AAA] mr-1">{upvotes}</span>
+      <ThumbUpOffAltIcon style={{ color: '#1B6AAA' }} />
+      <span className="text-[#1B6AAA] ml-2">{downvotes}</span>
+      <ThumbDownOffAltIcon style={{ color: '#1B6AAA' }} />
     </div>
   );
 }
