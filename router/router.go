@@ -2,6 +2,7 @@ package router
 
 import (
 	"AccessiScan-Website/handlers"
+	community_post_handlers "AccessiScan-Website/handlers/community_post"
 	"net/http"
 )
 
@@ -14,8 +15,9 @@ func Router() *http.ServeMux {
 	router.HandleFunc("GET /api/accessibility-selection", handlers.GetAccessibilitySelections)
 	router.HandleFunc("POST /api/accessibility-selection", handlers.PostAccessibilitySelection)
 
-	router.HandleFunc(("GET /api/community-post"), handlers.GetCommunityPost)
-	router.HandleFunc(("POST /api/community-post"), handlers.PostCommunityPost)
+	router.HandleFunc(("GET /api/community-post"), community_post_handlers.GetCommunityPost)
+	router.HandleFunc(("POST /api/community-post"), community_post_handlers.PostCommunityPost)
+	router.HandleFunc("PUT /api/community-post", community_post_handlers.PutCommunityPost)
 
 	// perhaps enable OAuth with other providers in the future
 	router.HandleFunc(("GET /api/login/github"), handlers.RedirectGHLogin)

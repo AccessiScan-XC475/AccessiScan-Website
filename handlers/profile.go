@@ -1,7 +1,7 @@
 package handlers
 
 import (
-	"AccessiScan-Website/db"
+	"AccessiScan-Website/db/users_collection"
 	"encoding/json"
 	"log"
 	"net/http"
@@ -26,8 +26,8 @@ type AccessiScanProfileSelf struct {
 func GetProfileSelf(w http.ResponseWriter, r *http.Request) {
 	ctx := r.Context()
 
-	var user db.AccessiScanUser
-	user, ok := ctx.Value("user").(db.AccessiScanUser)
+	var user users_collection.AccessiScanUser
+	user, ok := ctx.Value("user").(users_collection.AccessiScanUser)
 	if !ok {
 		w.WriteHeader(http.StatusInternalServerError)
 		w.Write([]byte("something went wrong, please try again."))
@@ -77,7 +77,7 @@ func GetProfileOther(w http.ResponseWriter, r *http.Request) {
 	}
 
 	// get user profile from database
-	user, err := db.GetUserById(userId)
+	user, err := users_collection.GetUserById(userId)
 	if err != nil {
 		log.Println("no user found")
 		w.WriteHeader(http.StatusBadRequest)
