@@ -20,9 +20,7 @@ func AllParentCommunityPosts() ([]CommunityPostNumReplies, error) {
 	// iterate over all parent posts from database
 	var communityPostList []CommunityPostNumReplies
 	for cursor.Next(context.Background()) {
-		log.Println("decoding a post")
 		var curCommunityPost CommunityPostDB
-		log.Println("decoding all")
 		if err := cursor.Decode(&curCommunityPost); err != nil {
 			log.Println("error decoding")
 			return []CommunityPostNumReplies{}, err
@@ -75,7 +73,6 @@ func GetRepliesById(id primitive.ObjectID) ([]CommunityPostReplyDB, error) {
 
 	var repliesList []CommunityPostReplyDB
 	for cursor.Next(context.Background()) {
-		log.Println("decoding a reply")
 		var curReply CommunityPostReplyDB
 		if err := cursor.Decode(&curReply); err != nil {
 			log.Println("error decoding")

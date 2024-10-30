@@ -40,8 +40,6 @@ func GetUserBySessionId(sessionId string) (AccessiScanUser, error) {
 		return AccessiScanUser{}, err
 	}
 
-	log.Println("GOT USER GOT USER")
-
 	// check if sessionId is expired
 	i := slices.IndexFunc(user.SessionIdList, func(sessionIdWithExp SessionWithExp) bool {
 		return sessionIdWithExp.SessionId == sessionId
