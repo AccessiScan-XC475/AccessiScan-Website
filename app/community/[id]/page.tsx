@@ -34,6 +34,6 @@ export default function CommunityPostPage({
   return post === null ? (
     <CircularProgress />
   ) : (
-    <CommunityPostFull post={post} />
+    <CommunityPostFull inputPost={post} />
   );
 }

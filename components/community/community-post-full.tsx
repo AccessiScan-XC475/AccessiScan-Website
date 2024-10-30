@@ -18,15 +18,56 @@ export type CommunityPostFullProps = {
 };
 
 export default function CommunityPostFull({
-  post,
+  inputPost,
 }: {
-  post: CommunityPostFullProps;
+  inputPost: CommunityPostFullProps;
 }) {
-  const [replies, setReplies] = useState(post.replies);
+  const [post, setPost] = useState(inputPost);
+  const [replies, setReplies] = useState(inputPost.replies);
+
+  const setIthReply = (i: number, r: CommunityPostReplyProps) => {
+    setReplies(
+      replies.map((reply, j) => {
+        if (i !== j) {
+          return reply;
+        }
+        return r;
+      }),
+    );
+  };
+
+  const changeUserVote = (v: string) => {
+    let numUp = post.upvotes;
+    let numDown = post.downvotes;
+
+    if (post.userVote === true) {
+      numUp--;
+    } else if (post.userVote === false) {
+      numDown--;
+    }
+
+    // update with new status
+    let vote = null;
+    if (v === "upvote") {
+      vote = true;
+      numUp++;
+    } else if (v === "downvote") {
+      vote = false;
+      numDown++;
+    } else {
+      vote = null;
+    }
+    setPost({
+      ...post,
+      upvotes: numUp,
+      downvotes: numDown,
+      userVote: vote,
+    });
+  };
 
   const createNewReply = async (content: string): Promise<boolean> => {
     const newPost = {
-      parentId: post.id,
+      parentId: inputPost.id,
       author: "anonymous replier",
       content: content,
       upvotes: 0,
@@ -34,7 +75,7 @@ export default function CommunityPostFull({
       userVote: null,
     };
 
-    const res = await fetch(`/api/community-post?parentId=${post.id}`, {
+    const res = await fetch(`/api/community-post?parentId=${inputPost.id}`, {
       method: "POST",
       body: JSON.stringify(newPost),
     });
@@ -58,23 +99,28 @@ export default function CommunityPostFull({
       <div className="bg-[#C7EBD9] p-6 m-2 w-[60vw] rounded-xl shadow-lg">
         <div>
           <h3 className="text-3xl font-semibold text-[#1B6AAA]">
-            {post.title}
+            {inputPost.title}
           </h3>
-          <p className="text-[#1B6AAA]">{post.content}</p>
+          <p className="text-[#1B6AAA]">{inputPost.content}</p>
         </div>
         <div className="flex justify-between items-center mt-4">
           <UpvotesDownvotesDisplay
-            id={post.id}
+            id={inputPost.id}
             upvotes={post.upvotes}
             downvotes={post.downvotes}
             userVote={post.userVote}
+            setUserVote={changeUserVote}
           />
         </div>
         <div className="bg-white p-2 my-2 rounded-xl">
           <h4 className="text-xl font-medium text-[#1B6AAA]">Replies</h4>
           <NewReply submitFunc={createNewReply} />
           {replies.map((reply, i) => (
-            <CommunityPostReply postReply={reply} key={i} />
+            <CommunityPostReply
+              inputReply={reply}
+              key={i}
+              setReply={(r: CommunityPostReplyProps) => setIthReply(i, r)} // currying??!!
+            />
           ))}
         </div>
       </div>
