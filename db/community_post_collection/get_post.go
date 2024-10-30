@@ -91,5 +91,7 @@ func GetRepliesById(id primitive.ObjectID) ([]CommunityPostReplyDB, error) {
 		})
 	}
 
+	slices.Reverse(repliesList)
+
 	return repliesList, nil
 }
