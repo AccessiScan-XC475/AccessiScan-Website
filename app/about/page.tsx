@@ -88,18 +88,18 @@ export default function AboutPage() {
         user-friendly accessibility reports but also to serve as a comprehensive
         educational tool. Developers are guided in understanding what
         accessibility entails and how to implement it effectively. Our tool
-        generates an accessibility score based on various criteria, helping developers learn
-        while they improve their projects.
+        generates an accessibility score based on various criteria, helping
+        developers learn while they improve their projects.
         <br />
         <br />
         Additionally, AccessiScan fosters a community of accessibility-focused
         creators through its integrated community board. This space allows
         developers to share insights, discuss projects, and seek advice,
         creating a supportive environment that promotes accessible design
-        practices. On the Home page, we have curated accessibility resources to offer indepth
-        explanations and recommendations. Together, AccessiScan’s tools and community provide a unique
-        platform for educating, connecting, and empowering developers to make
-        the web more accessible for all.
+        practices. On the Home page, we have curated accessibility resources to
+        offer indepth explanations and recommendations. Together, AccessiScan’s
+        tools and community provide a unique platform for educating, connecting,
+        and empowering developers to make the web more accessible for all.
       </Typography>
 
       <Typography
@@ -115,11 +115,36 @@ export default function AboutPage() {
         Meet our team!
       </Typography>
       <div className="flex flex-wrap justify-center gap-6">
-        <TeamMember name="Amelia" role="Product Owner" age={20} major="Computer Science" />
-        <TeamMember name="Jeffrey" role="Developer" age={20} major="Computer Science" />
-        <TeamMember name="Hangi" role="Designer" age={23} major="Graphic Design" />
-        <TeamMember name="Ethan" role="Developer" age={20} major="Computer Science" />
-        <TeamMember name="Josie" role="Developer" age={22} major="Data Science" />
+        <TeamMember
+          name="Amelia"
+          role="Product Owner"
+          age={20}
+          major="Computer Science"
+        />
+        <TeamMember
+          name="Jeffrey"
+          role="Developer"
+          age={21}
+          major="Computer Science"
+        />
+        <TeamMember
+          name="Hangi"
+          role="Designer"
+          age={23}
+          major="Graphic Design"
+        />
+        <TeamMember
+          name="Ethan"
+          role="Developer"
+          age={20}
+          major="Computer Science"
+        />
+        <TeamMember
+          name="Josie"
+          role="Developer"
+          age={22}
+          major="Data Science"
+        />
       </div>
     </div>
   );
