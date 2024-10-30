@@ -4,8 +4,8 @@ import (
 	"AccessiScan-Website/db"
 	"context"
 	"fmt"
+	"log"
 
-	"go.mongodb.org/mongo-driver/bson"
 	"go.mongodb.org/mongo-driver/bson/primitive"
 )
 
@@ -23,7 +23,6 @@ func CreateNewPost(author, title, content string) (primitive.ObjectID, error) {
 		Content:       content,
 		UpvoteUsers:   []primitive.ObjectID{},
 		DownvoteUsers: []primitive.ObjectID{},
-		Replies:       []CommunityPostReplyDB{},
 	}
 
 	res, err := db.GetCollection(COMMUNITY_POST_COLLECTION).InsertOne(context.Background(), newPost)
@@ -35,10 +34,18 @@ func CreateNewPost(author, title, content string) (primitive.ObjectID, error) {
 }
 
 // create a new reply to the post associated with the id parentId
-func ReplyToPost(parentId primitive.ObjectID, author, content string) error {
+func ReplyToPost(parentId primitive.ObjectID, author, content string) (primitive.ObjectID, error) {
 	if author == "" || content == "" {
-		return fmt.Errorf("autho content missing")
+		return primitive.ObjectID{}, fmt.Errorf("author or content missing")
 	}
+
+	// confirm parent is a valid post
+	_, err := FindPostById(parentId)
+	if err != nil {
+		log.Println("parent post does not exist")
+		return primitive.ObjectID{}, err
+	}
+
 	collection := db.GetCollection(COMMUNITY_POST_COLLECTION)
 
 	newReply := CommunityPostReplyDB{
@@ -49,15 +56,11 @@ func ReplyToPost(parentId primitive.ObjectID, author, content string) error {
 		DownvoteUsers: []primitive.ObjectID{},
 	}
 
-	res, err := collection.UpdateByID(context.Background(), parentId, bson.M{
-		"$push": map[string]interface{}{"replies": newReply},
-	})
+	res, err := collection.InsertOne(context.Background(), newReply)
+
 	if err != nil {
-		return err
-	}
-	if res.ModifiedCount != 1 {
-		return fmt.Errorf("invalid post id")
+		return primitive.ObjectID{}, err
 	}
 
-	return nil
+	return res.InsertedID.(primitive.ObjectID), nil
 }

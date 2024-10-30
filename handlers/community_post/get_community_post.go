@@ -73,7 +73,8 @@ func GetCommunityPost(w http.ResponseWriter, r *http.Request) {
 
 		// convert arrays to ints and indicate whether this user as liked the post//
 		replies := []CommunityPostReply{}
-		for i, replyDB := range communityPostDB.Replies {
+		repliesDB, err := community_post_collection.GetRepliesById(postId)
+		for i, replyDB := range repliesDB {
 			log.Println("reply id", replyDB.Id)
 			replies = append(replies, CommunityPostReply{
 				ParentId:  replyDB.ParentId,

@@ -56,7 +56,7 @@ func PostCommunityPost(w http.ResponseWriter, r *http.Request) {
 		}
 
 		// reply to the parent post
-		err = community_post_collection.ReplyToPost(parentId, replyData.Author, replyData.Content)
+		_, err = community_post_collection.ReplyToPost(parentId, replyData.Author, replyData.Content)
 		if err != nil {
 			w.WriteHeader(http.StatusInternalServerError)
 			w.Write([]byte("something went wrong, please try again."))

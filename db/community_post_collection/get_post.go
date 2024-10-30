@@ -27,6 +27,13 @@ func AllParentCommunityPosts() ([]CommunityPostNumReplies, error) {
 			log.Println("error decoding")
 			return []CommunityPostNumReplies{}, err
 		}
+
+		repliesDB, err := GetRepliesById(curCommunityPost.Id)
+		if err != nil {
+			// if something goes wrong, skip this post
+			continue
+		}
+
 		communityPostList = append(communityPostList, CommunityPostNumReplies{
 			Id:         curCommunityPost.Id,
 			Author:     curCommunityPost.Author,
@@ -34,7 +41,7 @@ func AllParentCommunityPosts() ([]CommunityPostNumReplies, error) {
 			Content:    curCommunityPost.Content,
 			Upvotes:    len(curCommunityPost.UpvoteUsers),
 			Downvotes:  len(curCommunityPost.DownvoteUsers),
-			NumReplies: len(curCommunityPost.Replies),
+			NumReplies: len(repliesDB),
 		})
 	}
 
@@ -55,7 +62,34 @@ func FindPostById(id primitive.ObjectID) (CommunityPostDB, error) {
 		return CommunityPostDB{}, err
 	}
 
-	slices.Reverse(communityPostDB.Replies)
-
 	return communityPostDB, nil
+}
+
+func GetRepliesById(id primitive.ObjectID) ([]CommunityPostReplyDB, error) {
+	collection := db.GetCollection(COMMUNITY_POST_COLLECTION)
+
+	cursor, err := collection.Find(context.Background(), bson.M{"parentId": id})
+	if err != nil {
+		return nil, err
+	}
+
+	var repliesList []CommunityPostReplyDB
+	for cursor.Next(context.Background()) {
+		log.Println("decoding a reply")
+		var curReply CommunityPostReplyDB
+		if err := cursor.Decode(&curReply); err != nil {
+			log.Println("error decoding")
+			return nil, err
+		}
+		repliesList = append(repliesList, CommunityPostReplyDB{
+			ParentId:      id,
+			Id:            curReply.Id,
+			Author:        curReply.Author,
+			Content:       curReply.Content,
+			UpvoteUsers:   curReply.UpvoteUsers,
+			DownvoteUsers: curReply.DownvoteUsers,
+		})
+	}
+
+	return repliesList, nil
 }
