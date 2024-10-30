@@ -1,5 +1,5 @@
 "use client";
-import { useState } from "react";
+import { Dispatch, SetStateAction, useState } from "react";
 import CommunityPostReply, {
   CommunityPostReplyProps,
 } from "./community-post-reply";
@@ -15,6 +15,44 @@ export type CommunityPostFullProps = {
   downvotes: number;
   userVote: boolean | null;
   replies: CommunityPostReplyProps[];
+};
+
+/**
+ * post and setPost must both refer to the same type of either CommunityPostFullProps or CommunityPostReplyProps
+ */
+export const changeUserVote = (
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  post: any,
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  setPost: Dispatch<SetStateAction<any>>,
+  v: string,
+) => {
+  let numUp = post.upvotes;
+  let numDown = post.downvotes;
+
+  if (post.userVote === true) {
+    numUp--;
+  } else if (post.userVote === false) {
+    numDown--;
+  }
+
+  // update with new status
+  let vote = null;
+  if (v === "upvote") {
+    vote = true;
+    numUp++;
+  } else if (v === "downvote") {
+    vote = false;
+    numDown++;
+  } else {
+    vote = null;
+  }
+  setPost({
+    ...post,
+    upvotes: numUp,
+    downvotes: numDown,
+    userVote: vote,
+  });
 };
 
 export default function CommunityPostFull({
@@ -34,35 +72,6 @@ export default function CommunityPostFull({
         return r;
       }),
     );
-  };
-
-  const changeUserVote = (v: string) => {
-    let numUp = post.upvotes;
-    let numDown = post.downvotes;
-
-    if (post.userVote === true) {
-      numUp--;
-    } else if (post.userVote === false) {
-      numDown--;
-    }
-
-    // update with new status
-    let vote = null;
-    if (v === "upvote") {
-      vote = true;
-      numUp++;
-    } else if (v === "downvote") {
-      vote = false;
-      numDown++;
-    } else {
-      vote = null;
-    }
-    setPost({
-      ...post,
-      upvotes: numUp,
-      downvotes: numDown,
-      userVote: vote,
-    });
   };
 
   const createNewReply = async (content: string): Promise<boolean> => {
@@ -109,7 +118,7 @@ export default function CommunityPostFull({
             upvotes={post.upvotes}
             downvotes={post.downvotes}
             userVote={post.userVote}
-            setUserVote={changeUserVote}
+            setUserVote={(v: string) => changeUserVote(post, setPost, v)}
           />
         </div>
         <div className="bg-white p-2 my-2 rounded-xl">
@@ -119,7 +128,7 @@ export default function CommunityPostFull({
             <CommunityPostReply
               inputReply={reply}
               key={i}
-              setReply={(r: CommunityPostReplyProps) => setIthReply(i, r)} // currying??!!
+              setReply={(r: CommunityPostReplyProps) => setIthReply(i, r)}
             />
           ))}
         </div>
