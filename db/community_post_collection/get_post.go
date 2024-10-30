@@ -11,8 +11,8 @@ import (
 )
 
 // returns a preview of all parent community posts
-func AllCommunityPosts() ([]CommunityPostNumReplies, error) {
-	cursor, err := db.GetCollection(COMMUNITY_POST_COLLECTION).Find(context.Background(), bson.M{})
+func AllParentCommunityPosts() ([]CommunityPostNumReplies, error) {
+	cursor, err := db.GetCollection(COMMUNITY_POST_COLLECTION).Find(context.Background(), bson.M{"parentId": nil})
 	if err != nil {
 		return []CommunityPostNumReplies{}, err
 	}

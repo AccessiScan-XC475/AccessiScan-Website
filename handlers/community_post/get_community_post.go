@@ -39,7 +39,7 @@ func GetCommunityPost(w http.ResponseWriter, r *http.Request) {
 
 	if idString == "" {
 		// retrieve a preview of all posts
-		allCommunityPosts, err := community_post_collection.AllCommunityPosts()
+		allCommunityPosts, err := community_post_collection.AllParentCommunityPosts()
 		if err != nil {
 			log.Println(err.Error())
 			w.WriteHeader(http.StatusInternalServerError)
