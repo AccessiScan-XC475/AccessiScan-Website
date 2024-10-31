@@ -7,6 +7,7 @@ import (
 	"log"
 	"net/http"
 	"slices"
+	"sort"
 
 	"go.mongodb.org/mongo-driver/bson/primitive"
 )
@@ -39,7 +40,7 @@ func GetCommunityPost(w http.ResponseWriter, r *http.Request) {
 
 	if idString == "" {
 		// retrieve a preview of all posts
-		allCommunityPosts, err := community_post_collection.AllCommunityPosts()
+		allCommunityPosts, err := community_post_collection.AllParentCommunityPosts()
 		if err != nil {
 			log.Println(err.Error())
 			w.WriteHeader(http.StatusInternalServerError)
@@ -73,25 +74,35 @@ func GetCommunityPost(w http.ResponseWriter, r *http.Request) {
 
 		// convert arrays to ints and indicate whether this user as liked the post//
 		replies := []CommunityPostReply{}
-		for i, replyDB := range communityPostDB.Replies {
-			log.Println("reply id", replyDB.Id)
-			replies = append(replies, CommunityPostReply{
+		repliesDB, err := community_post_collection.GetRepliesById(postId)
+		for _, replyDB := range repliesDB {
+			// binary search to find index for this reply based on total score (upvotes - downvotes)
+			index := sort.Search(len(replies), func(i int) bool {
+				return replies[i].Upvotes-replies[i].Downvotes < len(replyDB.UpvoteUsers)-len(replyDB.DownvoteUsers)
+			})
+			// create space for this reply
+			replies = append(replies, CommunityPostReply{})
+			// move elements after new to the end
+			copy(replies[index+1:], replies[index:])
+			// insert new reply
+			replies[index] = CommunityPostReply{
 				ParentId:  replyDB.ParentId,
 				Id:        replyDB.Id,
 				Author:    replyDB.Author,
 				Content:   replyDB.Content,
 				Upvotes:   len(replyDB.UpvoteUsers),
 				Downvotes: len(replyDB.DownvoteUsers),
-			})
-			// indicate whether the user has liked this reply
+			}
+
+			// indicate requesting user's vote, if exists
 			var vote bool
 			if userOk {
 				if slices.Contains(replyDB.UpvoteUsers, user.Id) {
 					vote = true
-					replies[i].UserVote = &vote
+					replies[index].UserVote = &vote
 				} else if slices.Contains(replyDB.DownvoteUsers, user.Id) {
 					vote = false
-					replies[i].UserVote = &vote
+					replies[index].UserVote = &vote
 				}
 			}
 		}

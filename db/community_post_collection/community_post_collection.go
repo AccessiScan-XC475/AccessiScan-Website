@@ -7,13 +7,12 @@ import (
 const COMMUNITY_POST_COLLECTION = "CommunityPostCollection"
 
 type CommunityPostDB struct {
-	Id            primitive.ObjectID     `bson:"_id,omitempty" json:"id"`
-	Author        string                 `bson:"author" json:"author"`
-	Title         string                 `bson:"title" json:"title"`
-	Content       string                 `bson:"content" json:"content"`
-	UpvoteUsers   []primitive.ObjectID   `bson:"upvoteUsers" json:"upvoteUsers"`
-	DownvoteUsers []primitive.ObjectID   `bson:"downvoteUsers" json:"downvoteUsers"`
-	Replies       []CommunityPostReplyDB `bson:"replies" json:"replies"`
+	Id            primitive.ObjectID   `bson:"_id,omitempty" json:"id"`
+	Author        string               `bson:"author" json:"author"`
+	Title         string               `bson:"title" json:"title"`
+	Content       string               `bson:"content" json:"content"`
+	UpvoteUsers   []primitive.ObjectID `bson:"upvoteUsers" json:"upvoteUsers"`
+	DownvoteUsers []primitive.ObjectID `bson:"downvoteUsers" json:"downvoteUsers"`
 }
 
 type CommunityPostNumReplies struct {

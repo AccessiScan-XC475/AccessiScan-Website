@@ -66,7 +66,6 @@ type AccessiScanProfileOther struct {
 }
 
 func GetProfileOther(w http.ResponseWriter, r *http.Request) {
-	log.Println("get profile other")
 	id := r.URL.Query().Get("id")
 	userId, err := primitive.ObjectIDFromHex(id)
 	if err != nil {
