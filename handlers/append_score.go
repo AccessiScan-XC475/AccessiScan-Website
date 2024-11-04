@@ -8,7 +8,10 @@ import (
 )
 
 var admin []string = []string{
-	"jting@bu.edu",
+	"KingTingTheGreat",
+	"ethanrkey",
+	"amelia-liston",
+	"josiekim",
 }
 
 func AppendScore(w http.ResponseWriter, r *http.Request) {
@@ -28,7 +31,7 @@ func AppendScore(w http.ResponseWriter, r *http.Request) {
 	ctx := r.Context()
 	var user users_collection.AccessiScanUser
 	user, ok := ctx.Value("user").(users_collection.AccessiScanUser)
-	if !ok || !slices.Contains(admin, user.GitHubProfile.Email) {
+	if !ok || !slices.Contains(admin, user.GitHubProfile.Login) {
 		w.WriteHeader(http.StatusInternalServerError)
 		w.Write([]byte("something went wrong, please try again."))
 		return
