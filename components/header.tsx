@@ -1,6 +1,7 @@
 "use client";
 import Link from "next/link";
 import { Button } from "@mui/material";
+import Image from "next/image";
 
 const NavLink = ({
   href,
@@ -11,6 +12,7 @@ const NavLink = ({
 }) => (
   <Link href={href} passHref>
     <Button
+      tabIndex={-1}
       variant="contained"
       sx={{
         fontSize: "16pt",
@@ -33,11 +35,12 @@ const Header = () => {
   return (
     <nav className="navbar">
       <Link href="/" className="home-title">
-        AccessiScan
+        <Image src="/icon.png" width={50} height={50} alt="AccessiScan Logo" />
+        <span className="p-2">AccessiScan</span>
       </Link>
       <ul className="nav-links">
         <li>
-          <NavLink href="/results">RESULTS</NavLink>
+          <NavLink href="/demo">DEMO</NavLink>
         </li>
         <li>
           <NavLink href="/community">COMMUNITY</NavLink>
