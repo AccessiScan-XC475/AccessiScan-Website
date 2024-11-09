@@ -35,14 +35,8 @@ const Header = () => {
   return (
     <nav className="navbar">
       <Link href="/" className="home-title">
-        {/*<Image src="/icon.png" width={50} height={50} alt="AccessiScan Logo" />
-        <span className="p-2">AccessiScan</span>*/}
-        <Image
-          src="/AccessiScan-logo.png"
-          width={200}
-          height={50}
-          alt="AccessiScan Logo"
-        />
+        <Image src="/icon.png" width={50} height={50} alt="AccessiScan Logo" />
+        <span className="p-2">AccessiScan</span>
       </Link>
       <ul className="nav-links">
         <li>
