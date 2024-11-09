@@ -27,12 +27,20 @@ export default function ColorContrastSection({
   return (
     <div className="flex">
       <div style={{ backgroundColor: bgColor }} className="p-6">
-        <DemoComponent value={hColor} setter={(c) => setHColor(c)}>
+        <DemoComponent
+          value={hColor}
+          setter={(c) => setHColor(c)}
+          label="heading text color"
+        >
           <h2 className="text-4xl w-fit" style={{ color: hColor }}>
             {heading}
           </h2>
         </DemoComponent>
-        <DemoComponent value={pColor} setter={(c) => setPColor(c)}>
+        <DemoComponent
+          value={pColor}
+          setter={(c) => setPColor(c)}
+          label="content text color"
+        >
           <p style={{ color: pColor }}>{content}</p>
         </DemoComponent>
       </div>
