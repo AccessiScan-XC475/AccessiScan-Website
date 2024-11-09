@@ -9,6 +9,9 @@ export default function DemoSelectionPage() {
         <Link href="/demo/color-contrast" className={linkStyles}>
           Color Contrast
         </Link>
+        <Link href="/demo/text-size" className={linkStyles}>
+          Text Size
+        </Link>
       </div>
     </div>
   );

@@ -29,7 +29,7 @@ export default function ColorContrastSection({
       <div style={{ backgroundColor: bgColor }} className="p-6">
         <DemoComponent
           value={hColor}
-          setter={(c) => setHColor(c)}
+          setter={(c) => setHColor(c as string)}
           label="heading text color"
         >
           <h2 className="text-4xl w-fit" style={{ color: hColor }}>
@@ -38,7 +38,7 @@ export default function ColorContrastSection({
         </DemoComponent>
         <DemoComponent
           value={pColor}
-          setter={(c) => setPColor(c)}
+          setter={(c) => setPColor(c as string)}
           label="content text color"
         >
           <p style={{ color: pColor }}>{content}</p>
