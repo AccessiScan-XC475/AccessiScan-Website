@@ -6,8 +6,10 @@ export default function ColorContrastDemoPage() {
       <div className="w-1/5"></div>
       <div className="w-3/5">
         <div className="text-center p-3">
-          <h1 className="text-5xl p-1 text-black">Color Contrast Demo</h1>
-          <p className="p-1 text-lg">
+          <h1 className="text-5xl p-1 text-black bg-blue-200">
+            Color Contrast Demo
+          </h1>
+          <p className="p-1 text-lg text-black bg-blue-200">
             Edit the colors on this page until it adjacent colors adequately
             contrast with each other.
           </p>
