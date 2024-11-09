@@ -11,6 +11,7 @@ const NavLink = ({
 }) => (
   <Link href={href} passHref>
     <Button
+      tabIndex={-1}
       variant="contained"
       sx={{
         fontSize: "16pt",
