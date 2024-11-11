@@ -30,7 +30,7 @@ export default function NewPost({
         {availableTags.map((tag) => (
           <button
             key={tag}
-            onClick={() => setSelectedTag(tag)}
+            onClick={() => setSelectedTag(selectedTag === tag ? "" : tag)}
             className={`px-4 py-2 rounded-xl ${selectedTag === tag ? "text-white" : "bg-gray-200 text-gray-700"}`}
             style={{
               backgroundColor: selectedTag === tag ? "#1B6AAA" : "", 
