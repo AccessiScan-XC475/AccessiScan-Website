@@ -21,6 +21,7 @@ type CommunityPostFull struct {
 	Downvotes int                  `bson:"downvotes" json:"downvotes"`
 	UserVote  *bool                `json:"userVote"`
 	Replies   []CommunityPostReply `bson:"replies" json:"replies"`
+	Tag       string               `bson:"tag,omitempty" json:"tag,omitempty"`
 }
 
 type CommunityPostReply struct {
@@ -37,16 +38,17 @@ type CommunityPostReply struct {
 // or the full version of a single community post if an id is provided
 func GetCommunityPost(w http.ResponseWriter, r *http.Request) {
 	idString := r.URL.Query().Get("id")
+	tagFilter := r.URL.Query().Get("tagFilter")
 
 	if idString == "" {
 		// retrieve a preview of all posts
-		allCommunityPosts, err := community_post_collection.AllParentCommunityPosts()
+		allCommunityPosts, err := community_post_collection.AllParentCommunityPosts(tagFilter)
 		if err != nil {
 			log.Println(err.Error())
 			w.WriteHeader(http.StatusInternalServerError)
 			w.Write([]byte("something went wrong, please try again."))
 			return
-		}
+		} 
 
 		w.WriteHeader(http.StatusOK)
 		json.NewEncoder(w).Encode(allCommunityPosts)
@@ -115,6 +117,7 @@ func GetCommunityPost(w http.ResponseWriter, r *http.Request) {
 			Upvotes:   len(communityPostDB.UpvoteUsers),
 			Downvotes: len(communityPostDB.DownvoteUsers),
 			Replies:   replies,
+			Tag:       communityPostDB.Tag,
 		}
 		// indicate whether the user has liked this post
 		if userOk {

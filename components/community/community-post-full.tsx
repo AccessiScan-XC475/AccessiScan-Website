@@ -1,8 +1,6 @@
 "use client";
 import { Dispatch, SetStateAction, useState } from "react";
-import CommunityPostReply, {
-  CommunityPostReplyProps,
-} from "./community-post-reply";
+import CommunityPostReply, { CommunityPostReplyProps } from "./community-post-reply";
 import NewReply from "./new-reply";
 import UpvotesDownvotesDisplay from "./upvotes-downvotes-display";
 
@@ -15,6 +13,7 @@ export type CommunityPostFullProps = {
   downvotes: number;
   userVote: boolean | null;
   replies: CommunityPostReplyProps[];
+  tag?: string; // Optional single tag
 };
 
 /**
@@ -25,7 +24,7 @@ export const changeUserVote = (
   post: any,
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   setPost: Dispatch<SetStateAction<any>>,
-  v: string,
+  v: string
 ) => {
   let numUp = post.upvotes;
   let numDown = post.downvotes;
@@ -70,7 +69,7 @@ export default function CommunityPostFull({
           return reply;
         }
         return r;
-      }),
+      })
     );
   };
 
@@ -90,13 +89,7 @@ export default function CommunityPostFull({
     });
 
     if (res.status === 200) {
-      setReplies([
-        {
-          ...newPost,
-          id: await res.text(),
-        },
-        ...replies,
-      ]);
+      setReplies([{ ...newPost, id: await res.text() }, ...replies]);
       return true;
     }
 
@@ -111,6 +104,12 @@ export default function CommunityPostFull({
             {inputPost.title}
           </h3>
           <p className="text-[#1B6AAA]">{inputPost.content}</p>
+          {inputPost.tag && (
+            <span className="text-white px-3 py-1 rounded-full text-sm inline-block mb-2"
+            style={{ backgroundColor: "#1B6AAA" }}>
+            {inputPost.tag}
+          </span>
+          )}
         </div>
         <div className="flex justify-between items-center mt-4">
           <UpvotesDownvotesDisplay

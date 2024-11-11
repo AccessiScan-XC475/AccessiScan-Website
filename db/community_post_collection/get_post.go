@@ -10,9 +10,13 @@ import (
 	"go.mongodb.org/mongo-driver/bson/primitive"
 )
 
-// returns a preview of all parent community posts
-func AllParentCommunityPosts() ([]CommunityPostNumReplies, error) {
-	cursor, err := db.GetCollection(COMMUNITY_POST_COLLECTION).Find(context.Background(), bson.M{"parentId": nil})
+func AllParentCommunityPosts(tagFilter string) ([]CommunityPostNumReplies, error) {
+	filter := bson.M{"parentId": nil}
+	if tagFilter != "" {
+		filter["tag"] = tagFilter
+	}
+
+	cursor, err := db.GetCollection(COMMUNITY_POST_COLLECTION).Find(context.Background(), filter)
 	if err != nil {
 		return []CommunityPostNumReplies{}, err
 	}
@@ -40,11 +44,11 @@ func AllParentCommunityPosts() ([]CommunityPostNumReplies, error) {
 			Upvotes:    len(curCommunityPost.UpvoteUsers),
 			Downvotes:  len(curCommunityPost.DownvoteUsers),
 			NumReplies: len(repliesDB),
+			Tag:        curCommunityPost.Tag,
 		})
 	}
 
 	slices.Reverse(communityPostList)
-
 	return communityPostList, nil
 }
 
@@ -75,20 +79,11 @@ func GetRepliesById(id primitive.ObjectID) ([]CommunityPostReplyDB, error) {
 	for cursor.Next(context.Background()) {
 		var curReply CommunityPostReplyDB
 		if err := cursor.Decode(&curReply); err != nil {
-			log.Println("error decoding")
 			return nil, err
 		}
-		repliesList = append(repliesList, CommunityPostReplyDB{
-			ParentId:      id,
-			Id:            curReply.Id,
-			Author:        curReply.Author,
-			Content:       curReply.Content,
-			UpvoteUsers:   curReply.UpvoteUsers,
-			DownvoteUsers: curReply.DownvoteUsers,
-		})
+		repliesList = append(repliesList, curReply)
 	}
 
 	slices.Reverse(repliesList)
-
 	return repliesList, nil
 }

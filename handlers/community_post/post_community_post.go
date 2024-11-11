@@ -25,7 +25,7 @@ func PostCommunityPost(w http.ResponseWriter, r *http.Request) {
 		}
 
 		// create a new post
-		id, err := community_post_collection.CreateNewPost(postData.Author, postData.Title, postData.Content)
+		id, err := community_post_collection.CreateNewPost(postData.Author, postData.Title, postData.Content, postData.Tag)
 		if err != nil {
 			log.Println(err.Error())
 			w.WriteHeader(http.StatusInternalServerError)
