@@ -1,0 +1,34 @@
+{
+  "audioResources": [
+    {
+      "title": "Make Your Text Accessible",
+      "description": "Learn about using alternative text to make your social media more accessible. We'll also show you how fonts impact legibility, and how to use emojis and hashtags to make your social media content more inclusive.",
+      "link": "https://www.youtube.com/watch?v=QHNVPlxpqKw",
+      "accessibilityType": "Audio"
+    },
+    {
+      "title": "Web Accessibility Perspectives: Video Captions - Audio Described Version",
+      "description": "Importance of captions for videos",
+      "link": "https://www.youtube.com/watch?v=4qIordU8vT8",
+      "accessibilityType": "Audio"
+    },
+    {
+      "title": "Crash Course: What is Deaf Accessibility?",
+      "description": "This 5 minute micro talk is a crash course on Deaf Accessibility in video games. During the talk, we will go over what deafness is; share how specific functional limitations apply to the context of games; provide most important UX and game design practices, including important tidbits for researchers who may be working with d/Deaf participants; and give recommended readings for those who would like to learn more.",
+      "link": "https://www.youtube.com/watch?v=2g7gKngJAgI",
+      "accessibilityType": "Audio"
+    },
+    {
+      "title": "Labels and Headings that Offer Clear Direction",
+      "description": "A design that is logical and that has a nested heading structure is essential for accessibility. Descriptive headings help users find specific content and orient themselves in terms of where they are on a Web page and on the overall website. Visual headings also represent the content structure, and describe the content that follows them.",
+      "link": "https://www.wcag.com/authors/2-4-6-headings-and-labels/",
+      "accessibilityType": "Audio"
+    },
+    {
+      "title": "Understanding Alt Text",
+      "description": "Designers ensure that images, graphics and other non-text information have alt text descriptions that clearly and succinctly describe their meaning. Alt text also serves the purpose of allowing screen readers to ignore images that are decorative and convey no meaning.",
+      "link": "https://www.wcag.com/designers/1-1-1-non-text-content/",
+      "accessibilityType": "Audio"
+    }
+  ]
+}
