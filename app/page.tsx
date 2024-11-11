@@ -2,10 +2,10 @@
 import ResourceCard from "@/components/resourceCard";
 import VideoIcon from "@mui/icons-material/VideoLibrary"; // Import Video Icon
 import DescriptionIcon from "@mui/icons-material/Description"; // Import Document Icon
-import { overviewResources } from "@/resources/overviewResources.json";
-import { visualResources } from "@/resources/visualResources.json";
-import { audioResources } from "@/resources/audioResources.json";
-import { mobilityResources } from "@/resources/mobilityResources.json";
+import overview from "@/resources/overviewResources.json";
+import visual from "@/resources/visualResources.json";
+import audio from "@/resources/audioResources.json";
+import mobility from "@/resources/mobilityResources.json";
 
 export default function HomePage() {
   const h3Styles = { fontSize: "16pt", color: "#8275C9", fontWeight: 700 };
@@ -42,7 +42,7 @@ export default function HomePage() {
           </h2>
           <h3 style={h3Styles}>Accessibility Overview</h3>
           <div className="flex flex-wrap justify-start items-stretch">
-            {overviewResources.map((resource, index) => {
+            {overview.overviewResources.map((resource, index) => {
               const { icon, label } = getIconAndLabel(resource.link);
               return (
                 <ResourceCard
@@ -63,7 +63,7 @@ export default function HomePage() {
           </div>
           <h3 style={h3Styles}>Visual Accessibility</h3>
           <div className="flex flex-wrap justify-start items-stretch">
-            {visualResources.map((resource, index) => {
+            {visual.visualResources.map((resource, index) => {
               const { icon, label } = getIconAndLabel(resource.link);
               return (
                 <ResourceCard
@@ -84,7 +84,7 @@ export default function HomePage() {
           </div>
           <h3 style={h3Styles}>Audio Accessibility</h3>
           <div className="flex flex-wrap justify-start items-stretch">
-            {audioResources.map((resource, index) => {
+            {audio.audioResources.map((resource, index) => {
               const { icon, label } = getIconAndLabel(resource.link);
               return (
                 <ResourceCard
@@ -105,7 +105,7 @@ export default function HomePage() {
           </div>
           <h3 style={h3Styles}>Mobility Resources</h3>
           <div className="flex flex-wrap justify-start items-stretch">
-            {mobilityResources.map((resource, index) => {
+            {mobility.mobilityResources.map((resource, index) => {
               const { icon, label } = getIconAndLabel(resource.link);
               return (
                 <ResourceCard
