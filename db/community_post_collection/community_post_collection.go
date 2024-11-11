@@ -13,6 +13,7 @@ type CommunityPostDB struct {
 	Content       string               `bson:"content" json:"content"`
 	UpvoteUsers   []primitive.ObjectID `bson:"upvoteUsers" json:"upvoteUsers"`
 	DownvoteUsers []primitive.ObjectID `bson:"downvoteUsers" json:"downvoteUsers"`
+	Tag           string               `bson:"tag,omitempty" json:"tag,omitempty"`
 }
 
 type CommunityPostNumReplies struct {
@@ -23,6 +24,7 @@ type CommunityPostNumReplies struct {
 	Upvotes    int                `json:"upvotes"`
 	Downvotes  int                `json:"downvotes"`
 	NumReplies int                `json:"numReplies"`
+	Tag        string             `json:"tag,omitempty"`
 }
 
 type CommunityPostReplyDB struct {

@@ -12,7 +12,7 @@ import (
 // function needs the author/user attempting to create a new post
 // as well as the title and content of that post
 // returns the id of the newly created post or an error
-func CreateNewPost(author, title, content string) (primitive.ObjectID, error) {
+func CreateNewPost(author, title, content, tag string) (primitive.ObjectID, error) {
 	if author == "" || title == "" || content == "" {
 		return primitive.ObjectID{}, fmt.Errorf("author, title, or content missing")
 	}
@@ -23,6 +23,7 @@ func CreateNewPost(author, title, content string) (primitive.ObjectID, error) {
 		Content:       content,
 		UpvoteUsers:   []primitive.ObjectID{},
 		DownvoteUsers: []primitive.ObjectID{},
+		Tag:           tag,
 	}
 
 	res, err := db.GetCollection(COMMUNITY_POST_COLLECTION).InsertOne(context.Background(), newPost)

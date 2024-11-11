@@ -10,6 +10,7 @@ export type CommunityPostPreviewProps = {
   upvotes: number;
   downvotes: number;
   numReplies: number;
+  tag?: string; // Optional single tag
 };
 
 export default function CommunityPostPreview({
@@ -24,6 +25,12 @@ export default function CommunityPostPreview({
           {postPreview.title}
         </h4>
         <p className="text-[#1B6AAA]">{postPreview.content}</p>
+        {postPreview.tag && (
+          <span className="text-white px-3 py-1 rounded-full text-sm inline-block mb-2"
+          style={{ backgroundColor: "#1B6AAA" }}>
+            {postPreview.tag}
+          </span>
+        )}
         <div className="flex items-center text-[#1B6AAA]">
           <div>
             <span className="mr-1">{postPreview.upvotes}</span>

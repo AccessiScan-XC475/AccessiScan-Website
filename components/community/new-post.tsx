@@ -3,10 +3,13 @@ import { useState } from "react";
 export default function NewPost({
   submitFunc,
 }: {
-  submitFunc: (title: string, content: string) => Promise<boolean>;
+  submitFunc: (title: string, content: string, tag: string) => Promise<boolean>;
 }) {
   const [title, setTitle] = useState("");
   const [content, setContent] = useState("");
+  const [selectedTag, setSelectedTag] = useState<string>("");
+
+  const availableTags = ["Color contrast", "Text size", "Labeled images", "Resources", "Profile", "Other"];
 
   return (
     <div className="bg-[#C7EBD9] rounded-xl p-4 mx-auto my-2 max-w-4xl flex flex-col shadow-lg">
@@ -23,12 +26,27 @@ export default function NewPost({
         onChange={(e) => setContent(e.target.value)}
         className="mb-2 text-[#1B6AAA] rounded-xl border border-gray-300 p-2"
       />
+      <div className="flex gap-2 mb-2">
+        {availableTags.map((tag) => (
+          <button
+            key={tag}
+            onClick={() => setSelectedTag(selectedTag === tag ? "" : tag)}
+            className={`px-4 py-2 rounded-xl ${selectedTag === tag ? "text-white" : "bg-gray-200 text-gray-700"}`}
+            style={{
+              backgroundColor: selectedTag === tag ? "#1B6AAA" : "", 
+            }}
+          >
+            {tag}
+          </button>
+        ))}
+      </div>
       <button
         onClick={() => {
-          submitFunc(title, content).then((success) => {
+          submitFunc(title, content, selectedTag).then((success) => {
             if (success) {
               setTitle("");
               setContent("");
+              setSelectedTag("");
             }
           });
         }}
