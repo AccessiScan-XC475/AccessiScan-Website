@@ -1,6 +1,6 @@
 import React from 'react';
 import { Box, Typography, Button } from '@mui/material';
-import DownloadIcon from '@mui/icons-material/Download';
+import extensionImage from './extension.png';
 
 const DlExtension: React.FC = () => {
   return (
@@ -22,36 +22,32 @@ const DlExtension: React.FC = () => {
       </Typography>
       
       <Typography variant="body1" paragraph sx={{ fontFamily: 'inherit'}}>
-        Get the best experience by adding our Chrome Extension. Click below to download.
+        Click below to add our Chrome Extension and get the best experience
       </Typography>
       
-      <a href="https://chromewebstore.google.com/detail/accessiscan-chrome-extens/ahoojddljcjmlgfbbpbbcpgnmjekkafn?authuser=0&hl=en" target="_blank" rel="noopener noreferrer">
-        <img
-          src="/path/to/chrome-extension-image.png"
-          alt="Download Chrome Extension"
-          style={{
-            width: '200px',
-            cursor: 'pointer',
-            transition: 'transform 0.3s ease-in-out', // Smooth transition for scaling
-          }}
-          onMouseOver={(e) => (e.currentTarget.style.transform = 'scale(1.05)')}
-          onMouseOut={(e) => (e.currentTarget.style.transform = 'scale(1)')}
-        />
-      </a>
-
-      <Box sx={{ marginTop: '2rem' }}>
-        <Button
-          variant="contained"
-          color="primary"
-          startIcon={<DownloadIcon />}
-          href="https://github.com/your-github-repo"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Download from GitHub
-        </Button>
+      <Box
+        sx={{
+          display: 'flex', // Use flexbox to ensure centering
+          justifyContent: 'center', // Horizontal centering
+          alignItems: 'center', // Vertical centering (if needed)
+          marginTop: '2rem',
+        }}
+      >
+        <a href="https://chromewebstore.google.com/detail/accessiscan-chrome-extens/ahoojddljcjmlgfbbpbbcpgnmjekkafn?authuser=0&hl=en" target="_blank" rel="noopener noreferrer">
+          <img
+            src={extensionImage.src}
+            alt="Download Chrome Extension"
+            style={{
+              width: '150px',
+              cursor: 'pointer',
+              transition: 'transform 0.3s ease-in-out',
+            }}
+            onMouseOver={(e) => (e.currentTarget.style.transform = 'scale(1.1)')}
+            onMouseOut={(e) => (e.currentTarget.style.transform = 'scale(1)')}
+          />
+        </a>
       </Box>
-    </Box>
+    </Box> 
   );
 };
 
