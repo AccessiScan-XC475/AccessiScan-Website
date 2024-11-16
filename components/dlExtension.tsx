@@ -11,6 +11,7 @@ const DlExtension: React.FC = () => {
         backgroundColor: '#fbfbfb',
         borderRadius: '20px',
         margin: '2rem 0',
+        border: '1px solid #d3d3d3',
         transition: 'box-shadow 0.3s ease-in-out', // Smooth transition for box-shadow
         "&:hover": {
           boxShadow: '0px 10px 30px rgba(84, 189, 134, 0.4)', // Shadow appears when hovered
@@ -18,11 +19,11 @@ const DlExtension: React.FC = () => {
       }}
     >
       <Typography variant="h4" component="h2" gutterBottom sx={{ fontFamily: 'inherit', color: '#1B6AAA', fontWeight: '500' }}>
-        Download AccessiScan Chrome Extension!
+        Download AccessiScan Chrome Extension
       </Typography>
       
       <Typography variant="body1" paragraph sx={{ fontFamily: 'inherit'}}>
-        Click below to add our Chrome Extension and get the best experience
+        Click below to view our Chrome Extension in the Chrome Web Store!
       </Typography>
       
       <Box
