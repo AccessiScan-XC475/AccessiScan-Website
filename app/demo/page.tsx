@@ -12,6 +12,9 @@ export default function DemoSelectionPage() {
         <Link href="/demo/text-size" className={linkStyles}>
           Text Size
         </Link>
+        <Link href="/demo/line-spacing" className={linkStyles}>
+          Line Spacing
+        </Link>
       </div>
     </div>
   );
