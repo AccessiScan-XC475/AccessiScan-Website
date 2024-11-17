@@ -1,0 +1,16 @@
+{
+  "mobilityResources": [
+    {
+      "title": "Features for Mobility Impairments",
+      "description": "In this video, we provide developers with tips on making Android apps more accessible for users with motor impairments. We also discuss best practices for making your app easier to use and talk about testing for accessibility to improve your app's user experience for all users.",
+      "link": "https://www.youtube.com/watch?v=ElifzykHt7U",
+      "accessibilityType": "Mobility"
+    },
+    {
+      "title": "Structuring Tab Flow in Logical Sequence",
+      "description": "The reading order should be logical and intuitive with clear focus indicators. People with mobility impairments who use keyboards only benefit from a logical, usable focus order. Reading also flows better for those who use assistive technology such as a screen magnifier, as they may interpret a field in the wrong context if the focus order isn’t logical.",
+      "link": "https://www.wcag.com/developers/2-4-3-focus-order/",
+      "accessibilityType": "Mobility"
+    }
+  ]
+}

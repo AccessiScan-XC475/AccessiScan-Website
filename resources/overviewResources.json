@@ -1,0 +1,28 @@
+{
+  "overviewResources": [
+    {
+      "title": "What does accessibility mean?",
+      "description": "What does accessibility mean? How should we think about disability? And what role can design play in making your social media content accessible?",
+      "link": "https://www.youtube.com/watch?v=BQUIF4nBqOk&t=49s",
+      "accessibilityType": "General"
+    },
+    {
+      "title": "Your Complete Guide to an Inclusive Web",
+      "description": "In this playlist, we cover all four principles of WCAG 2.1 - Perceivable, Operable, Understandable, and Robust - and their corresponding success criteria.",
+      "link": "https://www.youtube.com/playlist?list=PLBF3XTmgreLHH77gQOEa6xCCT2M0IWxo6",
+      "accessibilityType": "General"
+    },
+    {
+      "title": "Understanding Accessibility: WCAG’s 13 Guidelines with Kasey Bonifacio",
+      "description": "Accessibility is critical, but it can be confusing. Kasey Bonafacio will demystify the 13 WCAG guidelines and show examples of each guideline in action, empowering you to improve accessibility in your projects.",
+      "link": "https://www.youtube.com/watch?v=RjpvOqZigao",
+      "accessibilityType": "General"
+    },
+    {
+      "title": "Designing for Web Accessibility",
+      "description": "Web Design - Dyslexia, Autistic, Hearing, Low Vision, Anxiety",
+      "link": "https://www.youtube.com/watch?v=ou8kT9G5ZN4",
+      "accessibilityType": "General"
+    }
+  ]
+}
