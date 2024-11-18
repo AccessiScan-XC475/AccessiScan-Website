@@ -3,6 +3,11 @@ import Image from "next/image";
 import DemoComponent from "./demo-components";
 import { useState } from "react";
 
+function srcToDesc(src: string) {
+  const desc = src.substring(1).split(".")[0].replace("-", " ");
+  return desc.charAt(0).toUpperCase() + desc.slice(1);
+}
+
 export default function AltTextSection({
   src,
   show,
@@ -17,7 +22,7 @@ export default function AltTextSection({
       <DemoComponent
         value={altText}
         setter={(c) => setAltText(c as string)}
-        label="Alt text for image n"
+        label={`Alt text for image of ${srcToDesc(src)}`}
       >
         <Image
           src={show ? src : "/no-image-here"}
