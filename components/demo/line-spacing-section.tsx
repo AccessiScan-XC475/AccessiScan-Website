@@ -9,8 +9,8 @@ export default function LineSpacingSection({
   heading: string;
   content: string;
 }) {
-  const [hSpacing, setHSpacing] = useState(3); // Default line spacing for heading
-  const [pSpacing, setPSpacing] = useState(3); // Default line spacing for paragraph
+  const [hSpacing, setHSpacing] = useState(1); // Default line spacing for heading
+  const [pSpacing, setPSpacing] = useState(1); // Default line spacing for paragraph
 
   return (
     <div className="p-6">
