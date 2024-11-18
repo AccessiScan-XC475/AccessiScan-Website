@@ -1,4 +1,5 @@
 "use client";
+import DLExtension from "@/components/dlExtension";
 import ResourceCard from "@/components/resourceCard";
 import VideoIcon from "@mui/icons-material/VideoLibrary"; // Import Video Icon
 import DescriptionIcon from "@mui/icons-material/Description"; // Import Document Icon
@@ -26,6 +27,7 @@ export default function HomePage() {
       <h3 style={{ color: "#1B6AAA", fontSize: "16pt" }}>
         The most supportive community of developers
       </h3>
+      <DLExtension />
       <div className="flex flex-col items-center">
         <div className="flex items-center p-1 m-2"></div>
         <div>
