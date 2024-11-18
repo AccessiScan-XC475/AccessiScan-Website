@@ -1,5 +1,5 @@
 import React from 'react';
-import { Box, Typography, Button } from '@mui/material';
+import { Box, Typography } from '@mui/material';
 import iconImage from '../app/icon.png';
 
 const DlExtension: React.FC = () => {
