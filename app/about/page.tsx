@@ -1,5 +1,6 @@
 "use client";
 import { Card, CardContent, Typography } from "@mui/material";
+import Image from "next/image";
 
 const TeamMember = ({
   name,
@@ -34,6 +35,12 @@ const TeamMember = ({
       >
         Hi, I&apos;m {name}
       </Typography>
+      <Image
+        src={`/${name.toLowerCase()}.jpg`}
+        alt={name}
+        width={100}
+        height={100}
+      />
       <Typography variant="body2" color="text.secondary">
         I am a {role}
       </Typography>
