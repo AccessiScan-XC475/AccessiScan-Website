@@ -26,7 +26,7 @@ export default function AltTextDemoPage() {
             <AltTextSection src="/josie.jpg" show={successfulImage()} />
           </div>
           <div className="flex">
-            <AltTextSection src="/jeffrey.png" show={successfulImage()} />
+            <AltTextSection src="/jeffrey.jpg" show={successfulImage()} />
             <AltTextSection src="/ethan.jpg" show={successfulImage()} />
             <AltTextSection src="/hangi.jpg" show={successfulImage()} />
           </div>
