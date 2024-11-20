@@ -25,6 +25,10 @@ func Router() *http.ServeMux {
 
 	// get own profile
 	router.HandleFunc(("GET /api/auth/profile"), handlers.GetProfileSelf)
+	// get own chrome extension secret
+	router.HandleFunc(("GET /api/auth/chromeExtensionSecret"), handlers.GetSecret)
+	// refresh own chrome extension secret
+	router.HandleFunc(("POST /api/auth/chromeExtensionSecret"), handlers.RefreshSecret)
 	// get a profile of particular id but with less information
 	router.HandleFunc(("GET /api/profile"), handlers.GetProfileOther)
 

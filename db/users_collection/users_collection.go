@@ -13,13 +13,14 @@ import (
 const USERS_COLLECTION = "UsersCollection"
 
 type AccessiScanUser struct {
-	Id                primitive.ObjectID `bson:"_id" json:"id"`
-	Name              string             `bson:"name" json:"name"`
-	Username          string             `bson:"username" json:"username"`
-	ScoreHistory      []int              `bson:"scoreHistory" json:"scoreHistory"`
-	GitHubProfile     gh.GitHubUserInfo  `bson:"githubProfile" json:"githubProfile"`
-	SessionIdList     []SessionWithExp   `bson:"sessionIdList" json:"sessionIdList"`
-	GitHubAccessToken string             `bson:"githubAccessToken" json:"githubAccessToken"`
+	Id                    primitive.ObjectID `bson:"_id" json:"id"`
+	Name                  string             `bson:"name" json:"name"`
+	Username              string             `bson:"username" json:"username"`
+	ScoreHistory          []int              `bson:"scoreHistory" json:"scoreHistory"`
+	GitHubProfile         gh.GitHubUserInfo  `bson:"githubProfile" json:"githubProfile"`
+	SessionIdList         []SessionWithExp   `bson:"sessionIdList" json:"sessionIdList"`
+	GitHubAccessToken     string             `bson:"githubAccessToken" json:"githubAccessToken"`
+	ChromeExtensionSecret string             `bson:"chromeExtensionSecret" json:"chromeExtensionSecret"`
 }
 
 func AppendScore(id primitive.ObjectID, score int) bool {
