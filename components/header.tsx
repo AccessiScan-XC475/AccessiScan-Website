@@ -52,9 +52,6 @@ const Header = () => {
         <li>
           <NavLink href="/profile">PROFILE</NavLink>
         </li>
-        <li>
-          <NavLink href="/about">ABOUT</NavLink>
-        </li>
       </ul>
     </nav>
   );
