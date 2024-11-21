@@ -7,11 +7,22 @@ import (
 	"encoding/base64"
 	"fmt"
 	"log"
+	"os"
+	"strconv"
 	"time"
 
 	"go.mongodb.org/mongo-driver/bson"
 	"go.mongodb.org/mongo-driver/mongo/options"
 )
+
+func numDays() time.Duration {
+	numStr := os.Getenv("NUM_DAYS")
+	num, err := strconv.Atoi(numStr)
+	if err != nil {
+		return 7 // default to one week
+	}
+	return time.Duration(num)
+}
 
 type SessionWithExp struct {
 	SessionId string `bson:"sessionId"`
@@ -62,7 +73,7 @@ func GetSessionId(user AccessiScanUser) (string, error) {
 		return "", err
 	}
 
-	expires := time.Now().Add(24 * time.Hour)
+	expires := time.Now().Add(24 * time.Hour * numDays())
 	expiresString, err := expires.MarshalText()
 	if err != nil {
 		return "", err
