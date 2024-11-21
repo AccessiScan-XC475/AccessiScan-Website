@@ -93,22 +93,33 @@ export default function ProfilePage() {
         )}
       </div>
 
-      <div className="bg-sky-100 rounded-xl p-4">
+      <div className="rounded-xl p-4">
         <h3 className="text-xl">Score History</h3>
-        {profile.scoreHistory.length === 0 ? (
-          <p>No Score History</p>
-        ) : (
-          <LineChart
-            xAxis={[{ data: profile.scoreHistory.map((_, i) => i + 1) }]}
-            series={[
-              {
-                data: profile.scoreHistory.map((score) => score),
-              },
-            ]}
-            width={500}
-            height={300}
-          />
-        )}
+        <LineChart
+          xAxis={[
+            {
+              data: profile.scoreHistory.map((_, i) => i + 1),
+              scaleType: "point",
+            },
+          ]}
+          yAxis={[
+            {
+              min: 0,
+              max: 100,
+            },
+          ]}
+          series={[
+            {
+              data: profile.scoreHistory.map((score) => score),
+              color: "#54BD86",
+            },
+          ]}
+          width={500}
+          height={300}
+          slotProps={{
+            noDataOverlay: { message: "No score history" },
+          }}
+        />
       </div>
     </div>
   );
