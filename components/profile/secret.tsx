@@ -24,8 +24,8 @@ export default function Secret() {
   };
 
   return (
-    <div className="flex flex-col items-center p-2 m-1">
-      <h4 className="p-2">
+    <div className="flex flex-col items-center">
+      <h4 className="">
         Super Secret Key:{" "}
         <span>
           {secret === null ? (

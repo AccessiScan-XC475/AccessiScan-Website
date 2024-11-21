@@ -46,12 +46,12 @@ export default function ProfilePage() {
           height={300}
           style={{ borderRadius: "50%", padding: "0.75rem" }}
         />
-        <div className="flex flex-col justify-end">
+        <div className="flex flex-col justify-start p-3 m-1">
           <p>{profile.name}</p>
           <p>{profile.githubProfile.email}</p>
           <p>{profile.username}</p>
+          <Secret />
         </div>
-        <Secret />
       </div>
       <ScoreHistory history={profile.scoreHistory} />
     </div>
