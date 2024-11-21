@@ -10,6 +10,7 @@ import (
 
 	"go.mongodb.org/mongo-driver/bson"
 	"go.mongodb.org/mongo-driver/bson/primitive"
+	"go.mongodb.org/mongo-driver/mongo/options"
 )
 
 func genChromeExtensionSecret() (string, error) {
@@ -42,6 +43,38 @@ func genChromeExtensionSecret() (string, error) {
 	}
 
 	return secret, nil
+}
+
+func GetExtensionSecret(user AccessiScanUser) (string, error) {
+	secret, err := genChromeExtensionSecret()
+	if err != nil {
+		return "", err
+	}
+
+	collection := db.GetCollection(USERS_COLLECTION)
+	res := collection.FindOneAndUpdate(context.Background(),
+		bson.M{"githubProfile.id": user.GitHubProfile.Id},
+		bson.M{
+			"$set": bson.M{
+				"githubProfile":     user.GitHubProfile,
+				"githubAccessToken": user.GitHubAccessToken,
+			},
+			"$setOnInsert": bson.M{
+				"name":                  user.GitHubProfile.Name,
+				"username":              user.GitHubProfile.Login,
+				"scoreHistory":          []int{},
+				"chromeExtensionSecret": secret,
+			},
+		},
+		options.FindOneAndUpdate().SetUpsert(true),
+	)
+	err = res.Decode(&user)
+	if err != nil {
+		return "", err
+	}
+
+	log.Println("got user secret", user.ChromeExtensionSecret)
+	return user.ChromeExtensionSecret, nil
 }
 
 func NewChromeExtensionSecret(id primitive.ObjectID) (string, error) {
