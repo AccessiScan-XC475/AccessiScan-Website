@@ -1,20 +1,25 @@
-import React from "react";
 import { Card, CardContent, Typography, Button, Chip } from "@mui/material";
+import VideoIcon from "@mui/icons-material/VideoLibrary"; // Import Video Icon
+import DescriptionIcon from "@mui/icons-material/Description"; // Import Document Icon
 import { OpenInNew } from "@mui/icons-material";
 
-interface ResourceCardProps {
-  title: React.ReactNode;
+export type ResourceCardProps = {
+  title: string;
   description: string;
   link: string;
   accessibilityType: string;
-}
+};
 
-const ResourceCard: React.FC<ResourceCardProps> = ({
-  title,
-  description,
-  link,
-  accessibilityType,
-}) => {
+const ResourceCard = ({ resource }: { resource: ResourceCardProps }) => {
+  const getIconAndLabel = (link: string) => {
+    if (link.includes("youtube")) {
+      return { icon: <VideoIcon />, label: "Video: " };
+    } else {
+      return { icon: <DescriptionIcon />, label: "Document: " };
+    }
+  };
+  const { icon, label } = getIconAndLabel(resource.link);
+
   return (
     <Card
       className="m-4 w-full md:w-1/3 lg:w-1/4"
@@ -39,14 +44,16 @@ const ResourceCard: React.FC<ResourceCardProps> = ({
             component="div"
             style={{ fontSize: "16pt", color: "var(--card-text)" }}
           >
-            {title}
+            {icon}
+            <span style={{ marginLeft: "8px" }}>{label}</span>
+            {resource.title}
           </Typography>
           <Typography
             variant="body2"
             color="text.secondary"
             style={{ fontSize: "14pt", color: "var(--card-text)" }}
           >
-            {description}
+            {resource.description}
           </Typography>
         </div>
         <div className="flex flex-col items-start mt-4">
@@ -60,14 +67,14 @@ const ResourceCard: React.FC<ResourceCardProps> = ({
               marginTop: "10px",
               fontSize: "16pt",
             }}
-            href={link}
+            href={resource.link}
             target="_blank"
             rel="noopener noreferrer"
           >
             Learn More <OpenInNew sx={{ padding: "2px" }} />
           </Button>
           <Chip
-            label={accessibilityType}
+            label={resource.accessibilityType}
             sx={{
               backgroundColor: "#54BD86",
               color: "white",

@@ -1,4 +1,4 @@
-package handlers
+package github_handlers
 
 import (
 	"AccessiScan-Website/cookies"
@@ -54,5 +54,5 @@ func GitHubCallback(w http.ResponseWriter, r *http.Request) {
 
 	cookies.SetSessionId(w, sessionId)
 
-	http.Redirect(w, r, domain.DOMAIN+"/profile", http.StatusTemporaryRedirect)
+	http.Redirect(w, r, domain.DOMAIN+"/profile", http.StatusSeeOther)
 }

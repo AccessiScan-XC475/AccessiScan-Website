@@ -33,3 +33,14 @@ func GetSessionId(r *http.Request) string {
 
 	return cookie.Value
 }
+
+func RemoveSessionId(w http.ResponseWriter) {
+	cookie := http.Cookie{
+		Name:     SESSION_ID_COOKIE_NAME,
+		Value:    "",
+		Path:     "/",
+		HttpOnly: true,
+	}
+
+	http.SetCookie(w, &cookie)
+}

@@ -45,7 +45,7 @@ export default function ColorContrastSection({
         </DemoComponent>
       </div>
       <div>
-        <div className="w-28 text-center p-4 text-black bg-blue-200">
+        <div className="w-28 text-center p-4 text-black">
           <h3 className="">Background Color</h3>
           <input
             type="color"

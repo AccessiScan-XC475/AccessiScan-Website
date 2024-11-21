@@ -72,7 +72,7 @@ export default function AboutPage() {
       <Typography
         variant="body1"
         sx={{
-          textAlign: "center",
+          textAlign: "left",
           mx: "auto",
           maxWidth: "700px",
           my: 6,
@@ -81,9 +81,9 @@ export default function AboutPage() {
           color: "#333",
         }}
       >
-        AccessiScan is an innovative solution to the persistent challenges in
-        web accessibility. By scanning websites directly from a Chrome
-        extension, AccessiScan enables developers to proactively address
+        &emsp;&emsp;AccessiScan is an innovative solution to the persistent
+        challenges in web accessibility. By scanning websites directly from a
+        Chrome extension, AccessiScan enables developers to proactively address
         accessibility during the design phase, even on local, unpublished
         websites. This unique approach offers developers early visibility into
         potential accessibility issues, such as visual, audio, and mobility
@@ -91,22 +91,23 @@ export default function AboutPage() {
         start.
         <br />
         <br />
-        AccessiScan aims not only to identify compliance gaps and provide free,
-        user-friendly accessibility reports but also to serve as a comprehensive
-        educational tool. Developers are guided in understanding what
-        accessibility entails and how to implement it effectively. Our tool
+        &emsp;&emsp;AccessiScan aims not only to identify compliance gaps and
+        provide free, user-friendly accessibility reports but also to serve as a
+        comprehensive educational tool. Developers are guided in understanding
+        what accessibility entails and how to implement it effectively. Our tool
         generates an accessibility score based on various criteria, helping
         developers learn while they improve their projects.
         <br />
         <br />
-        Additionally, AccessiScan fosters a community of accessibility-focused
-        creators through its integrated community board. This space allows
-        developers to share insights, discuss projects, and seek advice,
-        creating a supportive environment that promotes accessible design
-        practices. On the Home page, we have curated accessibility resources to
-        offer indepth explanations and recommendations. Together, AccessiScan’s
-        tools and community provide a unique platform for educating, connecting,
-        and empowering developers to make the web more accessible for all.
+        &emsp;&emsp;Additionally, AccessiScan fosters a community of
+        accessibility-focused creators through its integrated community board.
+        This space allows developers to share insights, discuss projects, and
+        seek advice, creating a supportive environment that promotes accessible
+        design practices. On the Home page, we have curated accessibility
+        resources to offer indepth explanations and recommendations. Together,
+        AccessiScan’s tools and community provide a unique platform for
+        educating, connecting, and empowering developers to make the web more
+        accessible for all.
       </Typography>
 
       <Typography

@@ -1,10 +1,8 @@
 "use client";
-import { Button, CircularProgress } from "@mui/material";
-import { LineChart } from "@mui/x-charts";
-import Image from "next/image";
-import Link from "next/link";
+import { CircularProgress } from "@mui/material";
 import { useEffect, useState } from "react";
-import { Visibility, VisibilityOff } from "@mui/icons-material";
+import LoginLinks from "@/components/profile/loginLinks";
+import SelfProfileDisplay from "@/components/profile/selfProfileDisplay";
 
 export type AccessiScanProfileSelf = {
   id: string;
@@ -20,94 +18,27 @@ export type AccessiScanProfileSelf = {
 
 export default function ProfilePage() {
   const [profile, setProfile] = useState<AccessiScanProfileSelf | null>(null);
-  const [secret, setSecret] = useState<string | null>(null);
   const [loading, setLoading] = useState(true);
-
-  const getSecret = async () => {
-    if (secret !== null) return;
-    const res = await fetch("/api/auth/chromeExtensionSecret");
-    if (res.status === 200) {
-      setSecret(await res.text());
-    }
-  };
-
-  const refreshSecret = async () => {
-    const res = await fetch("/api/auth/chromeExtensionSecret", {
-      method: "POST",
-    });
-    if (res.status === 200) {
-      setSecret(await res.text());
-    }
-  };
 
   useEffect(() => {
     fetch("/api/auth/profile")
       .then((res) => (res.status === 200 ? res.json() : null))
-      .then((data) => setProfile(data))
+      .then((data) => {
+        setProfile(data);
+        setLoading(false);
+      })
       .catch((e) => console.error(e));
-    setLoading(false);
   }, []);
 
-  return loading ? (
-    <CircularProgress />
-  ) : profile === null ? (
-    <div>
-      <Link href={"/api/login/github"}>Sign In with GitHub</Link>
-    </div>
-  ) : (
-    <div>
-      <div className="flex p-8">
-        <Image
-          src={profile.githubProfile.avatarUrl}
-          alt="github avatar"
-          width={300}
-          height={300}
-          style={{ borderRadius: "50%", padding: "0.75rem" }}
-        />
-        <div className="flex flex-col justify-end">
-          <p>{profile.name}</p>
-          <p>{profile.githubProfile.email}</p>
-          <p>{profile.username}</p>
-        </div>
-      </div>
-      <div className="flex flex-col items-center p-2 m-1">
-        <h4 className="p-2">
-          Super Secret Key:{" "}
-          <span>
-            {secret === null ? (
-              <button onClick={getSecret}>
-                <Visibility />
-              </button>
-            ) : (
-              <>
-                {secret}
-                <button onClick={() => setSecret(null)} className="p-1">
-                  <VisibilityOff />
-                </button>
-              </>
-            )}
-          </span>
-        </h4>
-        {secret && <Button onClick={refreshSecret}>Refresh Secret</Button>}
-      </div>
-
-      <div className="bg-sky-100 rounded-xl p-4">
-        <h3 className="text-xl">Score History</h3>
-        {profile.scoreHistory.length === 0 ? (
-          <p>No Score History</p>
-        ) : (
-          <LineChart
-            xAxis={[{ data: profile.scoreHistory.map((_, i) => i + 1) }]}
-            series={[
-              {
-                data: profile.scoreHistory.map((score) => score),
-              },
-            ]}
-            width={500}
-            height={300}
-          />
-        )}
-      </div>
+  return (
+    <div className="flex justify-center">
+      {loading ? (
+        <CircularProgress />
+      ) : profile === null ? (
+        <LoginLinks />
+      ) : (
+        <SelfProfileDisplay profile={profile} />
+      )}
     </div>
   );
 }

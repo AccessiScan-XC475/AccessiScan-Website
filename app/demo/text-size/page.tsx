@@ -2,7 +2,7 @@ import TextSizeSection from "@/components/demo/text-size-section";
 
 export default function ColorContrastDemoPage() {
   return (
-    <div className="bg-blue-200 w-full flex pb-8">
+    <div className="w-full flex pb-8">
       <div className="w-1/5"></div>
       <div className="w-3/5">
         <div className="text-center p-3">

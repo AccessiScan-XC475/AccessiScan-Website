@@ -9,15 +9,22 @@ import NewPost from "@/components/community/new-post";
 export default function CommunityPage() {
   const [postPreviewList, setPostPreviewList] = useState<
     CommunityPostPreviewProps[] | null
-  >([]);
+  >(null);
   const [filterTag, setFilterTag] = useState<string>("");
 
-  const availableTags = ["Color contrast", "Text size", "Labeled images", "Resources", "Profile", "Other"];
+  const availableTags = [
+    "Color contrast",
+    "Text size",
+    "Labeled images",
+    "Resources",
+    "Profile",
+    "Other",
+  ];
 
   const createNewPost = async (
     title: string,
     content: string,
-    tag: string
+    tag: string,
   ): Promise<boolean> => {
     const newPost = {
       author: "anonymous",
@@ -36,10 +43,10 @@ export default function CommunityPage() {
 
     if (res.status === 200) {
       const createdPost = {
-  ...newPost,
-  id: await res.text(),
-  tag: tag || undefined,  // Change null to undefined if tag is not present
-};
+        ...newPost,
+        id: await res.text(),
+        tag: tag || undefined, // Change null to undefined if tag is not present
+      };
       if (postPreviewList === null) {
         setPostPreviewList([createdPost]);
       } else {
@@ -51,6 +58,13 @@ export default function CommunityPage() {
     return false;
   };
 
+  const filteredPosts =
+    postPreviewList === null
+      ? null
+      : filterTag
+        ? postPreviewList.filter((post) => post.tag === filterTag)
+        : postPreviewList;
+
   useEffect(() => {
     try {
       fetch("/api/community-post")
@@ -61,13 +75,14 @@ export default function CommunityPage() {
     }
   }, []);
 
-  const filteredPosts = filterTag
-    ? postPreviewList?.filter((post) => post.tag === filterTag) || []
-    : postPreviewList || [];
-
   return (
     <div>
-      <h1 className="text-5xl font-bold text-center mt-8 mb-8" style={{ color: '#54BD86' }}>Community Board</h1>
+      <h1
+        className="text-5xl font-bold text-center mt-8 mb-8"
+        style={{ color: "#54BD86" }}
+      >
+        Community Board
+      </h1>
       <div>
         <NewPost submitFunc={createNewPost} />
 
@@ -77,7 +92,11 @@ export default function CommunityPage() {
             className={`px-4 py-2 rounded-xl ${
               filterTag === "" ? "text-white" : "bg-gray-200 text-gray-700"
             }`}
-            style={filterTag === "" ? { backgroundColor: "#1B6AAA", color: "white" } : {}}
+            style={
+              filterTag === ""
+                ? { backgroundColor: "#1B6AAA", color: "white" }
+                : {}
+            }
           >
             All Posts
           </button>
@@ -88,19 +107,25 @@ export default function CommunityPage() {
               className={`px-4 py-2 rounded-xl ${
                 filterTag === tag ? "text-white" : "bg-gray-200 text-gray-700"
               }`}
-              style={filterTag === tag ? { backgroundColor: "#1B6AAA", color: "white" } : {}}
+              style={
+                filterTag === tag
+                  ? { backgroundColor: "#1B6AAA", color: "white" }
+                  : {}
+              }
             >
               {tag}
             </button>
           ))}
         </div>
 
-        {postPreviewList === null ? (
+        {filteredPosts === null ? (
           <div className="flex justify-center mt-8">
             <CircularProgress />
           </div>
         ) : filteredPosts.length === 0 ? (
-          <p>There are no posts. Be the first to say something!</p>
+          <div className="flex justify-center mt-8">
+            <p>There are no posts. Be the first to say something!</p>
+          </div>
         ) : (
           filteredPosts.map((preview) => (
             <CommunityPostPreview postPreview={preview} key={preview.id} />

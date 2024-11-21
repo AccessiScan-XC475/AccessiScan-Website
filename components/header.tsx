@@ -33,30 +33,36 @@ const NavLink = ({
 
 const Header = () => {
   return (
-    <nav className="navbar">
-      <Link href="/" className="home-title">
+    <header className="top-header">
+      <Link
+        href="/"
+        // className="home-title rounded-xl hover:shadow-[0_10px_10px_0_rgba(84,189,134,0.4)] transition-all"
+        className="home-title rounded-xl"
+      >
         <Image
           src="/AccessiScan-logo.png"
           alt="AccessiScan logo"
-          height={75}
+          height={100.78}
           width={300}
         />
       </Link>
-      <ul className="nav-links">
-        <li>
-          <NavLink href="/demo">DEMO</NavLink>
-        </li>
-        <li>
-          <NavLink href="/community">COMMUNITY</NavLink>
-        </li>
-        <li>
-          <NavLink href="/profile">PROFILE</NavLink>
-        </li>
-        <li>
-          <NavLink href="/about">ABOUT</NavLink>
-        </li>
-      </ul>
-    </nav>
+      <nav>
+        <ul className="nav-links">
+          <li>
+            <NavLink href="/resources">RESOURCES</NavLink>
+          </li>
+          <li>
+            <NavLink href="/demo">DEMO</NavLink>
+          </li>
+          <li>
+            <NavLink href="/community">COMMUNITY</NavLink>
+          </li>
+          <li>
+            <NavLink href="/profile">PROFILE</NavLink>
+          </li>
+        </ul>
+      </nav>
+    </header>
   );
 };
 

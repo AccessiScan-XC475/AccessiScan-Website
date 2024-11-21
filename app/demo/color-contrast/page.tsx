@@ -2,14 +2,12 @@ import ColorContrastSection from "@/components/demo/color-contrast-section";
 
 export default function ColorContrastDemoPage() {
   return (
-    <div className="bg-blue-200 w-full flex pb-8">
+    <div className="w-full flex pb-8">
       <div className="w-1/5"></div>
       <div className="w-3/5">
         <div className="text-center p-3">
-          <h1 className="text-5xl p-1 text-black bg-blue-200">
-            Color Contrast Demo
-          </h1>
-          <p className="p-1 text-lg text-black bg-blue-200">
+          <h1 className="text-5xl p-1 text-black">Color Contrast Demo</h1>
+          <p className="p-1 text-lg text-black">
             Edit the colors on this page until it adjacent colors adequately
             contrast with each other.
           </p>
