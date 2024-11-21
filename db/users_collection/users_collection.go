@@ -23,10 +23,12 @@ type AccessiScanUser struct {
 	ChromeExtensionSecret string             `bson:"chromeExtensionSecret" json:"chromeExtensionSecret"`
 }
 
-func AppendScore(id primitive.ObjectID, score int) bool {
+func AppendScore(secret string, score int) bool {
 	collection := db.GetCollection(USERS_COLLECTION)
 
-	res, err := collection.UpdateByID(context.Background(), id, bson.M{
+	res, err := collection.UpdateOne(context.Background(), bson.M{
+		"chromeExtensionSecret": secret,
+	}, bson.M{
 		"$push": bson.M{"scoreHistory": score},
 	})
 	if err != nil {

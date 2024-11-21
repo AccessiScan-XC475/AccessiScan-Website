@@ -2,19 +2,28 @@ package handlers
 
 import (
 	"AccessiScan-Website/db/users_collection"
+	"log"
 	"net/http"
-	"slices"
+	"os"
 	"strconv"
 )
 
-var admin []string = []string{
-	"KingTingTheGreat",
-	"ethanrkey",
-	"amelia-liston",
-	"josiekim",
-}
-
 func AppendScore(w http.ResponseWriter, r *http.Request) {
+	// check that this request is coming from scanner
+	accessiscanSecret := r.URL.Query().Get("accessiscanSecret")
+	if accessiscanSecret == "" {
+		w.WriteHeader(http.StatusUnauthorized)
+		w.Write([]byte("no secret"))
+		return
+	}
+	if accessiscanSecret != os.Getenv("ACCESSISCAN_SECRET") {
+		log.Println("invalid secret")
+		w.WriteHeader(http.StatusBadRequest)
+		w.Write([]byte("invalid secret"))
+		return
+	}
+
+	// get score to append to history
 	scoreString := r.URL.Query().Get("score")
 	if scoreString == "" {
 		w.WriteHeader(http.StatusBadRequest)
@@ -28,19 +37,18 @@ func AppendScore(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 
-	ctx := r.Context()
-	var user users_collection.AccessiScanUser
-	user, ok := ctx.Value("user").(users_collection.AccessiScanUser)
-	if !ok || !slices.Contains(admin, user.GitHubProfile.Login) {
-		w.WriteHeader(http.StatusInternalServerError)
-		w.Write([]byte("something went wrong, please try again."))
+	// get secret
+	secret := r.URL.Query().Get("secret")
+	if secret == "" {
+		w.WriteHeader(http.StatusUnauthorized)
+		w.Write([]byte("no secret"))
 		return
 	}
-
-	success := users_collection.AppendScore(user.Id, score)
+	// append to user history by secret
+	success := users_collection.AppendScore(secret, score)
 	if !success {
-		w.WriteHeader(http.StatusInternalServerError)
-		w.Write([]byte("something went wrong, please try again."))
+		w.WriteHeader(http.StatusBadRequest)
+		w.Write([]byte("invalid secret"))
 		return
 	}
 

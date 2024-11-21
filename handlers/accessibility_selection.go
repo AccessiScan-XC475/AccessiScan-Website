@@ -3,7 +3,9 @@ package handlers
 import (
 	"AccessiScan-Website/db"
 	"encoding/json"
+	"log"
 	"net/http"
+	"os"
 	"slices"
 	"strings"
 )
@@ -31,6 +33,20 @@ func PostAccessibilitySelection(w http.ResponseWriter, r *http.Request) {
 	if selectionName == "" || !slices.Contains(db.AccessibilitySelections, selectionName) {
 		w.WriteHeader(http.StatusBadRequest)
 		w.Write([]byte("invalid selection"))
+		return
+	}
+
+	// check that this request is coming from scanner
+	accessiscanSecret := r.URL.Query().Get("accessiscanSecret")
+	if accessiscanSecret == "" {
+		w.WriteHeader(http.StatusUnauthorized)
+		w.Write([]byte("no secret"))
+		return
+	}
+	if accessiscanSecret != os.Getenv("ACCESSISCAN_SECRET") {
+		log.Println("invalid secret")
+		w.WriteHeader(http.StatusBadRequest)
+		w.Write([]byte("invalid secret"))
 		return
 	}
 

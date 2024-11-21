@@ -32,8 +32,8 @@ func Router() *http.ServeMux {
 	// get a profile of particular id but with less information
 	router.HandleFunc(("GET /api/profile"), handlers.GetProfileOther)
 
-	// endpoint for manually testing score history
-	router.HandleFunc(("POST /api/auth/append"), handlers.AppendScore)
+	// endpoint for adding to score history
+	router.HandleFunc(("POST /api/append"), handlers.AppendScore)
 
 	return router
 }
