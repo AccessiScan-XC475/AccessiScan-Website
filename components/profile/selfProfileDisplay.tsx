@@ -1,6 +1,5 @@
 import { AccessiScanProfileSelf } from "@/app/profile/page";
 import Image from "next/image";
-import Secret from "./secret";
 import ScoreHistory from "./scoreHistory";
 
 export default function SelfProfileDisplay({
@@ -22,7 +21,6 @@ export default function SelfProfileDisplay({
           <p>{profile.name}</p>
           <p>{profile.githubProfile.email}</p>
           <p>{profile.username}</p>
-          <Secret />
         </div>
       </div>
       <ScoreHistory history={profile.scoreHistory} />
