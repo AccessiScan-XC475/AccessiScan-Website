@@ -1,10 +1,10 @@
 "use client";
-import { Button, CircularProgress } from "@mui/material";
+import { CircularProgress } from "@mui/material";
 import Image from "next/image";
 import Link from "next/link";
 import { useEffect, useState } from "react";
-import { Visibility, VisibilityOff } from "@mui/icons-material";
-import ScoreHistory from "@/components/scoreHistory";
+import ScoreHistory from "@/components/profile/scoreHistory";
+import Secret from "@/components/profile/secret";
 
 export type AccessiScanProfileSelf = {
   id: string;
@@ -20,25 +20,7 @@ export type AccessiScanProfileSelf = {
 
 export default function ProfilePage() {
   const [profile, setProfile] = useState<AccessiScanProfileSelf | null>(null);
-  const [secret, setSecret] = useState<string | null>(null);
   const [loading, setLoading] = useState(true);
-
-  const getSecret = async () => {
-    if (secret !== null) return;
-    const res = await fetch("/api/auth/chromeExtensionSecret");
-    if (res.status === 200) {
-      setSecret(await res.text());
-    }
-  };
-
-  const refreshSecret = async () => {
-    const res = await fetch("/api/auth/chromeExtensionSecret", {
-      method: "POST",
-    });
-    if (res.status === 200) {
-      setSecret(await res.text());
-    }
-  };
 
   useEffect(() => {
     fetch("/api/auth/profile")
@@ -69,28 +51,7 @@ export default function ProfilePage() {
           <p>{profile.githubProfile.email}</p>
           <p>{profile.username}</p>
         </div>
-      </div>
-      <div className="flex flex-col items-center p-2 m-1">
-        <h4 className="p-2">
-          Super Secret Key:{" "}
-          <span>
-            {secret === null ? (
-              <button onClick={getSecret}>
-                <Visibility />
-              </button>
-            ) : (
-              <>
-                {secret}
-                <button onClick={() => setSecret(null)} className="p-1">
-                  <VisibilityOff />
-                </button>
-              </>
-            )}
-          </span>
-        </h4>
-        {secret !== null && (
-          <Button onClick={refreshSecret}>Refresh Secret</Button>
-        )}
+        <Secret />
       </div>
       <ScoreHistory history={profile.scoreHistory} />
     </div>
