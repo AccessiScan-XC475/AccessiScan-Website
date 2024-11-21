@@ -88,7 +88,9 @@ export default function ProfilePage() {
             )}
           </span>
         </h4>
-        {secret && <Button onClick={refreshSecret}>Refresh Secret</Button>}
+        {secret !== null && (
+          <Button onClick={refreshSecret}>Refresh Secret</Button>
+        )}
       </div>
 
       <div className="bg-sky-100 rounded-xl p-4">
