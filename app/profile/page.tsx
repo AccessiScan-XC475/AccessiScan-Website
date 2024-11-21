@@ -4,7 +4,6 @@ import { LineChart } from "@mui/x-charts";
 import Image from "next/image";
 import Link from "next/link";
 import { useEffect, useState } from "react";
-import VisibilityIcon from "@mui/icons-material/Visibility";
 import { Visibility, VisibilityOff } from "@mui/icons-material";
 
 export type AccessiScanProfileSelf = {
