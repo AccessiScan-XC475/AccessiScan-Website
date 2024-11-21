@@ -1,10 +1,10 @@
 "use client";
 import { Button, CircularProgress } from "@mui/material";
-import { LineChart } from "@mui/x-charts";
 import Image from "next/image";
 import Link from "next/link";
 import { useEffect, useState } from "react";
 import { Visibility, VisibilityOff } from "@mui/icons-material";
+import ScoreHistory from "@/components/scoreHistory";
 
 export type AccessiScanProfileSelf = {
   id: string;
@@ -92,41 +92,7 @@ export default function ProfilePage() {
           <Button onClick={refreshSecret}>Refresh Secret</Button>
         )}
       </div>
-
-      <div className="rounded-xl p-4">
-        <h3 className="text-xl">Score History</h3>
-        <LineChart
-          xAxis={[
-            {
-              data: profile.scoreHistory.map((_, i) => i + 1),
-              scaleType: "point",
-              tickLabelStyle: {
-                fontSize: 16,
-              },
-            },
-          ]}
-          yAxis={[
-            {
-              tickLabelStyle: {
-                fontSize: 16,
-              },
-              min: 0,
-              max: 100,
-            },
-          ]}
-          series={[
-            {
-              data: profile.scoreHistory.map((score) => score),
-              color: "#54BD86",
-            },
-          ]}
-          width={750}
-          height={350}
-          slotProps={{
-            noDataOverlay: { message: "No score history" },
-          }}
-        />
-      </div>
+      <ScoreHistory history={profile.scoreHistory} />
     </div>
   );
 }
