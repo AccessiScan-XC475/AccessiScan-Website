@@ -31,7 +31,7 @@ export default function ScoreHistory({ history }: { history: number[] }) {
           },
         ]}
         width={750}
-        height={350}
+        height={300}
         slotProps={{
           noDataOverlay: { message: "No score history" },
         }}
