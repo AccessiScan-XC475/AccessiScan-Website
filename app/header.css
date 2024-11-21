@@ -1,13 +1,5 @@
 /* Home page styling */
 
-.header {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  margin: 0.5rem 1rem;
-  padding: 0.5rem 1rem;
-}
-
 .top-header {
   display: flex;
   justify-content: space-between;

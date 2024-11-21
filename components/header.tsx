@@ -42,24 +42,26 @@ const Header = () => {
         <Image
           src="/AccessiScan-logo.png"
           alt="AccessiScan logo"
-          height={75}
+          height={100.78}
           width={300}
         />
       </Link>
-      <ul className="nav-links">
-        <li>
-          <NavLink href="/resources">RESOURCES</NavLink>
-        </li>
-        <li>
-          <NavLink href="/demo">DEMO</NavLink>
-        </li>
-        <li>
-          <NavLink href="/community">COMMUNITY</NavLink>
-        </li>
-        <li>
-          <NavLink href="/profile">PROFILE</NavLink>
-        </li>
-      </ul>
+      <nav>
+        <ul className="nav-links">
+          <li>
+            <NavLink href="/resources">RESOURCES</NavLink>
+          </li>
+          <li>
+            <NavLink href="/demo">DEMO</NavLink>
+          </li>
+          <li>
+            <NavLink href="/community">COMMUNITY</NavLink>
+          </li>
+          <li>
+            <NavLink href="/profile">PROFILE</NavLink>
+          </li>
+        </ul>
+      </nav>
     </header>
   );
 };
