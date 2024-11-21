@@ -2,10 +2,11 @@ import Link from "next/link";
 
 export default function LoginLinks() {
   return (
-    <div>
+    <div className="flex flex-col p-4 m-2 items-center">
+      <h2 className="text-center text-3xl font-medium p-2">Sign In</h2>
       <Link
         href="/api/login/github"
-        className="py-2 px-4 max-w-md flex justify-center items-center bg-gray-600 hover:bg-gray-700 focus:ring-gray-500 focus:ring-offset-gray-200 text-white w-full transition ease-in duration-200 text-center text-base font-semibold shadow-md focus:outline-none focus:ring-2 focus:ring-offset-2 rounded-lg"
+        className="m-1 py-2 px-4 max-w-md flex justify-center items-center bg-gray-800 hover:bg-gray-700 focus:ring-gray-500 focus:ring-offset-gray-200 text-white w-full transition ease-in duration-200 text-center text-base font-semibold shadow-md focus:outline-none focus:ring-2 focus:ring-offset-2 rounded-lg"
       >
         <svg
           xmlns="http://www.w3.org/2000/svg"
