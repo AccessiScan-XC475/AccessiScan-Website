@@ -40,7 +40,7 @@ func UserInfo(next http.Handler) http.Handler {
 		}
 
 		log.Println("got user")
-		ctx := context.WithValue(r.Context(), "user", user)
+		ctx := context.WithValue(r.Context(), "user", *user)
 		next.ServeHTTP(w, r.WithContext(ctx))
 	})
 }
