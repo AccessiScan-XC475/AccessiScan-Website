@@ -74,3 +74,17 @@ func GetUserBySessionId(sessionId string) (AccessiScanUser, error) {
 
 	return user, nil
 }
+
+func GetUserBySecret(secret string) (*AccessiScanUser, error) {
+	collection := db.GetCollection(USERS_COLLECTION)
+
+	res := collection.FindOne(context.Background(), bson.M{"chromeExtensionSecret": secret})
+
+	var user AccessiScanUser
+	err := res.Decode(&user)
+	if err != nil {
+		return nil, err
+	}
+
+	return &user, nil
+}

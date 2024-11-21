@@ -10,7 +10,12 @@ import (
 
 const ACCESSIBILITY_SELECTION_COLLECTION = "AccessibilitySelectionCollection"
 
-var AccessibilitySelections []string = []string{"audio", "visual", "mobility"}
+var AccessibilitySelections []string = []string{
+	"color-contrast",
+	"alt-text",
+	"line-spacing",
+	"large-text",
+}
 
 type AccessibilitySelection struct {
 	Name  string `bson:"name" json:"name"`

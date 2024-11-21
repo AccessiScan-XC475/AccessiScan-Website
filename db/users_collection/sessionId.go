@@ -68,6 +68,11 @@ func GetSessionId(user AccessiScanUser) (string, error) {
 		return "", err
 	}
 
+	secret, err := genChromeExtensionSecret()
+	if err != nil {
+		return "", err
+	}
+
 	collection := db.GetCollection(USERS_COLLECTION)
 	res, err := collection.UpdateOne(context.Background(), bson.M{"githubProfile.id": user.GitHubProfile.Id}, bson.M{
 		"$set": bson.M{
@@ -75,9 +80,10 @@ func GetSessionId(user AccessiScanUser) (string, error) {
 			"githubAccessToken": user.GitHubAccessToken,
 		},
 		"$setOnInsert": bson.M{
-			"name":         user.GitHubProfile.Name,
-			"username":     user.GitHubProfile.Login,
-			"scoreHistory": []int{},
+			"name":                  user.GitHubProfile.Name,
+			"username":              user.GitHubProfile.Login,
+			"scoreHistory":          []int{},
+			"chromeExtensionSecret": secret,
 		},
 		"$push": bson.M{
 			"sessionIdList": SessionWithExp{
