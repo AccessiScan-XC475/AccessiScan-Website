@@ -3,6 +3,8 @@ package router
 import (
 	"AccessiScan-Website/handlers"
 	community_post_handlers "AccessiScan-Website/handlers/community_post"
+	oauth_handlers "AccessiScan-Website/handlers/oauth"
+	github_handlers "AccessiScan-Website/handlers/oauth/github"
 	"net/http"
 )
 
@@ -20,8 +22,10 @@ func Router() *http.ServeMux {
 	router.HandleFunc("PUT /api/community-post", community_post_handlers.PutCommunityPost)
 
 	// perhaps enable OAuth with other providers in the future
-	router.HandleFunc(("GET /api/login/github"), handlers.RedirectGHLogin)
-	router.HandleFunc(("/api/callback/github"), handlers.GitHubCallback)
+	router.HandleFunc(("GET /api/login/github"), github_handlers.RedirectGHLogin)
+	router.HandleFunc(("/api/callback/github"), github_handlers.GitHubCallback)
+
+	router.HandleFunc(("GET /api/logout"), oauth_handlers.RedirectLogout)
 
 	// get own profile
 	router.HandleFunc(("GET /api/auth/profile"), handlers.GetProfileSelf)

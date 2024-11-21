@@ -32,7 +32,13 @@ func GetUserBySessionId(sessionId string) (AccessiScanUser, error) {
 	collection := db.GetCollection(USERS_COLLECTION)
 
 	// res := collection.FindOne(context.Background(), bson.M{"sessionId": sessionId})
-	res := collection.FindOne(context.Background(), bson.M{"sessionIdList": bson.M{"$elemMatch": bson.M{"sessionId": sessionId}}})
+	res := collection.FindOne(context.Background(), bson.M{
+		"sessionIdList": bson.M{
+			"$elemMatch": bson.M{
+				"sessionId": sessionId,
+			},
+		},
+	})
 
 	var user AccessiScanUser
 	err := res.Decode(&user)

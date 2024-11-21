@@ -114,3 +114,28 @@ func GetSessionId(user AccessiScanUser) (string, error) {
 
 	return sessionId, nil
 }
+
+func RemoveSessionId(sessionId string) error {
+	collection := db.GetCollection(USERS_COLLECTION)
+
+	filter := bson.M{
+		"sessionIdList": bson.M{
+			"$elemMatch": bson.M{
+				"sessionId": sessionId,
+			},
+		},
+	}
+	update := bson.M{
+		"$pull": bson.M{
+			"sessionIdList": bson.M{
+				"sessionId": sessionId,
+			},
+		},
+	}
+	_, err := collection.UpdateOne(context.Background(), filter, update)
+	if err != nil {
+		return err
+	}
+
+	return nil
+}
