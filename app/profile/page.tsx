@@ -100,10 +100,16 @@ export default function ProfilePage() {
             {
               data: profile.scoreHistory.map((_, i) => i + 1),
               scaleType: "point",
+              tickLabelStyle: {
+                fontSize: 16,
+              },
             },
           ]}
           yAxis={[
             {
+              tickLabelStyle: {
+                fontSize: 16,
+              },
               min: 0,
               max: 100,
             },
@@ -114,8 +120,8 @@ export default function ProfilePage() {
               color: "#54BD86",
             },
           ]}
-          width={500}
-          height={300}
+          width={750}
+          height={350}
           slotProps={{
             noDataOverlay: { message: "No score history" },
           }}
