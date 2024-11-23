@@ -10,18 +10,24 @@ export default function SelfProfileDisplay({
 }) {
   return (
     <div>
-      <div className="flex p-8">
-        <Image
-          src={profile.githubProfile.avatarUrl}
-          alt="github avatar"
-          width={300}
-          height={300}
-          style={{ borderRadius: "50%", padding: "0.75rem" }}
-        />
-        <div className="flex flex-col justify-start p-3 m-1">
+      <div className="flex flex-col items-center p-8">
+        <div className="flex items-center">
+          <Image
+            src={profile.githubProfile.avatarUrl}
+            alt="github avatar"
+            width={150}
+            height={150}
+            style={{
+              borderRadius: "50%",
+              padding: "0.75rem",
+              aspectRatio: "square",
+            }}
+          />
+          <h3 className="text-5xl">{profile.username}</h3>
+        </div>
+        <div className="flex flex-col w-72 p-3 m-1 text-xl">
           <p>{profile.name}</p>
           <p>{profile.githubProfile.email}</p>
-          <p>{profile.username}</p>
           <Secret />
         </div>
       </div>
