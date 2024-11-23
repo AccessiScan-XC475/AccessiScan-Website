@@ -10,7 +10,7 @@ export default function SelfProfileDisplay({
 }) {
   return (
     <div>
-      <div className="flex flex-col items-center p-8">
+      <div className="flex flex-col items-center mt-8">
         <div className="flex items-center">
           <Image
             src={profile.githubProfile.avatarUrl}
