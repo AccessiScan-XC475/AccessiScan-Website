@@ -17,8 +17,8 @@ type GitHubUserInfoPub struct {
 
 type AccessiScanProfileSelf struct {
 	Id            string            `json:"id"`
-	Username      string            `json:"name"`
-	Name          string            `json:"username"`
+	Username      string            `json:"username"`
+	Name          string            `json:"name"`
 	ScoreHistory  []int             `json:"scoreHistory"`
 	GitHubProfile GitHubUserInfoPub `json:"githubProfile"`
 }

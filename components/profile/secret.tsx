@@ -26,36 +26,34 @@ export default function Secret() {
   };
 
   return (
-    <div className="flex flex-col items-center">
-      <h4 className="">
+    <div className="flex flex-col justify-start h-32">
+      <h4 className="text-base">
+        {!showSecret ? (
+          <button onClick={getSecret}>
+            <VisibilityOff />
+          </button>
+        ) : (
+          <button onClick={() => setShowSecret(false)}>
+            <Visibility />
+          </button>
+        )}
         Super Secret Key:{" "}
-        <span>
-          {!showSecret ? (
-            <button onClick={getSecret}>
-              <VisibilityOff />
-            </button>
-          ) : (
-            <>
-              <button onClick={() => setShowSecret(false)}>
-                <Visibility />
-              </button>
-              <span>
-                <ButtonBase
-                  sx={{
-                    display: "flex",
-                    flexDirection: "column",
-                    alignItems: "center",
-                    padding: "0.25rem",
-                  }}
-                  onClick={() => {
-                    navigator.clipboard.writeText(secret ?? "");
-                  }}
-                >
-                  {secret}
-                  <p className="text-sm">click to copy</p>
-                </ButtonBase>
-              </span>
-            </>
+        <span className="flex justify-center">
+          {showSecret && (
+            <ButtonBase
+              sx={{
+                display: "flex",
+                flexDirection: "column",
+                alignItems: "center",
+                padding: "0.25rem",
+              }}
+              onClick={() => {
+                navigator.clipboard.writeText(secret ?? "");
+              }}
+            >
+              {secret}
+              <p className="text-sm">click to copy</p>
+            </ButtonBase>
           )}
         </span>
       </h4>
