@@ -28,6 +28,7 @@ export default function FAQ() {
           color: "#333",
         }}
       >
+        Hello, testing
       </Typography>
     </div>
   );
