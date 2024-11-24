@@ -19,6 +19,7 @@ export default function Footer() {
           display: "flex",
           justifyContent: "space-around",
           width: "100%",
+          marginBottom: "40px",
         }}
       >
         <Link href="/api/logout">Logout</Link>
