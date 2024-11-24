@@ -98,7 +98,8 @@ export default function CommunityPostFull({
 
   return (
     <div className="flex justify-center mt-4">
-      <div className="bg-[#C7EBD9] p-6 m-2 w-[60vw] rounded-xl shadow-lg">
+      <div className="border-2 bg-white p-6 m-2 w-[60vw] rounded-xl shadow-lg"
+      style={{ borderColor: "#54BD86" }}>
         <div>
           <h3 className="text-3xl font-semibold text-[#1B6AAA]">
             {inputPost.title}

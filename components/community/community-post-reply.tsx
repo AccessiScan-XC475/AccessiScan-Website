@@ -19,7 +19,8 @@ export default function CommunityPostReply({
   setReply: (r: CommunityPostReplyProps) => void;
 }) {
   return (
-    <div className="bg-[#C7EBD9] rounded-xl p-2 mx-auto my-2 max-w-4xl">
+    <div className="border-2 bg-white rounded-xl p-2 mx-auto my-2 max-w-4xl"
+    style={{ borderColor: "#54BD86" }}>
       <h4 className="text-lg font-medium text-[#1B6AAA]">
         {inputReply.author}
       </h4>

@@ -12,7 +12,8 @@ export default function NewPost({
   const availableTags = ["Color contrast", "Text size", "Labeled images", "Resources", "Profile", "Other"];
 
   return (
-    <div className="bg-[#C7EBD9] rounded-xl p-4 mx-auto my-2 max-w-4xl flex flex-col shadow-lg">
+    <div className="border-2 bg-white rounded-xl p-4 mx-auto my-2 max-w-4xl flex flex-col shadow-lg" 
+    style={{ borderColor: "#8275C9" }}>
       <h4 className="text-2xl p-1 m-1 text-[#1B6AAA]"><b>Create a new post</b></h4>
       <input
         value={title}
