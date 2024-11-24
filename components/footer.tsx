@@ -23,6 +23,7 @@ export default function Footer() {
       >
         <Link href="/api/logout">Logout</Link>
         <Link href="/about">About Us</Link>
+        <Link href="/faq">FAQ</Link>
       </div>
       <Image
           src="/AccessiScan-logo.png"
