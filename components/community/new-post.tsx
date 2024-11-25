@@ -12,8 +12,9 @@ export default function NewPost({
   const availableTags = ["Color contrast", "Text size", "Labeled images", "Resources", "Profile", "Other"];
 
   return (
-    <div className="bg-[#C7EBD9] rounded-xl p-4 mx-auto my-2 max-w-4xl flex flex-col shadow-lg">
-      <h4 className="text-2xl p-1 m-1 text-[#1B6AAA]"><b>Create a new post</b></h4>
+    <div className="border-2 rounded-xl p-4 mx-auto my-2 max-w-4xl flex flex-col shadow-lg" 
+    style={{ backgroundColor: "#8275C9" }}>
+      <h4 className="text-2xl p-1 m-1 text-[#ffffff]"><b>Create a new post</b></h4>
       <input
         value={title}
         placeholder="Title"
@@ -31,7 +32,7 @@ export default function NewPost({
           <button
             key={tag}
             onClick={() => setSelectedTag(selectedTag === tag ? "" : tag)}
-            className={`px-4 py-2 rounded-xl ${selectedTag === tag ? "text-white" : "bg-gray-200 text-gray-700"}`}
+            className={`px-4 py-2 rounded-xl border transition-colors ${selectedTag === tag ? "bg-[#1B6AAA] text-white border-white" : "bg-white text-gray-700 border-[#1B6AAA]"}`}
             style={{
               backgroundColor: selectedTag === tag ? "#1B6AAA" : "", 
             }}
@@ -50,7 +51,7 @@ export default function NewPost({
             }
           });
         }}
-        className={`rounded-xl p-2 bg-[#1B6AAA] disabled:bg-gray-200 m-2 ${
+        className={`rounded-xl border p-2 bg-[#1B6AAA] disabled:bg-gray-200 m-2 ${
           title.length === 0 || content.length === 0 ? 'text-[#1B6AAA]' : 'text-white'
         }`}
         disabled={title.length === 0 || content.length === 0}

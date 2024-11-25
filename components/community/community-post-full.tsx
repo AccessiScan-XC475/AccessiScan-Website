@@ -98,18 +98,13 @@ export default function CommunityPostFull({
 
   return (
     <div className="flex justify-center mt-4">
-      <div className="bg-[#C7EBD9] p-6 m-2 w-[60vw] rounded-xl shadow-lg">
+      <div className="border-2 bg-white p-6 m-2 w-[60vw] rounded-xl shadow-lg"
+      style={{ borderColor: "#54BD86" }}>
         <div>
-          <h3 className="text-3xl font-semibold text-[#1B6AAA]">
+          <h3 className="text-3xl font-semibold text-[#1B6AAA] leading-7">
             {inputPost.title}
           </h3>
-          <p className="text-[#1B6AAA]">{inputPost.content}</p>
-          {inputPost.tag && (
-            <span className="text-white px-3 py-1 rounded-full text-sm inline-block mb-2"
-            style={{ backgroundColor: "#1B6AAA" }}>
-            {inputPost.tag}
-          </span>
-          )}
+          <p className="text-[#1B6AAA] leading-7">{inputPost.content}</p>
         </div>
         <div className="flex justify-between items-center mt-4">
           <UpvotesDownvotesDisplay
@@ -119,6 +114,12 @@ export default function CommunityPostFull({
             userVote={post.userVote}
             setUserVote={(v: string) => changeUserVote(post, setPost, v)}
           />
+          {inputPost.tag && (
+            <span className="text-white px-3 py-1 rounded-full text-sm inline-block mb-2"
+            style={{ backgroundColor: "#1B6AAA" }}>
+            {inputPost.tag}
+          </span>
+          )}
         </div>
         <div className="bg-white p-2 my-2 rounded-xl">
           <h4 className="text-xl font-medium text-[#1B6AAA]">Replies</h4>

@@ -8,7 +8,8 @@ export default function NewReply({
   const [content, setContent] = useState("");
 
   return (
-    <div className="bg-[#C7EBD9] rounded-xl p-4 mx-auto my-2 max-w-4xl flex flex-col">
+    <div className="border-2 bg-white rounded-xl p-4 mx-auto my-2 max-w-4xl flex flex-col"
+    style={{ borderColor: "#8275C9" }}>
       <h4 className="text-2xl p-1 m-1 text-[#1B6AAA]">Reply to post</h4>
       <textarea
         value={content}
