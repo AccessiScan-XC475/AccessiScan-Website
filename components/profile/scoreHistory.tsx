@@ -32,7 +32,7 @@ export default function ScoreHistory({
         selected={typeFilter}
         options={typeList}
         setFilter={setTypeFilter}
-        allName="All Accessibility Selections"
+        allName="All Accessibility Types"
       />
       <div className="flex justify-center">
         <LineChart
