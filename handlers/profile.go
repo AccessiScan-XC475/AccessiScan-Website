@@ -16,11 +16,11 @@ type GitHubUserInfoPub struct {
 }
 
 type AccessiScanProfileSelf struct {
-	Id            string            `json:"id"`
-	Username      string            `json:"username"`
-	Name          string            `json:"name"`
-	ScoreHistory  []int             `json:"scoreHistory"`
-	GitHubProfile GitHubUserInfoPub `json:"githubProfile"`
+	Id            string                          `json:"id"`
+	Username      string                          `json:"username"`
+	Name          string                          `json:"name"`
+	ScoreHistory  []users_collection.ScoreElement `json:"scoreHistory"`
+	GitHubProfile GitHubUserInfoPub               `json:"githubProfile"`
 }
 
 func GetProfileSelf(w http.ResponseWriter, r *http.Request) {
@@ -35,7 +35,7 @@ func GetProfileSelf(w http.ResponseWriter, r *http.Request) {
 	}
 
 	// only send the 10 most recent scores
-	var history []int
+	var history []users_collection.ScoreElement
 	if len(user.ScoreHistory) <= 10 {
 		history = user.ScoreHistory
 	} else {
