@@ -9,6 +9,7 @@ export default function FilterSelection({
   setFilter: (opt: string | null) => void;
   allName: string;
 }) {
+  const selectedColor = "#54BD86";
   return (
     <div className="m-4 p-1 flex flex-wrap gap-2 ">
       <button
@@ -18,7 +19,7 @@ export default function FilterSelection({
         }`}
         style={
           selected === null
-            ? { backgroundColor: "#1B6AAA", color: "white" }
+            ? { backgroundColor: selectedColor, color: "white" }
             : {}
         }
       >
@@ -33,7 +34,7 @@ export default function FilterSelection({
           }`}
           style={
             selected === opt
-              ? { backgroundColor: "#1B6AAA", color: "white" }
+              ? { backgroundColor: selectedColor, color: "white" }
               : {}
           }
         >
