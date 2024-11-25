@@ -30,7 +30,7 @@ func PostAccessibilitySelection(w http.ResponseWriter, r *http.Request) {
 	selectionName := strings.ToLower(r.URL.Query().Get("name"))
 
 	// check if valid selection
-	if selectionName == "" || !slices.Contains(db.AccessibilitySelections, selectionName) {
+	if selectionName == "" || !slices.Contains(db.ALL_ACCESSIBILITY_TYPES, db.ACCESSIBILITY_TYPE(selectionName)) {
 		w.WriteHeader(http.StatusBadRequest)
 		w.Write([]byte("invalid selection"))
 		return

@@ -10,11 +10,20 @@ import (
 
 const ACCESSIBILITY_SELECTION_COLLECTION = "AccessibilitySelectionCollection"
 
-var AccessibilitySelections []string = []string{
-	"color-contrast",
-	"alt-text",
-	"line-spacing",
-	"large-text",
+type ACCESSIBILITY_TYPE string
+
+const (
+	COLOR_CONTRAST ACCESSIBILITY_TYPE = "color-contrast"
+	ALT_TEXT       ACCESSIBILITY_TYPE = "alt-text"
+	LINE_SPACING   ACCESSIBILITY_TYPE = "line-spacing"
+	LARGE_TEXT     ACCESSIBILITY_TYPE = "large-text"
+)
+
+var ALL_ACCESSIBILITY_TYPES []ACCESSIBILITY_TYPE = []ACCESSIBILITY_TYPE{
+	COLOR_CONTRAST,
+	ALT_TEXT,
+	LINE_SPACING,
+	LARGE_TEXT,
 }
 
 type AccessibilitySelection struct {
@@ -23,7 +32,7 @@ type AccessibilitySelection struct {
 }
 
 // increments the count for the input selection
-func IncrementAccessibilitySelection(name string) error {
+func IncrementAccessibilitySelection(name ACCESSIBILITY_TYPE) error {
 	filter := bson.M{"name": name}
 	update := bson.M{"$inc": bson.M{"count": 1}} // increment count field by 1
 	opts := options.Update().SetUpsert(true)     // create obj if not yet in db
