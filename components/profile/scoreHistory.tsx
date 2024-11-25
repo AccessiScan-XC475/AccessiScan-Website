@@ -58,9 +58,18 @@ export default function ScoreHistory({
             {
               data: history.map((elem) => elem.score),
               color: "#54BD86",
+              // @ts-expect-error format tooltip
               valueFormatter: (_, { dataIndex: i }) => {
                 const elem = history[i];
-                return `Score: ${elem.score} of type ${elem.type} on ${elem.href}`;
+                return (
+                  <span>
+                    Score: {elem.score}
+                    <br />
+                    Type: {elem.type}
+                    <br />
+                    URL: {elem.href}
+                  </span>
+                );
               },
             },
           ]}
