@@ -10,7 +10,7 @@ export default function FilterSelection({
   allName: string;
 }) {
   return (
-    <div className="mb-4 flex flex-wrap gap-2 justify-center">
+    <div className="m-4 p-1 flex flex-wrap gap-2 ">
       <button
         onClick={() => setFilter(null)}
         className={`px-4 py-2 rounded-xl ${
