@@ -1,3 +1,5 @@
+import { Button } from "@mui/material";
+
 export default function FilterSelection({
   selected,
   options,
@@ -9,37 +11,29 @@ export default function FilterSelection({
   setFilter: (opt: string | null) => void;
   allName: string;
 }) {
-  const selectedColor = "#54BD86";
   return (
     <div className="m-4 p-1 flex flex-wrap gap-2 ">
-      <button
-        onClick={() => setFilter(null)}
-        className={`px-4 py-2 rounded-xl ${
-          selected === null ? "text-white" : "bg-gray-200 text-gray-700"
-        }`}
-        style={
-          selected === null
-            ? { backgroundColor: selectedColor, color: "white" }
-            : {}
-        }
-      >
-        {allName}
-      </button>
-      {options.map((opt) => (
-        <button
+      {[null, ...options].map((opt) => (
+        <Button
+          variant="contained"
           key={opt}
           onClick={() => setFilter(opt)}
-          className={`px-4 py-2 rounded-xl ${
-            selected === opt ? "text-white" : "bg-gray-200 text-gray-700"
-          }`}
-          style={
+          sx={
             selected === opt
-              ? { backgroundColor: selectedColor, color: "white" }
-              : {}
+              ? { backgroundColor: "#54BD86", color: "white" }
+              : { backgroundColor: "#E5E7EB", color: "#374151" }
           }
         >
-          {opt}
-        </button>
+          <span
+            style={{
+              overflow: "hidden",
+              textWrap: "nowrap",
+              textOverflow: "ellipsis",
+            }}
+          >
+            {opt ?? allName}
+          </span>
+        </Button>
       ))}
     </div>
   );
