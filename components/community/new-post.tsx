@@ -39,7 +39,7 @@ export default function NewPost({
           <button
             key={tag}
             onClick={() => setSelectedTag(selectedTag === tag ? "" : tag)}
-            className={`px-4 py-2 rounded-3xl border transition-colors ${selectedTag === tag ? "bg-[#1B6AAA] text-white border-white" : "bg-white text-[#1B6AAA] border-[#1B6AAA]"}`}
+            className={`px-4 py-2 rounded-3xl border-2 hover:bg-[#CCDCE8] m-2 transition-colors ${selectedTag === tag ? "bg-[#1B6AAA] text-white border-white" : "bg-white text-[#1B6AAA] border-[#1B6AAA]"}`}
             style={{
               backgroundColor: selectedTag === tag ? "#1B6AAA" : "", 
             }}
