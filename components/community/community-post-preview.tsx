@@ -20,8 +20,8 @@ export default function CommunityPostPreview({
 }) {
   return (
     <Link href={`/community/${postPreview.id}`}>
-      <div className="border-2 bg-white rounded-xl p-4 mx-auto my-2 max-w-4xl shadow-lg relative"
-      style={{ borderColor: "#54BD86" }}>
+      <div className="border-2 bg-[#F8F8F8] rounded-xl p-4 mx-auto my-2 max-w-4xl shadow-lg relative"
+      style={{ borderColor: "#E7E7E7" }}>
         <h4 className="text-xl font-semibold text-[#1B6AAA] leading-7">
           {postPreview.title}
         </h4>
