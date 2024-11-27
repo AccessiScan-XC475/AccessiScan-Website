@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { Create } from "@mui/icons-material";
 
 export default function NewPost({
   submitFunc,
@@ -13,8 +14,8 @@ export default function NewPost({
 
   return (
     <div className="border-2 rounded-xl p-4 mx-auto my-2 max-w-4xl flex flex-col shadow-lg" 
-    style={{ backgroundColor: "#8275C9" }}>
-      <h4 className="text-2xl p-1 m-1 text-[#ffffff]"><b>Create a new post</b></h4>
+    style={{ backgroundColor: "#F8F8F8", borderColor: "#E7E7E7" }}>
+      <h4 className="text-2xl p-1 m-1 text-center text-[#1B6AAA] "><b><Create /> Create a new post</b></h4>
       <input
         value={title}
         placeholder="Title"
