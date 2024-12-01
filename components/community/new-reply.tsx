@@ -13,7 +13,7 @@ export default function NewReply({
   };
 
   return (
-    <div className="border-2 bg-[#F8F8F8] rounded-xl p-4 mx-auto my-2 max-w-4xl flex flex-col shadow-lg "
+    <div className="border-2 bg-[#F8F8F8] rounded-xl p-4 mx-auto my-2 w-[60vw] flex flex-col shadow-lg "
     style={{ borderColor: "#E7E7E7" }}>
       <h4 className="text-2xl text-center p-1 m-1 text-[#1B6AAA]"><Create /> Write a Reply</h4>
       <textarea
