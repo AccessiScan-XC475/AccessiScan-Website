@@ -31,7 +31,7 @@ export default function SelfProfileDisplay({
           <Secret />
         </div>
       </div>
-      <ScoreHistory history={profile.scoreHistory} />
+      <ScoreHistory inputHistory={profile.scoreHistory} />
     </div>
   );
 }
