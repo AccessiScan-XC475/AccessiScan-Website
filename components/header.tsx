@@ -44,7 +44,6 @@ const Header = () => {
     <header className="top-header">
       <Link
         href="/"
-        // className="home-title rounded-xl hover:shadow-[0_10px_10px_0_rgba(84,189,134,0.4)] transition-all"
         className="home-title rounded-xl"
       >
         <Image
