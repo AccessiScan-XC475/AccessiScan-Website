@@ -1,15 +1,23 @@
 import ColorContrastSection from "@/components/demo/color-contrast-section";
+import Link from "next/link";
+import { ArrowBack } from "@mui/icons-material";
 
 export default function ColorContrastDemoPage() {
   return (
     <div className="w-full flex pb-8">
       <div className="w-1/5"></div>
       <div className="w-3/5">
+      <h6 className="mx-8 my-4 ml-2">
+        <Link href="/demo" className="text-[#49A776]">
+          <ArrowBack /> Back to Demo options
+        </Link>
+      </h6>
         <div className="text-center p-3">
-          <h1 className="text-5xl p-1 text-black">Color Contrast Demo</h1>
-          <p className="p-1 text-lg text-black">
-            Edit the colors on this page until it adjacent colors adequately
-            contrast with each other.
+          <h1 className="text-5xl p-1 text-[#1B6AAA] font-semibold">Color Contrast Demo</h1>
+          <p className="p-1 text-lg text-[#1B6AAA] font-medium">
+          Edit the colors on this page until the adjacent colors adequately contrast with each other. 
+          To edit the text color, simply select the text to access the color adjusters. To edit the background color, 
+          simply select the color adjusters to the right of each section.
           </p>
         </div>
         <ColorContrastSection
