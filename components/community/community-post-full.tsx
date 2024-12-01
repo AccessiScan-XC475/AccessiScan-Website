@@ -97,9 +97,9 @@ export default function CommunityPostFull({
   };
 
   return (
-    <div className="flex justify-center mt-4">
-      <div className="border-2 bg-white p-6 m-2 w-[60vw] rounded-xl shadow-lg"
-      style={{ borderColor: "#54BD86" }}>
+    <div className="flex flex-col items-center mt-4">
+      <div className="border-2 bg-[#F8F8F8] p-6 m-2 w-[60vw] rounded-xl shadow-lg"
+      style={{ borderColor: "#E7E7E7" }}>
         <div>
           <h3 className="text-3xl font-semibold text-[#1B6AAA] leading-7">
             {inputPost.title}
@@ -121,9 +121,10 @@ export default function CommunityPostFull({
           </span>
           )}
         </div>
-        <div className="bg-white p-2 my-2 rounded-xl">
-          <h4 className="text-xl font-medium text-[#1B6AAA]">Replies</h4>
+      </div>
+      <div className="p-2 my-2 rounded-xl">
           <NewReply submitFunc={createNewReply} />
+          <h4 className="text-xl font-medium text-[#1B6AAA]">Replies</h4>
           {replies.map((reply, i) => (
             <CommunityPostReply
               inputReply={reply}
@@ -132,7 +133,6 @@ export default function CommunityPostFull({
             />
           ))}
         </div>
-      </div>
     </div>
   );
 }

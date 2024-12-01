@@ -3,7 +3,7 @@ import CommunityPostPreview, {
   CommunityPostPreviewProps,
 } from "@/components/community/community-post-preview";
 import { useEffect, useState } from "react";
-import { CircularProgress } from "@mui/material";
+import { CircularProgress, Typography } from "@mui/material";
 import NewPost from "@/components/community/new-post";
 
 export default function CommunityPage() {
@@ -85,7 +85,17 @@ export default function CommunityPage() {
       </h1>
       <div>
         <NewPost submitFunc={createNewPost} />
-
+        <Typography
+        variant="h6"
+        sx={{
+          textAlign: "center",
+          my: 4,
+          color: "#1B6AAA",
+          fontWeight: 800,
+        }}
+      > 
+        Filter Posts by Topic
+        </Typography>
         <div className="mb-4 flex flex-wrap gap-2 justify-center">
           <button
             onClick={() => setFilterTag("")}
