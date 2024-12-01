@@ -91,7 +91,8 @@ export default function CommunityPage() {
           textAlign: "center",
           my: 4,
           color: "#1B6AAA",
-          fontWeight: 800,
+          fontWeight: 400,
+          fontFamily: "'Lexend', sans-serif",
         }}
       > 
         Filter Posts by Topic

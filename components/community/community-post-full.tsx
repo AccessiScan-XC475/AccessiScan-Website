@@ -3,6 +3,8 @@ import { Dispatch, SetStateAction, useState } from "react";
 import CommunityPostReply, { CommunityPostReplyProps } from "./community-post-reply";
 import NewReply from "./new-reply";
 import UpvotesDownvotesDisplay from "./upvotes-downvotes-display";
+import Link from "next/link";
+import { ArrowBack } from "@mui/icons-material";
 
 export type CommunityPostFullProps = {
   id: string;
@@ -97,6 +99,12 @@ export default function CommunityPostFull({
   };
 
   return (
+    <div>
+      <h6 className="mx-8 my-4 ml-2">
+        <Link href="/community" className="text-[#49A776]">
+          <ArrowBack /> Back to Community
+        </Link>
+      </h6>
     <div className="flex flex-col items-center mt-4">
       <div className="border-2 bg-[#F8F8F8] p-6 m-2 w-[60vw] rounded-xl shadow-lg"
       style={{ borderColor: "#E7E7E7" }}>
@@ -133,6 +141,7 @@ export default function CommunityPostFull({
             />
           ))}
         </div>
+    </div>
     </div>
   );
 }
