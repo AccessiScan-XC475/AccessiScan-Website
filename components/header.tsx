@@ -11,25 +11,31 @@ const NavLink = ({
   children: React.ReactNode;
 }) => (
   <Link href={href} passHref>
-    <Button
-      tabIndex={-1}
-      variant="contained"
-      sx={{
-        fontSize: "16pt",
-        fontFamily: "'Lexend', sans-serif",
-        fontWeight: 400,
-        color: "#1b6aaa",
-        borderRadius: "0px !important",
-        backgroundColor: "transparent",
-        border: "3px solid transparent",
-        borderImage:
-          "linear-gradient(45deg, #1b6aaa, #54bd86, #9b8bf4, #8babf1) 1",
-        borderImageSlice: "1",
-        textTransform: "none !important",
+    <div
+      style={{
+        display: "inline-block",
+        borderRadius: "30px", 
+        padding: "3px",
+        background: "linear-gradient(45deg, #1b6aaa, #54bd86, #9b8bf4, #8babf1)",
       }}
     >
-      {children}
-    </Button>
+      <Button
+        tabIndex={-1}
+        variant="contained"
+        sx={{
+          fontSize: "16pt",
+          fontFamily: "'Lexend', sans-serif",
+          fontWeight: 400,
+          color: "#1b6aaa",
+          borderRadius: "30px", 
+          backgroundColor: "#ffffff", 
+          border: "none",
+          textTransform: "none !important",
+        }}
+      >
+        {children}
+      </Button>
+    </div>
   </Link>
 );
 
