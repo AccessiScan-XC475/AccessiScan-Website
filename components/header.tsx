@@ -16,6 +16,8 @@ const NavLink = ({
       variant="contained"
       sx={{
         fontSize: "16pt",
+        fontFamily: "'Lexend', sans-serif",
+        fontWeight: 400,
         color: "#1b6aaa",
         borderRadius: "0px !important",
         backgroundColor: "transparent",
@@ -49,16 +51,16 @@ const Header = () => {
       <nav>
         <ul className="nav-links">
           <li>
-            <NavLink href="/resources">RESOURCES</NavLink>
+            <NavLink href="/resources">Resources</NavLink>
           </li>
           <li>
-            <NavLink href="/demo">DEMO</NavLink>
+            <NavLink href="/demo">Demo</NavLink>
           </li>
           <li>
-            <NavLink href="/community">COMMUNITY</NavLink>
+            <NavLink href="/community">Community</NavLink>
           </li>
           <li>
-            <NavLink href="/profile">PROFILE</NavLink>
+            <NavLink href="/profile">Profile</NavLink>
           </li>
         </ul>
       </nav>
