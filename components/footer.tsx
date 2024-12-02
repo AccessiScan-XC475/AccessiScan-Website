@@ -4,7 +4,7 @@ import Image from "next/image";
 export default function Footer() {
   return (
     <footer
-      className="w-screen flex"
+      className="w-full flex"
       style={{
         flexDirection: "column",
         alignItems: "center",
