@@ -20,6 +20,7 @@ func Auth(next http.Handler) http.Handler {
 		user := ctx.Value("user")
 		if user == nil {
 			// perhaps change to redirect
+			log.Println("unauthorized")
 			w.WriteHeader(http.StatusUnauthorized)
 			w.Write([]byte(http.StatusText(http.StatusUnauthorized)))
 			return

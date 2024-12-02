@@ -4,11 +4,17 @@ import { useEffect, useState } from "react";
 import LoginLinks from "@/components/profile/loginLinks";
 import SelfProfileDisplay from "@/components/profile/selfProfileDisplay";
 
+export type ScoreElement = {
+  score: number;
+  href: string;
+  type: string;
+};
+
 export type AccessiScanProfileSelf = {
   id: string;
   name: string;
   username: string;
-  scoreHistory: number[];
+  scoreHistory: ScoreElement[];
   githubProfile: {
     avatarUrl: string;
     name: string;
@@ -24,6 +30,7 @@ export default function ProfilePage() {
     fetch("/api/auth/profile")
       .then((res) => (res.status === 200 ? res.json() : null))
       .then((data) => {
+        console.log(data);
         setProfile(data);
         setLoading(false);
       })

@@ -3,6 +3,7 @@ package router
 import (
 	"AccessiScan-Website/handlers"
 	community_post_handlers "AccessiScan-Website/handlers/community_post"
+	feedback_handlers "AccessiScan-Website/handlers/feedback"
 	oauth_handlers "AccessiScan-Website/handlers/oauth"
 	github_handlers "AccessiScan-Website/handlers/oauth/github"
 	"net/http"
@@ -39,6 +40,10 @@ func Router() *http.ServeMux {
 
 	// get profile pic using chrome extension secret
 	router.HandleFunc(("GET /api/picture/github"), handlers.GetPicture)
+  
+	// submit and retrieve feedback form entries
+	router.HandleFunc(("POST /api/feedback"), feedback_handlers.SubmitFeedback)
+	router.HandleFunc(("GET /api/feedback-submissions"), feedback_handlers.GetFeedbackSubmissions)
 
 	// endpoint for adding to score history
 	router.HandleFunc(("POST /api/append"), handlers.AppendScore)

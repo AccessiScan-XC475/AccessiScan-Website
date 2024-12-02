@@ -16,6 +16,7 @@ func UserInfo(next http.Handler) http.Handler {
 
 		if sessionId == "" && secret == "" {
 			// no unique id
+			log.Println("no session id or secret")
 			next.ServeHTTP(w, r)
 			return
 		}
@@ -37,6 +38,10 @@ func UserInfo(next http.Handler) http.Handler {
 				next.ServeHTTP(w, r)
 				return
 			}
+
+			log.Println("did not get user")
+			next.ServeHTTP(w, r)
+			return
 		}
 
 		log.Println("got user")

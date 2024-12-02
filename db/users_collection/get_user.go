@@ -21,7 +21,7 @@ func GetUserById(id primitive.ObjectID) (AccessiScanUser, error) {
 	var user AccessiScanUser
 	err := res.Decode(&user)
 	if err != nil {
-		return AccessiScanUser{}, err
+		return nil, err
 	}
 
 	return user, nil
@@ -43,6 +43,8 @@ func GetUserBySessionId(sessionId string) (*AccessiScanUser, error) {
 	var user AccessiScanUser
 	err := res.Decode(&user)
 	if err != nil {
+		log.Println("failed to decode (and probably retrieve)")
+		log.Println(err)
 		return nil, err
 	}
 
