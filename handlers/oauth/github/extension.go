@@ -16,7 +16,7 @@ func GitHubExtensionExchange(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 
-	token, err := gh.ExchangeCode(code)
+	token, err := gh.ExchangeCodeExt(code)
 	if err != nil {
 		w.WriteHeader(http.StatusInternalServerError)
 		w.Write([]byte("something went wrong, please try again."))
