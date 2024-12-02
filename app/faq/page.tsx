@@ -1,5 +1,8 @@
+// FAQ.tsx
 "use client";
 import { Card, CardContent, Typography, Box } from "@mui/material";
+import { useState, useEffect } from "react";
+import FeedbackForm from "./feedbackform"; // Import the FeedbackForm component
 
 const faqs = [
   {
@@ -14,9 +17,27 @@ const faqs = [
     question: "How do I download the Chrome Extension?",
     answer: "Select the “AccessiScan” logo at the top left of the page to go to the “Home” page. From there, select “Download”",
   },
-]
+];
 
 export default function FAQ() {
+  const [allFeedback, setAllFeedback] = useState<any[]>([]);
+
+  // Load all feedback from local storage when the component mounts
+  useEffect(() => {
+    const savedFeedback = JSON.parse(localStorage.getItem("feedbacks") || "[]");
+    setAllFeedback(savedFeedback);
+  }, []);
+
+  const handleFeedbackSubmit = (feedback: any) => {
+    // Save feedback to local storage
+    const savedFeedback = JSON.parse(localStorage.getItem("feedbacks") || "[]");
+    savedFeedback.push(feedback);
+    localStorage.setItem("feedbacks", JSON.stringify(savedFeedback));
+
+    // Update state to show the new feedback immediately
+    setAllFeedback(savedFeedback);
+  };
+
   return (
     <div className="max-w-5xl mx-auto px-6 lg:px-12 py-8">
       <Typography
@@ -35,7 +56,7 @@ export default function FAQ() {
         sx={{
           display: "flex",
           flexDirection: "column",
-          gap: "20px", 
+          gap: "20px",
         }}
       >
         {faqs.map((faq, index) => (
@@ -46,28 +67,38 @@ export default function FAQ() {
               border: "1px solid #e0e0e0",
               boxShadow: "0 4px 8px rgba(0, 0, 0, 0.1)",
               borderRadius: "8px",
-              width: "100%", 
+              width: "100%",
             }}
           >
             <CardContent>
-              <Typography variant="h6" sx={{
-                  fontSize: "18pt", 
+              <Typography
+                variant="h6"
+                sx={{
+                  fontSize: "18pt",
                   fontWeight: "bold",
                   color: "#1b6aaa",
-                }} gutterBottom>
+                }}
+                gutterBottom
+              >
                 {faq.question}
               </Typography>
-              <Typography variant="body2" sx={{
-                  fontSize: "16pt", 
+              <Typography
+                variant="body2"
+                sx={{
+                  fontSize: "16pt",
                   color: "#555555",
                   lineHeight: "1.8",
-                }}>
+                }}
+              >
                 {faq.answer}
               </Typography>
             </CardContent>
           </Card>
         ))}
       </Box>
+
+      {/* Include Feedback Form component here */}
+      <FeedbackForm onFeedbackSubmit={handleFeedbackSubmit} />
     </div>
   );
 }
