@@ -1,6 +1,7 @@
 import { AccessiScanProfileSelf } from "@/app/profile/page";
 import Image from "next/image";
 import ScoreHistory from "./scoreHistory";
+import Secret from "./secret";
 
 export default function SelfProfileDisplay({
   profile,
