@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { Create } from "@mui/icons-material";
 
 export default function NewPost({
   submitFunc,
@@ -11,10 +12,16 @@ export default function NewPost({
 
   const availableTags = ["Color contrast", "Text size", "Labeled images", "Resources", "Profile", "Other"];
 
+  const handleCancel = () => {
+    setTitle("");
+    setContent("");
+    setSelectedTag("");
+  };
+
   return (
     <div className="border-2 rounded-xl p-4 mx-auto my-2 max-w-4xl flex flex-col shadow-lg" 
-    style={{ backgroundColor: "#8275C9" }}>
-      <h4 className="text-2xl p-1 m-1 text-[#ffffff]"><b>Create a new post</b></h4>
+    style={{ backgroundColor: "#F8F8F8", borderColor: "#E7E7E7" }}>
+      <h4 className="text-2xl p-1 m-1 text-center text-[#1B6AAA] "><b><Create /> Create a new post</b></h4>
       <input
         value={title}
         placeholder="Title"
@@ -32,7 +39,7 @@ export default function NewPost({
           <button
             key={tag}
             onClick={() => setSelectedTag(selectedTag === tag ? "" : tag)}
-            className={`px-4 py-2 rounded-xl border transition-colors ${selectedTag === tag ? "bg-[#1B6AAA] text-white border-white" : "bg-white text-gray-700 border-[#1B6AAA]"}`}
+            className={`px-4 py-2 rounded-3xl border-2 hover:bg-[#CCDCE8] m-2 transition-colors ${selectedTag === tag ? "bg-[#1B6AAA] text-white border-white" : "bg-white text-[#1B6AAA] border-[#1B6AAA]"}`}
             style={{
               backgroundColor: selectedTag === tag ? "#1B6AAA" : "", 
             }}
@@ -41,6 +48,13 @@ export default function NewPost({
           </button>
         ))}
       </div>
+      <div className="flex justify-end">
+        <button
+          onClick={handleCancel}
+          className="rounded-xl px-6 p-2 text-[#1B6AAA] hover:bg-gray-300 m-2"
+        >
+          Cancel
+        </button>
       <button
         onClick={() => {
           submitFunc(title, content, selectedTag).then((success) => {
@@ -51,13 +65,14 @@ export default function NewPost({
             }
           });
         }}
-        className={`rounded-xl border p-2 bg-[#1B6AAA] disabled:bg-gray-200 m-2 ${
-          title.length === 0 || content.length === 0 ? 'text-[#1B6AAA]' : 'text-white'
+        className={`rounded-xl border px-10 p-2 bg-[#1B6AAA] disabled:bg-[#81ABCE] m-2 ${
+          title.length === 0 || content.length === 0 ? 'text-white' : 'text-white'
         }`}
         disabled={title.length === 0 || content.length === 0}
       >
         Create
-      </button>
+        </button>
+      </div>
     </div>
   );
 }

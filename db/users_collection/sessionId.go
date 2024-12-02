@@ -93,7 +93,7 @@ func GetSessionId(user AccessiScanUser) (string, error) {
 		"$setOnInsert": bson.M{
 			"name":                  user.GitHubProfile.Name,
 			"username":              user.GitHubProfile.Login,
-			"scoreHistory":          []int{},
+			"scoreHistory":          []ScoreElement{},
 			"chromeExtensionSecret": secret,
 		},
 		"$push": bson.M{

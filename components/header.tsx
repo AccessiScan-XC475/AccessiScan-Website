@@ -11,23 +11,31 @@ const NavLink = ({
   children: React.ReactNode;
 }) => (
   <Link href={href} passHref>
-    <Button
-      tabIndex={-1}
-      variant="contained"
-      sx={{
-        fontSize: "16pt",
-        color: "#1b6aaa",
-        borderRadius: "0px !important",
-        backgroundColor: "transparent",
-        border: "3px solid transparent",
-        borderImage:
-          "linear-gradient(45deg, #1b6aaa, #54bd86, #9b8bf4, #8babf1) 1",
-        borderImageSlice: "1",
-        textTransform: "none !important",
+    <div
+      style={{
+        display: "inline-block",
+        borderRadius: "30px", 
+        padding: "3px",
+        background: "linear-gradient(45deg, #1b6aaa, #54bd86, #9b8bf4, #8babf1)",
       }}
     >
-      {children}
-    </Button>
+      <Button
+        tabIndex={-1}
+        variant="contained"
+        sx={{
+          fontSize: "16pt",
+          fontFamily: "'Lexend', sans-serif",
+          fontWeight: 400,
+          color: "#1b6aaa",
+          borderRadius: "30px", 
+          backgroundColor: "#ffffff", 
+          border: "none",
+          textTransform: "none !important",
+        }}
+      >
+        {children}
+      </Button>
+    </div>
   </Link>
 );
 
@@ -36,7 +44,6 @@ const Header = () => {
     <header className="top-header">
       <Link
         href="/"
-        // className="home-title rounded-xl hover:shadow-[0_10px_10px_0_rgba(84,189,134,0.4)] transition-all"
         className="home-title rounded-xl"
       >
         <Image
@@ -49,16 +56,16 @@ const Header = () => {
       <nav>
         <ul className="nav-links">
           <li>
-            <NavLink href="/resources">RESOURCES</NavLink>
+            <NavLink href="/resources">Resources</NavLink>
           </li>
           <li>
-            <NavLink href="/demo">DEMO</NavLink>
+            <NavLink href="/demo">Demo</NavLink>
           </li>
           <li>
-            <NavLink href="/community">COMMUNITY</NavLink>
+            <NavLink href="/community">Community</NavLink>
           </li>
           <li>
-            <NavLink href="/profile">PROFILE</NavLink>
+            <NavLink href="/profile">Profile</NavLink>
           </li>
         </ul>
       </nav>
