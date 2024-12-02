@@ -1,41 +1,30 @@
 // FAQ.tsx
 "use client";
 import { Card, CardContent, Typography, Box } from "@mui/material";
-import { useState, useEffect } from "react";
-import FeedbackForm from "./feedbackform"; // Import the FeedbackForm component
+import FeedbackForm, { FeedbackProps } from "@/components/feedback-form";
 
 const faqs = [
   {
     question: "How do I download the Chrome Extension?",
-    answer: "Select the “AccessiScan” logo at the top left of the page to go to the “Home” page. From there, select “Download”",
+    answer:
+      "Select the “AccessiScan” logo at the top left of the page to go to the “Home” page. From there, select “Download”",
   },
   {
     question: "What can I expect in the next release?",
-    answer: "Navigate to our About page by selecting the link in the footer of this page.",
+    answer:
+      "Navigate to our About page by selecting the link in the footer of this page.",
   },
   {
     question: "How do I download the Chrome Extension?",
-    answer: "Select the “AccessiScan” logo at the top left of the page to go to the “Home” page. From there, select “Download”",
+    answer:
+      "Select the “AccessiScan” logo at the top left of the page to go to the “Home” page. From there, select “Download”",
   },
 ];
 
 export default function FAQ() {
-  const [allFeedback, setAllFeedback] = useState<any[]>([]);
-
-  // Load all feedback from local storage when the component mounts
-  useEffect(() => {
-    const savedFeedback = JSON.parse(localStorage.getItem("feedbacks") || "[]");
-    setAllFeedback(savedFeedback);
-  }, []);
-
-  const handleFeedbackSubmit = (feedback: any) => {
-    // Save feedback to local storage
-    const savedFeedback = JSON.parse(localStorage.getItem("feedbacks") || "[]");
-    savedFeedback.push(feedback);
-    localStorage.setItem("feedbacks", JSON.stringify(savedFeedback));
-
-    // Update state to show the new feedback immediately
-    setAllFeedback(savedFeedback);
+  const handleFeedbackSubmit = (feedback: FeedbackProps): boolean => {
+    // send to database
+    return true;
   };
 
   return (

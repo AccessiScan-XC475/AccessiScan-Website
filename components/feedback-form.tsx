@@ -2,8 +2,18 @@
 import { useState } from "react";
 import { TextField, Button, Box, Snackbar } from "@mui/material";
 
-export default function FeedbackForm({ onFeedbackSubmit }: any) {
-  const [feedback, setFeedback] = useState({
+export type FeedbackProps = {
+  name: string;
+  email: string;
+  message: string;
+};
+
+export default function FeedbackForm({
+  onFeedbackSubmit,
+}: {
+  onFeedbackSubmit: (feedback: FeedbackProps) => boolean;
+}) {
+  const [feedback, setFeedback] = useState<FeedbackProps>({
     name: "",
     email: "",
     message: "",
@@ -22,15 +32,13 @@ export default function FeedbackForm({ onFeedbackSubmit }: any) {
     e.preventDefault();
     if (feedback.name && feedback.message) {
       // Send feedback to parent component
-      onFeedbackSubmit(feedback);
+      if (onFeedbackSubmit(feedback)) {
+        // Show snackbar success message
+        setSnackbarOpen(true);
 
-      // Show snackbar success message
-      setSnackbarOpen(true);
-
-      // Reset the form after submission
-      setFeedback({ name: "", email: "", message: "" });
-    } else {
-      alert("Please fill in all required fields.");
+        // Reset the form after submission
+        setFeedback({ name: "", email: "", message: "" });
+      }
     }
   };
 
