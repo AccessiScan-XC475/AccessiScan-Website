@@ -48,7 +48,7 @@ func GetCommunityPost(w http.ResponseWriter, r *http.Request) {
 			w.WriteHeader(http.StatusInternalServerError)
 			w.Write([]byte("something went wrong, please try again."))
 			return
-		} 
+		}
 
 		w.WriteHeader(http.StatusOK)
 		json.NewEncoder(w).Encode(allCommunityPosts)

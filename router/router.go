@@ -36,6 +36,10 @@ func Router() *http.ServeMux {
 	// get a profile of particular id but with less information
 	router.HandleFunc(("GET /api/profile"), handlers.GetProfileOther)
 
+	// submit and retrieve feedback form entries
+	// router.HandleFunc(("POST /api/feedback"))
+	// router.HandleFunc(("GET /api/feedback-sumbmissions"))
+
 	// endpoint for adding to score history
 	router.HandleFunc(("POST /api/append"), handlers.AppendScore)
 

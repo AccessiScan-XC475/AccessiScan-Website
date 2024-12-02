@@ -3,13 +3,13 @@ import { useEffect, useState } from "react";
 import { Card, CardContent, Typography, Box } from "@mui/material";
 import { FeedbackProps } from "@/components/feedback-form";
 
-export default function FeedbackPage() {
+export default function FeedbackSubmissionsPage() {
   const [feedbacks, setFeedbacks] = useState<FeedbackProps[]>([]);
   const [error, setError] = useState<string | null>(null);
 
   useEffect(() => {
     // Fetch feedback from the server
-    fetch("/api/feedbackform", {
+    fetch("/api/feedback-submissions", {
       credentials: "include", // Ensure session-based authentication
     })
       .then((res) => {
