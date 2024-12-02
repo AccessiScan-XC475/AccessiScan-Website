@@ -8,11 +8,7 @@ export type FeedbackProps = {
   message: string;
 };
 
-export default function FeedbackForm({
-  onFeedbackSubmit,
-}: {
-  onFeedbackSubmit: (feedback: FeedbackProps) => boolean;
-}) {
+export default function FeedbackForm() {
   const [feedback, setFeedback] = useState<FeedbackProps>({
     name: "",
     email: "",
@@ -28,16 +24,23 @@ export default function FeedbackForm({
     });
   };
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     if (feedback.name && feedback.message) {
-      // Send feedback to parent component
-      if (onFeedbackSubmit(feedback)) {
+      const res = await fetch("/api/feedback", {
+        method: "POST",
+        body: JSON.stringify(feedback),
+      });
+
+      const message = await res.text();
+      if (message == "success") {
         // Show snackbar success message
         setSnackbarOpen(true);
 
         // Reset the form after submission
         setFeedback({ name: "", email: "", message: "" });
+      } else {
+        console.log(message);
       }
     }
   };

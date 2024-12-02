@@ -1,7 +1,7 @@
 // FAQ.tsx
 "use client";
 import { Card, CardContent, Typography, Box } from "@mui/material";
-import FeedbackForm, { FeedbackProps } from "@/components/feedback-form";
+import FeedbackForm from "@/components/feedback-form";
 
 const faqs = [
   {
@@ -22,11 +22,6 @@ const faqs = [
 ];
 
 export default function FAQ() {
-  const handleFeedbackSubmit = (feedback: FeedbackProps): boolean => {
-    // send to database
-    return true;
-  };
-
   return (
     <div className="max-w-5xl mx-auto px-6 lg:px-12 py-8">
       <Typography
@@ -87,7 +82,7 @@ export default function FAQ() {
       </Box>
 
       {/* Include Feedback Form component here */}
-      <FeedbackForm onFeedbackSubmit={handleFeedbackSubmit} />
+      <FeedbackForm />
     </div>
   );
 }
