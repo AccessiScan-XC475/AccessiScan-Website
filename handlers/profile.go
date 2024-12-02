@@ -24,11 +24,13 @@ type AccessiScanProfileSelf struct {
 }
 
 func GetProfileSelf(w http.ResponseWriter, r *http.Request) {
+	log.Println("get profile self")
 	ctx := r.Context()
 
 	var user users_collection.AccessiScanUser
 	user, ok := ctx.Value("user").(users_collection.AccessiScanUser)
 	if !ok {
+		log.Println("NO USER")
 		w.WriteHeader(http.StatusInternalServerError)
 		w.Write([]byte("something went wrong, please try again."))
 		return
@@ -54,6 +56,7 @@ func GetProfileSelf(w http.ResponseWriter, r *http.Request) {
 		},
 	}
 
+	log.Println("status ok")
 	w.WriteHeader(http.StatusOK)
 	json.NewEncoder(w).Encode(profile)
 	return
