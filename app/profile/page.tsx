@@ -30,6 +30,7 @@ export default function ProfilePage() {
     fetch("/api/auth/profile")
       .then((res) => (res.status === 200 ? res.json() : null))
       .then((data) => {
+        console.log(data);
         setProfile(data);
         setLoading(false);
       })

@@ -13,6 +13,7 @@ func UserInfo(next http.Handler) http.Handler {
 		// get user from db
 		sessionId := cookies.GetSessionId(r)
 		if sessionId == "" {
+			log.Println("no session id")
 			next.ServeHTTP(w, r)
 			return
 		}
@@ -22,6 +23,7 @@ func UserInfo(next http.Handler) http.Handler {
 			if err.Error() == "redirect" {
 				log.Println("expired sessionId")
 			}
+			log.Println("did not get user")
 			next.ServeHTTP(w, r)
 			return
 		}

@@ -57,7 +57,7 @@ func AllAccessibilitySelection() ([]AccessibilitySelection, error) {
 	for cursor.Next(context.Background()) {
 		var curSelection AccessibilitySelection
 		if err := cursor.Decode(&curSelection); err != nil {
-			return nil, err
+			continue
 		}
 		selectionList = append(selectionList, curSelection)
 	}

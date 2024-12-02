@@ -43,6 +43,8 @@ func GetUserBySessionId(sessionId string) (AccessiScanUser, error) {
 	var user AccessiScanUser
 	err := res.Decode(&user)
 	if err != nil {
+		log.Println("failed to decode (and probably retrieve)")
+		log.Println(err)
 		return AccessiScanUser{}, err
 	}
 
