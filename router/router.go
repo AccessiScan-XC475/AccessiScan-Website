@@ -3,6 +3,7 @@ package router
 import (
 	"AccessiScan-Website/handlers"
 	community_post_handlers "AccessiScan-Website/handlers/community_post"
+	feedback_handlers "AccessiScan-Website/handlers/feedback"
 	oauth_handlers "AccessiScan-Website/handlers/oauth"
 	github_handlers "AccessiScan-Website/handlers/oauth/github"
 	"net/http"
@@ -37,8 +38,8 @@ func Router() *http.ServeMux {
 	router.HandleFunc(("GET /api/profile"), handlers.GetProfileOther)
 
 	// submit and retrieve feedback form entries
-	// router.HandleFunc(("POST /api/feedback"))
-	router.HandleFunc(("GET /api/feedback-sumbmissions"), handlers.GetFeedbackSubmissions)
+	router.HandleFunc(("POST /api/feedback"), feedback_handlers.SubmitFeedback)
+	router.HandleFunc(("GET /api/feedback-sumbmissions"), feedback_handlers.GetFeedbackSubmissions)
 
 	// endpoint for adding to score history
 	router.HandleFunc(("POST /api/append"), handlers.AppendScore)
