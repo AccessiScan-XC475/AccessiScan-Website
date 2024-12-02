@@ -1,10 +1,10 @@
 "use client";
 import { useEffect, useState } from "react";
 import { Card, CardContent, Typography, Box } from "@mui/material";
-import FeedbackForm from "../faq/feedbackform";  // Import the FeedbackForm component
+import { FeedbackProps } from "@/components/feedback-form";
 
 export default function FeedbackPage() {
-  const [feedbacks, setFeedbacks] = useState<any[]>([]);
+  const [feedbacks, setFeedbacks] = useState<FeedbackProps[]>([]);
   const [error, setError] = useState<string | null>(null);
 
   useEffect(() => {
@@ -22,12 +22,6 @@ export default function FeedbackPage() {
       .catch((err) => setError(err.message));
   }, []);
 
-  // Handle new feedback submission
-  const handleFeedbackSubmit = (newFeedback: any) => {
-    // Optionally, send the new feedback to the server here
-    setFeedbacks((prevFeedbacks) => [...prevFeedbacks, newFeedback]);
-  };
-
   return (
     <div className="max-w-5xl mx-auto px-6 lg:px-12 py-8">
       <Typography
@@ -42,17 +36,20 @@ export default function FeedbackPage() {
         Feedback Submissions
       </Typography>
 
-      {/* Include Feedback Form component here */}
-      <FeedbackForm onFeedbackSubmit={handleFeedbackSubmit} />
-
       {/* Display All Feedbacks */}
       <Box sx={{ marginTop: "40px" }}>
-        <Typography variant="h6" sx={{ fontSize: "18pt", fontWeight: "bold", color: "#1b6aaa" }}>
+        <Typography
+          variant="h6"
+          sx={{ fontSize: "18pt", fontWeight: "bold", color: "#1b6aaa" }}
+        >
           Submitted Feedback
         </Typography>
         <Box sx={{ marginTop: "16px" }}>
           {feedbacks.length === 0 ? (
-            <Typography variant="body1" sx={{ fontSize: "16pt", color: "#555" }}>
+            <Typography
+              variant="body1"
+              sx={{ fontSize: "16pt", color: "#555" }}
+            >
               No feedback submitted yet.
             </Typography>
           ) : (
@@ -70,11 +67,18 @@ export default function FeedbackPage() {
                 <CardContent>
                   <Typography
                     variant="body1"
-                    sx={{ fontWeight: "bold", color: "#1b6aaa", marginBottom: "8px" }}
+                    sx={{
+                      fontWeight: "bold",
+                      color: "#1b6aaa",
+                      marginBottom: "8px",
+                    }}
                   >
                     {item.name}
                   </Typography>
-                  <Typography variant="body2" sx={{ fontSize: "16pt", color: "#555" }}>
+                  <Typography
+                    variant="body2"
+                    sx={{ fontSize: "16pt", color: "#555" }}
+                  >
                     {item.message}
                   </Typography>
                 </CardContent>

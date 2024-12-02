@@ -27,7 +27,7 @@ export default function Footer() {
         <Link href="/api/logout">Logout</Link>
         <Link href="/about">About Us</Link>
         <Link href="/faq">FAQ</Link>
-        <Link href="/feedback-form">Feedback Submissions</Link>
+        <Link href="/feedback-submissions">Feedback Submissions</Link>
       </div>
       <Image
         src="/AccessiScan-logo.png"
