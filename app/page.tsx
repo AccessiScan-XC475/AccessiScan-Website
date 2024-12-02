@@ -8,7 +8,7 @@ export default function HomePage() {
         Build a website better, together
       </h2>
       <h3 style={{ color: "#1B6AAA", fontSize: "16pt" }}>
-        The most supportive community of developers
+        Empowering developers for accessible websites
       </h3>
       <DLExtension />
     </div>
