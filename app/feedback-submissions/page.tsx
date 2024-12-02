@@ -5,7 +5,6 @@ import { FeedbackProps } from "@/components/feedback-form";
 
 export default function FeedbackSubmissionsPage() {
   const [feedbacks, setFeedbacks] = useState<FeedbackProps[]>([]);
-  const [error, setError] = useState<string | null>(null);
 
   useEffect(() => {
     // Fetch feedback from the server
@@ -19,7 +18,7 @@ export default function FeedbackSubmissionsPage() {
         return res.json();
       })
       .then((data) => setFeedbacks(data))
-      .catch((err) => setError(err.message));
+      .catch((err) => console.error(err));
   }, []);
 
   return (
