@@ -21,7 +21,7 @@ func GetUserById(id primitive.ObjectID) (AccessiScanUser, error) {
 	var user AccessiScanUser
 	err := res.Decode(&user)
 	if err != nil {
-		return nil, err
+		return AccessiScanUser{}, err
 	}
 
 	return user, nil
