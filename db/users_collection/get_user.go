@@ -28,7 +28,7 @@ func GetUserById(id primitive.ObjectID) (AccessiScanUser, error) {
 }
 
 // get a user by their sessionId
-func GetUserBySessionId(sessionId string) (AccessiScanUser, error) {
+func GetUserBySessionId(sessionId string) (*AccessiScanUser, error) {
 	collection := db.GetCollection(USERS_COLLECTION)
 
 	// res := collection.FindOne(context.Background(), bson.M{"sessionId": sessionId})
@@ -45,7 +45,7 @@ func GetUserBySessionId(sessionId string) (AccessiScanUser, error) {
 	if err != nil {
 		log.Println("failed to decode (and probably retrieve)")
 		log.Println(err)
-		return AccessiScanUser{}, err
+		return nil, err
 	}
 
 	// check if sessionId is expired
@@ -53,12 +53,12 @@ func GetUserBySessionId(sessionId string) (AccessiScanUser, error) {
 		return sessionIdWithExp.SessionId == sessionId
 	})
 	if i == -1 {
-		return AccessiScanUser{}, fmt.Errorf("could not validate sessionId")
+		return nil, fmt.Errorf("could not validate sessionId")
 	}
 	var expires time.Time
 	err = expires.UnmarshalText([]byte(user.SessionIdList[i].Expires))
 	if err != nil {
-		return AccessiScanUser{}, err
+		return nil, err
 	}
 	now := time.Now()
 	if now.After(expires) {
@@ -77,10 +77,10 @@ func GetUserBySessionId(sessionId string) (AccessiScanUser, error) {
 		log.Println(res.MatchedCount, "matches found", res.ModifiedCount, "modified")
 
 		// reject this sessionId and redirect to login flow
-		return AccessiScanUser{}, fmt.Errorf("redirect")
+		return nil, fmt.Errorf("redirect")
 	}
 
-	return user, nil
+	return &user, nil
 }
 
 func GetUserBySecret(secret string) (*AccessiScanUser, error) {

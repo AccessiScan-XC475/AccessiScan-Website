@@ -12,24 +12,40 @@ func UserInfo(next http.Handler) http.Handler {
 	return http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
 		// get user from db
 		sessionId := cookies.GetSessionId(r)
-		if sessionId == "" {
-			log.Println("no session id")
+		secret := r.URL.Query().Get("secret")
+
+		if sessionId == "" && secret == "" {
+			// no unique id
+			log.Println("no session id or secret")
 			next.ServeHTTP(w, r)
 			return
 		}
 
-		user, err := users_collection.GetUserBySessionId(sessionId)
-		if err != nil {
-			if err.Error() == "redirect" {
-				log.Println("expired sessionId")
+		var user *users_collection.AccessiScanUser
+		var err error
+		if sessionId != "" {
+			user, err = users_collection.GetUserBySessionId(sessionId)
+			if err != nil {
+				if err.Error() == "redirect" {
+					log.Println("expired sessionId")
+				}
+				next.ServeHTTP(w, r)
+				return
 			}
+		} else if secret != "" {
+			user, err = users_collection.GetUserBySecret(secret)
+			if err != nil {
+				next.ServeHTTP(w, r)
+				return
+			}
+
 			log.Println("did not get user")
 			next.ServeHTTP(w, r)
 			return
 		}
 
 		log.Println("got user")
-		ctx := context.WithValue(r.Context(), "user", user)
+		ctx := context.WithValue(r.Context(), "user", *user)
 		next.ServeHTTP(w, r.WithContext(ctx))
 	})
 }
