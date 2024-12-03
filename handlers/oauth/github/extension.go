@@ -3,11 +3,20 @@ package github_handlers
 import (
 	"AccessiScan-Website/db/users_collection"
 	gh "AccessiScan-Website/github"
+	"fmt"
 	"log"
 	"net/http"
 )
 
 func GitHubExtensionExchange(w http.ResponseWriter, r *http.Request) {
+	state := r.URL.Query().Get("state")
+	if state == "" {
+		log.Println("no state (extension id) present")
+		w.WriteHeader(http.StatusBadRequest)
+		w.Write([]byte("something went wrong, please try again"))
+		return
+	}
+
 	code := r.URL.Query().Get("code")
 	if code == "" {
 		log.Println("no code present")
@@ -43,6 +52,5 @@ func GitHubExtensionExchange(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 
-	w.WriteHeader(http.StatusOK)
-	w.Write([]byte(secret))
+	http.Redirect(w, r, fmt.Sprintf("https://%s.chromiumapp.org?secret=%s", state, secret), http.StatusTemporaryRedirect)
 }

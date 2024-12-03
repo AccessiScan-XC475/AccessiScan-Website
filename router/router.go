@@ -26,6 +26,7 @@ func Router() *http.ServeMux {
 	router.HandleFunc(("GET /api/login/github"), github_handlers.RedirectGHLogin)
 	router.HandleFunc(("/api/callback/github"), github_handlers.GitHubCallback)
 	router.HandleFunc(("/api/extension-exchange/github"), github_handlers.GitHubExtensionExchange)
+	router.HandleFunc(("/api/extension-client-id/github"), github_handlers.GitHubExtensionClientId)
 
 	router.HandleFunc(("GET /api/logout"), oauth_handlers.RedirectLogout)
 
@@ -40,7 +41,7 @@ func Router() *http.ServeMux {
 
 	// get profile pic using chrome extension secret
 	router.HandleFunc(("GET /api/picture/github"), handlers.GetPicture)
-  
+
 	// submit and retrieve feedback form entries
 	router.HandleFunc(("POST /api/feedback"), feedback_handlers.SubmitFeedback)
 	router.HandleFunc(("GET /api/feedback-submissions"), feedback_handlers.GetFeedbackSubmissions)
