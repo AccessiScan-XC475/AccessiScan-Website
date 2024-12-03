@@ -5,6 +5,8 @@ import (
 	"encoding/json"
 	"log"
 	"net/http"
+	"os"
+	"strconv"
 
 	"go.mongodb.org/mongo-driver/bson/primitive"
 )
@@ -23,6 +25,19 @@ type AccessiScanProfileSelf struct {
 	GitHubProfile GitHubUserInfoPub               `json:"githubProfile"`
 }
 
+var HISTORY_LIMIT int = 10
+
+func InitHistoryLimit() error {
+	limitStr := os.Getenv("HISTORY_LIMIT")
+	limit, err := strconv.Atoi(limitStr)
+	if err != nil {
+		return err
+	}
+
+	HISTORY_LIMIT = limit
+	return nil
+}
+
 func GetProfileSelf(w http.ResponseWriter, r *http.Request) {
 	log.Println("get profile self")
 	ctx := r.Context()
@@ -38,10 +53,10 @@ func GetProfileSelf(w http.ResponseWriter, r *http.Request) {
 
 	// only send the 10 most recent scores
 	var history []users_collection.ScoreElement
-	if len(user.ScoreHistory) <= 10 {
+	if len(user.ScoreHistory) <= HISTORY_LIMIT {
 		history = user.ScoreHistory
 	} else {
-		history = user.ScoreHistory[len(user.ScoreHistory)-10:]
+		history = user.ScoreHistory[len(user.ScoreHistory)-HISTORY_LIMIT:]
 	}
 
 	profile := AccessiScanProfileSelf{
