@@ -3,6 +3,7 @@ package main
 import (
 	"AccessiScan-Website/domain"
 	gh "AccessiScan-Website/github"
+	"AccessiScan-Website/handlers"
 	"AccessiScan-Website/server"
 	"log"
 
@@ -18,6 +19,9 @@ func main() {
 
 	// initialize GitHub environment vars
 	gh.Initialize()
+
+	// initialize history limit
+	handlers.InitHistoryLimit()
 
 	server := server.NewServer()
 	log.Println("Server running at http://localhost:8080")
