@@ -35,6 +35,7 @@ const DlExtension: React.FC = () => {
           "&:hover": {
             boxShadow: "0px 10px 30px rgba(84, 189, 134, 0.4)", // Shadow appears when hovered
           },
+          padding: "20px",
         }}
       >
         <Typography
