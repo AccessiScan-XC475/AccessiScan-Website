@@ -51,7 +51,8 @@ func GetProfileSelf(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 
-	// only send the 10 most recent scores
+	// only send the HISTORY_LIMIT most recent scores
+	log.Println("history limit", HISTORY_LIMIT)
 	var history []users_collection.ScoreElement
 	if len(user.ScoreHistory) <= HISTORY_LIMIT {
 		history = user.ScoreHistory
