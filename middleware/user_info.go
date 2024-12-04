@@ -12,7 +12,9 @@ func UserInfo(next http.Handler) http.Handler {
 	return http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
 		// get user from db
 		sessionId := cookies.GetSessionId(r)
+		log.Println("sessionId", sessionId)
 		secret := r.URL.Query().Get("secret")
+		log.Println("secret", secret)
 
 		if sessionId == "" && secret == "" {
 			// no unique id
@@ -38,10 +40,6 @@ func UserInfo(next http.Handler) http.Handler {
 				next.ServeHTTP(w, r)
 				return
 			}
-
-			log.Println("did not get user")
-			next.ServeHTTP(w, r)
-			return
 		}
 
 		log.Println("got user")
