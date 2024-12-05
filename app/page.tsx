@@ -89,12 +89,14 @@ export default function HomePage() {
               boxShadow: "0 4px 8px rgba(0, 0, 0, 0.1)",
               borderRadius: "8px",
               width: "300px",
-              height: "300px",
+              height: "350px",
               display: "flex", 
               flexDirection: "column", 
               justifyContent: "space-between", 
               alignItems: "center",
               textAlign: "left",
+              position: "relative",
+              padding: "16px",
             }}
           >
             <CardContent className="font-sans">
@@ -125,9 +127,14 @@ export default function HomePage() {
                 className="text-primary text-align-bottom"
                 sx={{
                   fontSize: "16pt",
+                  fontFamily: '"Lexend", sans-serif',
                   lineHeight: "1.8",
                   textAlign: "right",
-                  fontFamily: '"Lexend", sans-serif',
+                  position: "absolute",
+                  bottom: "16px",
+                  right: "16px",
+                  display: "flex",
+                  alignItems: "center",
                 }}
               >
                 {page.more}
