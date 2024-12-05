@@ -97,13 +97,13 @@ export default function HomePage() {
               textAlign: "left",
             }}
           >
-            <CardContent>
+            <CardContent className="font-sans">
               <Typography
                 variant="h6"
                 className="text-secondary font-bold"
                 sx={{
                   fontSize: "18pt",
-                  fontWeight: "bold",
+                  fontFamily: '"Lexend", sans-serif',
                 }}
                 gutterBottom
               >
@@ -115,6 +115,7 @@ export default function HomePage() {
                 sx={{
                   fontSize: "16pt",
                   lineHeight: "1.8",
+                  fontFamily: '"Lexend", sans-serif',
                 }}
               >
                 {page.description}
@@ -126,6 +127,7 @@ export default function HomePage() {
                   fontSize: "16pt",
                   lineHeight: "1.8",
                   textAlign: "right",
+                  fontFamily: '"Lexend", sans-serif',
                 }}
               >
                 {page.more}
