@@ -149,8 +149,8 @@ export default function HomePage() {
       <section className="flex flex-col md:flex-row items-center justify-between px-6 md:px-16 py-5 gap-0">
         {/* Left Text */}
         <div className="flex-1">
-          <h2 className="text-secondary font-semibold">Real-time accessibility analysis</h2>
-          <p>Scan your website on your localhost, or deployed version, and 
+          <h2 className="text-secondary font-semibold text-3xl">Real-time accessibility analysis</h2>
+          <p className="text-lg mt-2">Scan your website on your localhost, or deployed version, and 
           receive near instant feedback on how accessible it is.</p>
         </div>
         {/* Right Visual */}
@@ -177,8 +177,8 @@ export default function HomePage() {
         </div>
         {/* Right Text */}
         <div className="flex-1">
-          <h2 className="text-secondary font-semibold">Detailed accessibility scores and suggestions for improvement</h2>
-          <p>When you scan your website, we provide you a score for each accessibility type, and an brief 
+          <h2 className="text-secondary font-semibold text-3xl">Detailed accessibility scores and suggestions for improvement</h2>
+          <p className="text-lg mt-2">When you scan your website, we provide you a score for each accessibility type, and an brief 
           explanation on how you can improve your score.</p>
         </div>
       </section>
@@ -187,8 +187,8 @@ export default function HomePage() {
       <section className="flex flex-col md:flex-row items-center justify-between px-6 md:px-16 py-5 gap-0">
         {/* Left Text */}
         <div className="flex-1">
-          <h2 className="text-secondary font-semibold">Learn about accessibility in technology</h2>
-          <p>Our resources page contains videos, articles, and documentation on what it means for technology to be accessible, 
+          <h2 className="text-secondary font-semibold text-3xl">Learn about accessibility in technology</h2>
+          <p className="text-lg mt-2">Our resources page contains videos, articles, and documentation on what it means for technology to be accessible, 
             and how to implement it in your own projects.</p>
         </div>
         {/* Right Visual */}
@@ -215,8 +215,8 @@ export default function HomePage() {
         </div>
         {/* Right Text */}
         <div className="flex-1">
-          <h2 className="text-secondary font-semibold">Improve the accessibility of your website before deployment</h2>
-          <p>The AccessiScan Chrome Extension can scan your website from a localhost -- meaning that you can check how accessible 
+          <h2 className="text-secondary font-semibold text-3xl">Improve the accessibility of your website before deployment</h2>
+          <p className="text-lg mt-2">The AccessiScan Chrome Extension can scan your website from a localhost -- meaning that you can check how accessible 
             your website is while you are developing it. No need to wait until you deploy or publish your website to start thinking 
             about how to make it accessible.</p>
         </div>
@@ -226,8 +226,8 @@ export default function HomePage() {
       <section className="flex flex-col md:flex-row items-center justify-between px-6 md:px-16 py-5 gap-0">
         {/* Left Text */}
         <div className="flex-1">
-          <h2 className="text-secondary font-semibold">Reach broader audiences</h2>
-          <p>By using AccessiScan you will learn how to make your websites accessible to broader audiences.</p>
+          <h2 className="text-secondary font-semibold text-3xl">Reach broader audiences</h2>
+          <p className="text-lg mt-2">By using AccessiScan you will learn how to make your websites accessible to broader audiences.</p>
         </div>
         {/* Right Visual */}
         <div className="flex-1 flex items-center justify-center shadow-lg">
@@ -253,8 +253,8 @@ export default function HomePage() {
         </div>
         {/* Right Text */}
         <div className="flex-1">
-          <h2 className="text-secondary font-semibold">Join a community</h2>
-          <p>Participate in the community by posting your accessibility related questions, replying to others, 
+          <h2 className="text-secondary font-semibold text-3xl">Join a community</h2>
+          <p className="text-lg mt-2">Participate in the community by posting your accessibility related questions, replying to others, 
             and up-voting helpful posts!</p>
         </div>
       </section>
