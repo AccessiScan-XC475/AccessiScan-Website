@@ -202,6 +202,63 @@ export default function HomePage() {
         </div>
       </section>
 
+      {/* Scan on Localhost Section */}
+      <section className="flex flex-col md:flex-row items-center justify-between px-6 md:px-16 py-5 gap-0">
+        {/* Left Visual */}
+        <div className="flex-1 flex items-center justify-center shadow-lg">
+        <Image
+          src="/scan_textsize.png"
+          alt="AccessiScan logo"
+          height={100.78}
+          width={300}
+        />
+        </div>
+        {/* Right Text */}
+        <div className="flex-1">
+          <h2 className="text-secondary font-semibold">Improve the accessibility of your website before deployment</h2>
+          <p>The AccessiScan Chrome Extension can scan your website from a localhost -- meaning that you can check how accessible 
+            your website is while you are developing it. No need to wait until you deploy or publish your website to start thinking 
+            about how to make it accessible.</p>
+        </div>
+      </section>
+
+      {/* Reach broader audiences */}
+      <section className="flex flex-col md:flex-row items-center justify-between px-6 md:px-16 py-5 gap-0">
+        {/* Left Text */}
+        <div className="flex-1">
+          <h2 className="text-secondary font-semibold">Reach broader audiences</h2>
+          <p>By using AccessiScan you will learn how to make your websites accessible to broader audiences.</p>
+        </div>
+        {/* Right Visual */}
+        <div className="flex-1 flex items-center justify-center shadow-lg">
+        <Image
+          src="/scan_textsize.png"
+          alt="AccessiScan logo"
+          height={100.78}
+          width={300}
+        />
+        </div>
+      </section>
+
+      {/* Join a Community */}
+      <section className="flex flex-col md:flex-row items-center justify-between px-6 md:px-16 py-5 gap-0">
+        {/* Left Visual */}
+        <div className="flex-1 flex items-center justify-center shadow-lg">
+        <Image
+          src="/scan_textsize.png"
+          alt="AccessiScan logo"
+          height={100.78}
+          width={300}
+        />
+        </div>
+        {/* Right Text */}
+        <div className="flex-1">
+          <h2 className="text-secondary font-semibold">Join a community</h2>
+          <p>Participate in the community by posting your accessibility related questions, replying to others, 
+            and up-voting helpful posts!</p>
+        </div>
+      </section>
+
       {/* Split Layout Section */}
       <section className="flex flex-col md:flex-row items-center justify-between px-6 md:px-16 py-5 gap-0 bg-gray-50">
         {/* Left Content */}
