@@ -4,6 +4,30 @@ import { Book, Visibility, Group, AccountCircle } from "@mui/icons-material"; //
 import Link from "next/link";
 import "./globals.css";
 import Image from "next/image";
+import { Card, CardContent, Typography, Box } from "@mui/material";
+
+const pages = [
+  {
+    title: "Resources",
+    description:
+      "Learn about accessibility through our recommended resources.",
+  },
+  {
+    title: "Demo",
+    description:
+      "Once you’ve installed the AccessiScan Chrome Extension, test it out using these demo pages.",
+  },
+  {
+    title: "Community",
+    description:
+      "Post questions about accessibility and receive help from other developers in the community.",
+  },
+  {
+    title: "Profile",
+    description:
+      "Track your progress by viewing your AccessiScan score history.",
+  },
+];
 
 export default function HomePage() {
   return (
@@ -35,6 +59,64 @@ export default function HomePage() {
         />
         </div>
       </section>
+      {/* Pages Section */}
+      <section >
+      <Box
+        sx={{
+          display: "flex", 
+          flexDirection: "row", 
+          justifyContent: "space-around", 
+          alignItems: "center", 
+          gap: "10px", 
+          flexWrap: "wrap", // Allow wrapping for smaller screens
+          padding: "20px",
+        }}
+      >
+        {pages.map((page, index) => (
+          <Card
+            key={index}
+            sx={{
+              backgroundColor: "#f9f9f9",
+              border: "1px solid #e0e0e0",
+              boxShadow: "0 4px 8px rgba(0, 0, 0, 0.1)",
+              borderRadius: "8px",
+              width: "300px",
+              height: "300px",
+              display: "flex", 
+              flexDirection: "column", 
+              justifyContent: "space-between", 
+              alignItems: "center",
+              textAlign: "left",
+            }}
+          >
+            <CardContent>
+              <Typography
+                variant="h6"
+                className="text-secondary font-bold"
+                sx={{
+                  fontSize: "18pt",
+                  fontWeight: "bold",
+                }}
+                gutterBottom
+              >
+                {page.title}
+              </Typography>
+              <Typography
+                variant="body2"
+                sx={{
+                  fontSize: "16pt",
+                  lineHeight: "1.8",
+                }}
+              >
+                {page.description}
+              </Typography>
+            </CardContent>
+          </Card>
+        ))}
+      </Box>
+      </section>
+  
+
 
       {/* Split Layout Section */}
       <section className="flex flex-col md:flex-row items-center justify-between px-6 md:px-16 py-5 gap-0 bg-gray-50">
@@ -64,13 +146,7 @@ export default function HomePage() {
         </div>
 
         {/* Right Visual */}
-        <div className="flex-1">
-          <img
-            src="/images/demo-image.png" // Replace with your image path
-            alt="Accessibility Demo"
-            className="rounded-lg shadow-lg"
-          />
-        </div>
+        
       </section>
 
       {/* Services Section */}
