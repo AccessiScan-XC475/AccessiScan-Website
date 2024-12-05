@@ -24,6 +24,15 @@ body {
   .text-balance {
     text-wrap: balance;
   }
+  .text-primary {
+    color: var(--primary-color);
+  }
+  .text-secondary {
+    color: var(--secondary-color);
+  }
+  .text-accent {
+    color: var(--accent-color);
+  }
 }
 
 * {

@@ -2,21 +2,20 @@
 import DLExtension from "@/components/dlExtension"; // Adjust as needed
 import { Book, Visibility, Group, AccountCircle } from "@mui/icons-material"; // Importing MUI icons
 import Link from "next/link";
+import "./globals.css";
 
 export default function HomePage() {
   return (
-    <div className="w-full min-h-screen bg-white">
-      {/* Hero Section */}
+    <div className="w-full min-h-screen">
+      {/* Tagline Section */}
       <section className="flex flex-col items-center justify-center text-center px-6 md:px-16 py-20">
         <h1
-          className="text-4xl md:text-6xl font-extrabold text-gray-800 leading-tight"
-          style={{ color: "#1B6AAA" }}
+          className="text-4xl md:text-4xl font-extrabold leading-tight text-primary"
         >
           Build a Website Better, Together
         </h1>
         <p
-          className="text-lg md:text-2xl text-gray-600 mt-6 max-w-2xl"
-          style={{ color: "#54BD86" }}
+          className="text-lg md:text-2xl text-gray-600 mt-6 max-w-2xl text-secondary"
         >
           Empowering developers for accessible websites
         </p>
