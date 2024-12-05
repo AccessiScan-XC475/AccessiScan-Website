@@ -1,6 +1,6 @@
 "use client";
 import DLExtension from "@/components/dlExtension"; // Adjust as needed
-import { Book, Visibility, Group, AccountCircle } from "@mui/icons-material"; // Importing MUI icons
+import { FilePresent, Visibility, Group, AccountCircle } from "@mui/icons-material"; // Importing MUI icons
 import Link from "next/link";
 import "./globals.css";
 import Image from "next/image";
@@ -8,24 +8,32 @@ import { Card, CardContent, Typography, Box } from "@mui/material";
 
 const pages = [
   {
-    title: "Resources",
+    icon: <FilePresent />,
+    title: " Resources",
     description:
       "Learn about accessibility through our recommended resources.",
+    more: "learn more",
   },
   {
-    title: "Demo",
+    icon: <Visibility />,
+    title: " Demo",
     description:
       "Once you’ve installed the AccessiScan Chrome Extension, test it out using these demo pages.",
+    more: "learn more",
   },
   {
-    title: "Community",
+    icon: <Group />,
+    title: " Community",
     description:
       "Post questions about accessibility and receive help from other developers in the community.",
+    more: "learn more",
   },
   {
-    title: "Profile",
+    icon: <AccountCircle />,
+    title: " Profile",
     description:
       "Track your progress by viewing your AccessiScan score history.",
+    more: "learn more",
   },
 ];
 
@@ -99,6 +107,7 @@ export default function HomePage() {
                 }}
                 gutterBottom
               >
+                {page.icon}
                 {page.title}
               </Typography>
               <Typography
@@ -109,6 +118,17 @@ export default function HomePage() {
                 }}
               >
                 {page.description}
+              </Typography>
+              <Typography
+                variant="body2"
+                className="text-primary"
+                sx={{
+                  fontSize: "16pt",
+                  lineHeight: "1.8",
+                  textAlign: "right",
+                }}
+              >
+                {page.more}
               </Typography>
             </CardContent>
           </Card>
@@ -161,7 +181,6 @@ export default function HomePage() {
           {/* Resources Page */}
           <div className="w-full md:w-1/3 bg-white p-6 shadow rounded-lg">
             <div className="flex items-center space-x-4">
-              <Book style={{ color: "#54BD86" }} />
               <h4 className="text-xl font-semibold text-gray-800 mb-4">
                 Resources Page
               </h4>
