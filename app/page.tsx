@@ -13,6 +13,7 @@ const pages = [
     description:
       "Learn about accessibility through our recommended resources.",
     more: "Explore Resources",
+    href: "/resources",
   },
   {
     icon: <Visibility />,
@@ -20,6 +21,7 @@ const pages = [
     description:
       "Once you’ve installed the AccessiScan Chrome Extension, test it out using these demo pages.",
     more: "Try the Demo",
+    href: "/demo",
   },
   {
     icon: <Group />,
@@ -27,6 +29,7 @@ const pages = [
     description:
       "Post questions about accessibility and receive help from other developers in the community.",
     more: "Join the Community",
+    href: "/community",
   },
   {
     icon: <AccountCircle />,
@@ -34,6 +37,7 @@ const pages = [
     description:
       "Track your progress by viewing your AccessiScan score history.",
     more: "Access your Profile",
+    href: "/profile",
   },
 ];
 
@@ -122,6 +126,7 @@ export default function HomePage() {
               >
                 {page.description}
               </Typography>
+              <Link href={page.href} passHref>
               <Typography
                 variant="body2"
                 className="text-primary text-align-bottom"
@@ -140,6 +145,7 @@ export default function HomePage() {
                 {page.more}
                 <ArrowForward />
               </Typography>
+              </Link>
             </CardContent>
           </Card>
         ))}
