@@ -1,6 +1,6 @@
 "use client";
 import DLExtension from "@/components/dlExtension"; // Adjust as needed
-import { FilePresent, Visibility, Group, AccountCircle } from "@mui/icons-material"; // Importing MUI icons
+import { FilePresent, Visibility, Group, AccountCircle, ArrowForward } from "@mui/icons-material"; // Importing MUI icons
 import Link from "next/link";
 import "./globals.css";
 import Image from "next/image";
@@ -121,7 +121,7 @@ export default function HomePage() {
               </Typography>
               <Typography
                 variant="body2"
-                className="text-primary"
+                className="text-primary text-align-bottom"
                 sx={{
                   fontSize: "16pt",
                   lineHeight: "1.8",
@@ -129,14 +129,78 @@ export default function HomePage() {
                 }}
               >
                 {page.more}
+                <ArrowForward />
               </Typography>
             </CardContent>
           </Card>
         ))}
       </Box>
       </section>
-  
+      {/* Why use AccessiScan section */}
+      <section className="flex flex-col items-center justify-center text-center px-6 md:px-16 py-20">
+      <h3
+          className="text-4xl md:text-4xl font-semibold leading-tight text-primary"
+        >
+          Why use AccessiScan?
+        </h3>
+      </section>
+      
+      {/* Real-time accessibility analysis */}
+      <section className="flex flex-col md:flex-row items-center justify-between px-6 md:px-16 py-5 gap-0">
+        {/* Left Text */}
+        <div className="flex-1">
+          <h2 className="text-secondary font-semibold">Real-time accessibility analysis</h2>
+          <p>Scan your website on your localhost, or deployed version, and 
+          receive near instant feedback on how accessible it is.</p>
+        </div>
+        {/* Right Visual */}
+        <div className="flex-1 flex items-center justify-center shadow-lg">
+        <Image
+          src="/scan_textsize.png"
+          alt="AccessiScan logo"
+          height={100.78}
+          width={300}
+        />
+        </div>
+      </section>
 
+      {/* Detailed Scores Section */}
+      <section className="flex flex-col md:flex-row items-center justify-between px-6 md:px-16 py-5 gap-0">
+        {/* Left Visual */}
+        <div className="flex-1 flex items-center justify-center shadow-lg">
+        <Image
+          src="/scan_textsize.png"
+          alt="AccessiScan logo"
+          height={100.78}
+          width={300}
+        />
+        </div>
+        {/* Right Text */}
+        <div className="flex-1">
+          <h2 className="text-secondary font-semibold">Detailed accessibility scores and suggestions for improvement</h2>
+          <p>When you scan your website, we provide you a score for each accessibility type, and an brief 
+          explanation on how you can improve your score.</p>
+        </div>
+      </section>
+  
+      {/* Accessibility in Tech Section */}
+      <section className="flex flex-col md:flex-row items-center justify-between px-6 md:px-16 py-5 gap-0">
+        {/* Left Text */}
+        <div className="flex-1">
+          <h2 className="text-secondary font-semibold">Learn about accessibility in technology</h2>
+          <p>Our resources page contains videos, articles, and documentation on what it means for technology to be accessible, 
+            and how to implement it in your own projects.</p>
+        </div>
+        {/* Right Visual */}
+        <div className="flex-1 flex items-center justify-center shadow-lg">
+        <Image
+          src="/scan_textsize.png"
+          alt="AccessiScan logo"
+          height={100.78}
+          width={300}
+        />
+        </div>
+      </section>
 
       {/* Split Layout Section */}
       <section className="flex flex-col md:flex-row items-center justify-between px-6 md:px-16 py-5 gap-0 bg-gray-50">
