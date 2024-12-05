@@ -3,6 +3,7 @@ import DLExtension from "@/components/dlExtension"; // Adjust as needed
 import { Book, Visibility, Group, AccountCircle } from "@mui/icons-material"; // Importing MUI icons
 import Link from "next/link";
 import "./globals.css";
+import Image from "next/image";
 
 export default function HomePage() {
   return (
@@ -17,9 +18,22 @@ export default function HomePage() {
         <p
           className="text-lg md:text-2xl text-gray-600 mt-6 max-w-2xl text-secondary"
         >
-          Empowering developers for accessible websites
+          Empowering developers to build accessible websites
         </p>
+      </section>
+      {/* Download and Image Section */}
+      <section className="flex flex-col md:flex-row items-center justify-between px-6 md:px-16 py-5 gap-0">
+        {/* Left Content */}
         <DLExtension />
+        {/* Right Visual */}
+        <div className="flex-1 flex items-center justify-center shadow-lg">
+        <Image
+          src="/scan_textsize.png"
+          alt="AccessiScan logo"
+          height={100.78}
+          width={300}
+        />
+        </div>
       </section>
 
       {/* Split Layout Section */}

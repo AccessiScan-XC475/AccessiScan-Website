@@ -49,17 +49,8 @@ const DlExtension: React.FC = () => {
             fontWeight: "550",
           }}
         >
-          Add the AccessiScan Extension
+          Install the AccessiScan Extension
         </Typography>
-
-        <Typography
-          variant="body1"
-          paragraph
-          sx={{ fontFamily: "inherit", fontSize: "1.4rem" }}
-        >
-          Click below to view our extension in the Chrome Web Store!
-        </Typography>
-
         <Box
           sx={{
             display: "flex", // Use flexbox to ensure centering
