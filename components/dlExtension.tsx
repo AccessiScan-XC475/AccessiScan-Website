@@ -26,15 +26,16 @@ const DlExtension: React.FC = () => {
       <Box
         sx={{
           textAlign: "center",
-          padding: "4rem 2.5rem",
+          width: "40rem",
           backgroundColor: "#fbfbfb",
           borderRadius: "20px",
-          margin: "0",
+          margin: "-2rem",
           border: "1px solid #d3d3d3",
           transition: "box-shadow 0.3s ease-in-out", // Smooth transition for box-shadow
           "&:hover": {
             boxShadow: "0px 10px 30px rgba(84, 189, 134, 0.4)", // Shadow appears when hovered
           },
+          padding: "20px",
         }}
       >
         <Typography
@@ -44,11 +45,11 @@ const DlExtension: React.FC = () => {
           sx={{
             fontFamily: "inherit",
             color: "#1B6AAA",
-            fontSize: "2.5rem",
+            fontSize: "2rem",
             fontWeight: "550",
           }}
         >
-          Download AccessiScan Chrome Extension
+          Add the AccessiScan Extension
         </Typography>
 
         <Typography
@@ -56,7 +57,7 @@ const DlExtension: React.FC = () => {
           paragraph
           sx={{ fontFamily: "inherit", fontSize: "1.4rem" }}
         >
-          Click below to view our Chrome Extension in the Chrome Web Store!
+          Click below to view our extension in the Chrome Web Store!
         </Typography>
 
         <Box

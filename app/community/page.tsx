@@ -76,7 +76,7 @@ export default function CommunityPage() {
   }, []);
 
   return (
-    <div>
+    <div className="p-8">
       <h1
         className="text-5xl font-bold text-center mt-8 mb-8"
         style={{ color: "#54BD86" }}
@@ -86,16 +86,16 @@ export default function CommunityPage() {
       <div>
         <NewPost submitFunc={createNewPost} />
         <Typography
-        variant="h6"
-        sx={{
-          textAlign: "center",
-          my: 4,
-          color: "#1B6AAA",
-          fontWeight: 400,
-          fontFamily: "'Lexend', sans-serif",
-        }}
-      > 
-        Filter Posts by Topic
+          variant="h6"
+          sx={{
+            textAlign: "center",
+            my: 4,
+            color: "#1B6AAA",
+            fontWeight: 400,
+            fontFamily: "'Lexend', sans-serif",
+          }}
+        >
+          Filter Posts by Topic
         </Typography>
         <div className="mb-4 flex flex-wrap gap-2 justify-center">
           <button

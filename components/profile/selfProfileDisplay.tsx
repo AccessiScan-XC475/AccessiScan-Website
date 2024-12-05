@@ -31,7 +31,9 @@ export default function SelfProfileDisplay({
           <Secret />
         </div>
       </div>
-      <ScoreHistory inputHistory={profile.scoreHistory} />
+      <div className="flex justify-center">
+        <ScoreHistory inputHistory={profile.scoreHistory} />
+      </div>
     </div>
   );
 }
