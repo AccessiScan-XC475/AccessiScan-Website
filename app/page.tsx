@@ -156,10 +156,10 @@ export default function HomePage() {
         {/* Right Visual */}
         <div className="flex-1 flex items-center justify-center shadow-lg">
         <Image
-          src="/scan_textsize.png"
+          src="/full_scan_textsize.png"
           alt="AccessiScan logo"
-          height={100.78}
-          width={300}
+          height={201.56}
+          width={600}
         />
         </div>
       </section>
@@ -170,7 +170,7 @@ export default function HomePage() {
         <div className="flex-1 flex items-center justify-center shadow-lg">
         <Image
           src="/scan_textsize.png"
-          alt="AccessiScan logo"
+          alt="Screenshot of scanning our demo page for text size"
           height={100.78}
           width={300}
         />
@@ -183,7 +183,7 @@ export default function HomePage() {
         </div>
       </section>
   
-      {/* Accessibility in Tech Section */}
+      {/* Learn Section */}
       <section className="flex flex-col md:flex-row items-center justify-between px-6 md:px-16 py-5 gap-0">
         {/* Left Text */}
         <div className="flex-1">
@@ -194,10 +194,10 @@ export default function HomePage() {
         {/* Right Visual */}
         <div className="flex-1 flex items-center justify-center shadow-lg">
         <Image
-          src="/scan_textsize.png"
-          alt="AccessiScan logo"
-          height={100.78}
-          width={300}
+          src="/resources.png"
+          alt="Screenshot of the resources page"
+          height={201.56}
+          width={600}
         />
         </div>
       </section>
@@ -207,10 +207,10 @@ export default function HomePage() {
         {/* Left Visual */}
         <div className="flex-1 flex items-center justify-center shadow-lg">
         <Image
-          src="/scan_textsize.png"
-          alt="AccessiScan logo"
-          height={100.78}
-          width={300}
+          src="/scan_localhost.png"
+          alt="Screenshot of scanning on localhost"
+          height={201.56}
+          width={600}
         />
         </div>
         {/* Right Text */}
@@ -245,10 +245,10 @@ export default function HomePage() {
         {/* Left Visual */}
         <div className="flex-1 flex items-center justify-center shadow-lg">
         <Image
-          src="/scan_textsize.png"
-          alt="AccessiScan logo"
-          height={100.78}
-          width={300}
+          src="/community_post.png"
+          alt="Screenshot of a post on the community board"
+          height={201.56}
+          width={600}
         />
         </div>
         {/* Right Text */}
