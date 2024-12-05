@@ -9,6 +9,8 @@
   --foreground: #171717;
   font-family: "Lexend", sans-serif;
   --primary-color: #1b6aaa;
+  --secondary-color: #7468B6;
+  --accent-color: #54BD86;
   --card-background: #ffffff;
   --card-text: #171717;
 }
@@ -21,6 +23,15 @@ body {
 @layer utilities {
   .text-balance {
     text-wrap: balance;
+  }
+  .text-primary {
+    color: var(--primary-color);
+  }
+  .text-secondary {
+    color: var(--secondary-color);
+  }
+  .text-accent {
+    color: var(--accent-color);
   }
 }
 
