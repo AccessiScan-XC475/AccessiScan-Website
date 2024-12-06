@@ -81,7 +81,7 @@ export default function CommunityPage() {
           className="text-4xl md:text-4xl font-semibold leading-tight text-primary text-center py-6"
         >
           Community Board
-        </h3>
+      </h3>
       <div>
         <NewPost submitFunc={createNewPost} />
         <Typography

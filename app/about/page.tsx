@@ -57,28 +57,21 @@ const TeamMember = ({
 export default function AboutPage() {
   return (
     <div className="max-w-5xl mx-auto px-6 lg:px-12 py-8">
-      <Typography
-        variant="h2"
-        sx={{
-          textAlign: "center",
-          my: 4,
-          color: "#1B6AAA",
-          fontWeight: 800,
-          fontSize: "2rem",
-        }}
-      >
-        About AccessiScan
-      </Typography>
+      <h3
+          className="text-4xl md:text-4xl font-semibold leading-tight text-primary text-center py-6"
+        >
+          Community Board
+      </h3>
       <Typography
         variant="body1"
         sx={{
           textAlign: "left",
           mx: "auto",
           maxWidth: "700px",
-          my: 6,
           lineHeight: 1.6,
           fontSize: "1.1rem",
           color: "#333",
+          fontFamily: '"Lexend", sans-serif',
         }}
       >
         &emsp;&emsp;AccessiScan is an innovative solution to the persistent
@@ -112,12 +105,13 @@ export default function AboutPage() {
 
       <Typography
         variant="h2"
+        className="text-secondary"
         sx={{
           textAlign: "center",
           my: 4,
-          color: "#54BD86",
-          fontWeight: 800,
           fontSize: "2rem",
+          fontWeight: 400,
+          fontFamily: '"Lexend", sans-serif',
         }}
       >
         Meet our team!
