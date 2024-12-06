@@ -1,5 +1,5 @@
 "use client";
-import { Card, CardContent, Typography } from "@mui/material";
+import { Card, CardContent, Typography, Box } from "@mui/material";
 import Image from "next/image";
 
 const TeamMember = ({
@@ -14,41 +14,63 @@ const TeamMember = ({
   major: string;
 }) => (
   <Card
-    variant="outlined"
     sx={{
-      maxWidth: "300px",
-      padding: "16px",
-      backgroundColor: "#F5F5FA",
-      borderRadius: "12px",
-      boxShadow: "0 6px 10px rgba(0, 0, 0, 0.1)",
-      borderColor: "#E0E0E0",
-      transition: "transform 0.2s",
-      "&:hover": { transform: "scale(1.05)", borderColor: "#54BD86" },
+      backgroundColor: "#f9f9f9",
+      border: "1px solid #e0e0e0",
+      boxShadow: "0 4px 8px rgba(0, 0, 0, 0.1)",
+      borderRadius: "8px",
+      width: "100%",
+      maxWidth: "350px",
     }}
-    className="m-4"
   >
     <CardContent>
-      <Typography
-        variant="h5"
-        component="div"
-        sx={{ color: "#1B6AAA", fontWeight: 800, fontSize: "1.1rem" }}
-      >
-        Hi, I&apos;m {name}
-      </Typography>
       <Image
         src={`/${name.toLowerCase()}.jpg`}
         alt={name}
         width={100}
         height={100}
+        style={{ borderRadius: "50%", marginBottom: "16px" }}
       />
-      <Typography variant="body2" color="text.secondary">
-        I am a {role}
+      <Typography
+        variant="h6"
+        sx={{
+          fontSize: "18pt",
+          fontWeight: "bold",
+          color: "#1b6aaa",
+        }}
+        gutterBottom
+      >
+        {name}
       </Typography>
-      <Typography variant="body2" color="text.secondary">
-        I am {age} years old
+      <Typography
+        variant="body1"
+        sx={{
+          fontSize: "14pt",
+          color: "#555555",
+          lineHeight: "1.6",
+        }}
+      >
+        Role: {role}
       </Typography>
-      <Typography variant="body2" color="text.secondary">
-        My major is {major}
+      <Typography
+        variant="body1"
+        sx={{
+          fontSize: "14pt",
+          color: "#555555",
+          lineHeight: "1.6",
+        }}
+      >
+        Age: {age}
+      </Typography>
+      <Typography
+        variant="body1"
+        sx={{
+          fontSize: "14pt",
+          color: "#555555",
+          lineHeight: "1.6",
+        }}
+      >
+        Major: {major}
       </Typography>
     </CardContent>
   </Card>
@@ -67,47 +89,30 @@ export default function AboutPage() {
           fontSize: "2rem",
         }}
       >
-        About AccessiScan
+        Our Mission
       </Typography>
       <Typography
         variant="body1"
         sx={{
-          textAlign: "left",
+          textAlign: "center",
           mx: "auto",
           maxWidth: "700px",
           my: 6,
-          lineHeight: 1.6,
+          lineHeight: 1.8,
           fontSize: "1.1rem",
           color: "#333",
         }}
       >
-        &emsp;&emsp;AccessiScan is an innovative solution to the persistent
-        challenges in web accessibility. By scanning websites directly from a
-        Chrome extension, AccessiScan enables developers to proactively address
-        accessibility during the design phase, even on local, unpublished
-        websites. This unique approach offers developers early visibility into
-        potential accessibility issues, such as visual, audio, and mobility
-        barriers, empowering them to create inclusive experiences from the
-        start.
-        <br />
-        <br />
-        &emsp;&emsp;AccessiScan aims not only to identify compliance gaps and
-        provide free, user-friendly accessibility reports but also to serve as a
-        comprehensive educational tool. Developers are guided in understanding
-        what accessibility entails and how to implement it effectively. Our tool
-        generates an accessibility score based on various criteria, helping
-        developers learn while they improve their projects.
-        <br />
-        <br />
-        &emsp;&emsp;Additionally, AccessiScan fosters a community of
-        accessibility-focused creators through its integrated community board.
-        This space allows developers to share insights, discuss projects, and
-        seek advice, creating a supportive environment that promotes accessible
-        design practices. On the Home page, we have curated accessibility
-        resources to offer indepth explanations and recommendations. Together,
-        AccessiScan’s tools and community provide a unique platform for
-        educating, connecting, and empowering developers to make the web more
-        accessible for all.
+        At AccessiScan, our mission is to revolutionize web accessibility by 
+        empowering developers to build inclusive digital experiences from the 
+        very beginning. Through our innovative Chrome extension, we provide early 
+        detection of accessibility issues, even on local and unpublished websites, 
+        offering developers the tools and insights needed to create accessible 
+        designs proactively. Beyond scanning and scoring, we are committed to 
+        educating users with curated resources and interactive learning opportunities, 
+        equipping them with the knowledge to implement best practices. Together with 
+        our thriving community board, AccessiScan fosters collaboration and advocacy 
+        for a more accessible web for everyone.
       </Typography>
 
       <Typography
@@ -120,9 +125,17 @@ export default function AboutPage() {
           fontSize: "2rem",
         }}
       >
-        Meet our team!
+        Meet our Team
       </Typography>
-      <div className="flex flex-wrap justify-center gap-6">
+
+      <Box
+        sx={{
+          display: "flex",
+          flexWrap: "wrap",
+          justifyContent: "center",
+          gap: "20px",
+        }}
+      >
         <TeamMember
           name="Amelia"
           role="Product Owner"
@@ -153,7 +166,7 @@ export default function AboutPage() {
           age={22}
           major="Data Science"
         />
-      </div>
+      </Box>
     </div>
   );
 }
