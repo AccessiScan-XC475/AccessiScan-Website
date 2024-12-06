@@ -77,12 +77,11 @@ export default function CommunityPage() {
 
   return (
     <div className="p-8">
-      <h1
-        className="text-5xl font-bold text-center mt-8 mb-8"
-        style={{ color: "#54BD86" }}
-      >
-        Community Board
-      </h1>
+      <h3
+          className="text-4xl md:text-4xl font-semibold leading-tight text-primary text-center py-6"
+        >
+          Community Board
+      </h3>
       <div>
         <NewPost submitFunc={createNewPost} />
         <Typography

@@ -47,7 +47,7 @@ const Header = () => {
         className="home-title rounded-xl"
       >
         <Image
-          src="/AccessiScan-logo.png"
+          src="/updated_logo_horizontal.png"
           alt="AccessiScan logo"
           height={100.78}
           width={300}
