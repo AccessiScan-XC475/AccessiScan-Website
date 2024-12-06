@@ -24,18 +24,11 @@ const faqs = [
 export default function FAQ() {
   return (
     <div className="max-w-5xl mx-auto px-6 lg:px-12 py-8">
-      <Typography
-        variant="h2"
-        sx={{
-          textAlign: "center",
-          my: 4,
-          color: "#54BD86",
-          fontWeight: 800,
-          fontSize: "2rem",
-        }}
-      >
-        Frequently Asked Questions
-      </Typography>
+      <h3
+          className="text-4xl md:text-4xl font-semibold leading-tight text-primary text-center py-6"
+        >
+          Frequently Asked Questions
+        </h3>
       <Box
         sx={{
           display: "flex",
