@@ -54,6 +54,7 @@ export default function FeedbackForm() {
         boxShadow: "0 4px 8px rgba(0, 0, 0, 0.1)",
         borderRadius: "8px",
         padding: "20px",
+        fontFamily: '"Lexend", sans-serif',
       }}
     >
       <form onSubmit={handleSubmit}>
@@ -73,6 +74,14 @@ export default function FeedbackForm() {
               required
               value={feedback.name}
               onChange={handleInputChange}
+              slotProps={{
+                input: {
+                  style: { fontFamily: '"Lexend", sans-serif' }, // For input text
+                },
+                inputLabel: {
+                  style: { fontFamily: '"Lexend", sans-serif' }, // For label text
+                },
+              }}
             />
           </Box>
           <Box sx={{ flex: 1 }}>
@@ -82,6 +91,14 @@ export default function FeedbackForm() {
               fullWidth
               value={feedback.email}
               onChange={handleInputChange}
+              slotProps={{
+                input: {
+                  style: { fontFamily: '"Lexend", sans-serif' }, // For input text
+                },
+                inputLabel: {
+                  style: { fontFamily: '"Lexend", sans-serif' }, // For label text
+                },
+              }}
             />
           </Box>
         </Box>
@@ -95,10 +112,27 @@ export default function FeedbackForm() {
             required
             value={feedback.message}
             onChange={handleInputChange}
+            slotProps={{
+              input: {
+                style: { fontFamily: '"Lexend", sans-serif' }, // For input text
+              },
+              inputLabel: {
+                style: { fontFamily: '"Lexend", sans-serif' }, // For label text
+              },
+            }}
           />
         </Box>
-        <Box sx={{ textAlign: "center", marginTop: "16px" }}>
-          <Button type="submit" variant="contained" color="primary">
+        <Box 
+        sx={{ textAlign: "center", marginTop: "16px", fontFamily: '"Lexend", sans-serif', }}>
+          <Button type="submit" variant="contained"
+          sx={{
+            backgroundColor: "#1b6aaa",
+            fontSize: "16px",
+            fontFamily: '"Lexend", sans-serif',
+            "&:hover": {
+              backgroundColor: "#155982", // Darker shade for hover effect
+            },
+          }}>
             Submit Feedback
           </Button>
         </Box>
