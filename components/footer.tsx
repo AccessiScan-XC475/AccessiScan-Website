@@ -24,6 +24,12 @@ export default function Footer() {
           marginBottom: "40px",
         }}
       >
+        <Link href="/about" target="_blank" rel="noopener noreferrer">
+          About Us
+        </Link>
+        <Link href="/faq" target="_blank" rel="noopener noreferrer">
+          FAQ
+        </Link>
         <Link href="/AccessiScan Terms of Service.pdf" target="_blank" rel="noopener noreferrer">
           Terms of Service
         </Link>
