@@ -44,7 +44,7 @@ export default function Footer() {
         </Link>
       </div>
       <Image
-        src="/AccessiScan-logo.png"
+        src="/updated_logo_horizontal.png"
         alt="AccessiScan logo"
         height={75.585}
         width={225}

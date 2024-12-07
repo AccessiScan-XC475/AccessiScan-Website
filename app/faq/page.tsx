@@ -12,30 +12,28 @@ const faqs = [
   {
     question: "What can I expect in the next release?",
     answer:
-      "Navigate to our About page by selecting the link in the footer of this page.",
+      "Navigate to our “About” page by selecting the link in the footer of this page.",
   },
   {
-    question: "How do I download the Chrome Extension?",
+    question: "Where can I learn more about accessibility in technology?",
     answer:
-      "Select the “AccessiScan” logo at the top left of the page to go to the “Home” page. From there, select “Download”",
+      "Navigate to our “Resources” page from the navigation bar at the top of the page. This page contains various resources.",
+  },
+  {
+    question: "What does it mean if I got a score below 50% after scanning my wesbite?",
+    answer:
+      "This means that elements in your website are not considered accessible according to official guidelines. Take a look at our Resources page to learn more about these guidelines and why are they important.",
   },
 ];
 
 export default function FAQ() {
   return (
     <div className="max-w-5xl mx-auto px-6 lg:px-12 py-8">
-      <Typography
-        variant="h2"
-        sx={{
-          textAlign: "center",
-          my: 4,
-          color: "#54BD86",
-          fontWeight: 800,
-          fontSize: "2rem",
-        }}
-      >
-        Frequently Asked Questions
-      </Typography>
+      <h3
+          className="text-4xl md:text-4xl font-semibold leading-tight text-primary text-center py-6"
+        >
+          Frequently Asked Questions
+        </h3>
       <Box
         sx={{
           display: "flex",
@@ -57,10 +55,11 @@ export default function FAQ() {
             <CardContent>
               <Typography
                 variant="h6"
+                className="text-secondary"
                 sx={{
                   fontSize: "18pt",
                   fontWeight: "bold",
-                  color: "#1b6aaa",
+                  fontFamily: '"Lexend", sans-serif',
                 }}
                 gutterBottom
               >
@@ -72,6 +71,7 @@ export default function FAQ() {
                   fontSize: "16pt",
                   color: "#555555",
                   lineHeight: "1.8",
+                  fontFamily: '"Lexend", sans-serif',
                 }}
               >
                 {faq.answer}

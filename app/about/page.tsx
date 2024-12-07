@@ -101,28 +101,31 @@ export default function AboutPage() {
           lineHeight: 1.8,
           fontSize: "1.1rem",
           color: "#333",
+          fontFamily: '"Lexend", sans-serif',
         }}
       >
-        At AccessiScan, our mission is to revolutionize web accessibility by 
-        empowering developers to build inclusive digital experiences from the 
-        very beginning. Through our innovative Chrome extension, we provide early 
-        detection of accessibility issues, even on local and unpublished websites, 
-        offering developers the tools and insights needed to create accessible 
-        designs proactively. Beyond scanning and scoring, we are committed to 
-        educating users with curated resources and interactive learning opportunities, 
-        equipping them with the knowledge to implement best practices. Together with 
-        our thriving community board, AccessiScan fosters collaboration and advocacy 
-        for a more accessible web for everyone.
+        At AccessiScan, our mission is to revolutionize web accessibility by
+        empowering developers to build inclusive digital experiences from the
+        very beginning. Through our innovative Chrome extension, we provide
+        early detection of accessibility issues, even on local and unpublished
+        websites, offering developers the tools and insights needed to create
+        accessible designs proactively. Beyond scanning and scoring, we are
+        committed to educating users with curated resources and interactive
+        learning opportunities, equipping them with the knowledge to implement
+        best practices. Together with our thriving community board, AccessiScan
+        fosters collaboration and advocacy for a more accessible web for
+        everyone.
       </Typography>
 
       <Typography
         variant="h2"
+        className="text-secondary"
         sx={{
           textAlign: "center",
           my: 4,
-          color: "#54BD86",
-          fontWeight: 800,
           fontSize: "2rem",
+          fontWeight: 400,
+          fontFamily: '"Lexend", sans-serif',
         }}
       >
         Meet our Team
