@@ -158,7 +158,7 @@ export default function HomePage() {
         {/* Right Visual */}
         <div className="flex-1 flex items-center justify-center">
         <Image
-          src="/full_scan_textsize.png"
+          src="/full_scan_local.png"
           alt="AccessiScan logo"
           height={201.56}
           width={600}
@@ -169,12 +169,12 @@ export default function HomePage() {
       {/* Detailed Scores Section */}
       <section className="flex flex-col md:flex-row items-center justify-between px-6 md:px-16 py-5 gap-0">
         {/* Left Visual */}
-        <div className="flex-1 flex items-center justify-center shadow-lg">
+        <div className="flex-1 flex items-center justify-center">
         <Image
-          src="/scan_textsize.png"
+          src="/scan_colors.png"
           alt="Screenshot of scanning our demo page for text size"
-          height={100.78}
-          width={300}
+          height={151.17}
+          width={450}
         />
         </div>
         {/* Right Text */}
@@ -224,27 +224,15 @@ export default function HomePage() {
         </div>
       </section>
 
-      {/* Reach broader audiences */}
+      {/* Join a Community */}
       <section className="flex flex-col md:flex-row items-center justify-between px-6 md:px-16 py-5 gap-0">
         {/* Left Text */}
         <div className="flex-1">
-          <h2 className="text-secondary font-semibold text-3xl">Reach broader audiences</h2>
-          <p className="text-lg mt-2">By using AccessiScan you will learn how to make your websites accessible to broader audiences.</p>
+          <h2 className="text-secondary font-semibold text-3xl">Join a community</h2>
+          <p className="text-lg mt-2">Participate in the community by posting your accessibility related questions, replying to others, 
+            and up-voting helpful posts!</p>
         </div>
         {/* Right Visual */}
-        <div className="flex-1 flex items-center justify-center shadow-lg">
-        <Image
-          src="/scan_textsize.png"
-          alt="AccessiScan logo"
-          height={100.78}
-          width={300}
-        />
-        </div>
-      </section>
-
-      {/* Join a Community */}
-      <section className="flex flex-col md:flex-row items-center justify-between px-6 md:px-16 py-5 gap-0">
-        {/* Left Visual */}
         <div className="flex-1 flex items-center justify-center">
         <Image
           src="/community_post.png"
@@ -253,11 +241,14 @@ export default function HomePage() {
           width={600}
         />
         </div>
-        {/* Right Text */}
-        <div className="flex-1">
-          <h2 className="text-secondary font-semibold text-3xl">Join a community</h2>
-          <p className="text-lg mt-2">Participate in the community by posting your accessibility related questions, replying to others, 
-            and up-voting helpful posts!</p>
+      </section>
+
+      {/* Reach broader audiences */}
+      <section className="flex flex-col items-center justify-center text-center px-6 md:px-16 py-20">
+        {/* Left Text */}
+        <div>
+          <h2 className="text-secondary font-semibold text-3xl">Reach broader audiences</h2>
+          <p className="text-lg mt-2">By using AccessiScan you will learn how to make your websites accessible to broader audiences.</p>
         </div>
       </section>
 
