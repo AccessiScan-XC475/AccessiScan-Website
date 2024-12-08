@@ -8,7 +8,7 @@ export default function ResourcesPage() {
   return (
     <div className="flex flex-col items-center px-4 md:px-8 lg:px-16 py-8">
       <div>
-        <h2 className="relative text-primary justify text-4xl font-bold pb-2 mb-1">
+        <h2 className="relative text-primary justify text-4xl font-bold pb-2 mb-1 leading-10">
           Resources
         </h2>
         <ResourcesSection

@@ -22,10 +22,14 @@ const ResourceCard = ({ resource }: { resource: ResourceCardProps }) => {
 
   return (
     <Card
-      className="m-4 w-full md:w-1/3 lg:w-1/4"
+      className="m-4 w-full md:w-1/3 lg:w-1/4 shadow-lg"
       style={{
-        backgroundColor: "var(--card-background)",
+        backgroundColor: "#F8F8F8",
         color: "var(--card-text)",
+        borderRadius: "10px",
+        boxShadow: "0 4px 8px 0 rgba(0, 0, 0, 0.2)",
+        borderWidth: "thin",
+        borderColor: "#E7E7E7"
       }}
     >
       <CardContent
@@ -42,16 +46,16 @@ const ResourceCard = ({ resource }: { resource: ResourceCardProps }) => {
             gutterBottom
             variant="h5"
             component="div"
-            style={{ fontSize: "16pt", color: "var(--card-text)" }}
+            style={{ fontSize: "18pt", color: "var(--card-text)", fontFamily: '"Lexend", sans-serif' }}
           >
             {icon}
-            <span style={{ marginLeft: "8px" }}>{label}</span>
+            <span style={{ marginLeft: "8px", fontFamily: '"Lexend", sans-serif' }}>{label}</span>
             {resource.title}
           </Typography>
           <Typography
             variant="body2"
             color="text.secondary"
-            style={{ fontSize: "14pt", color: "var(--card-text)" }}
+            style={{ fontSize: "16pt", color: "var(--card-text)", fontFamily: '"Lexend", sans-serif' }}
           >
             {resource.description}
           </Typography>
@@ -66,6 +70,7 @@ const ResourceCard = ({ resource }: { resource: ResourceCardProps }) => {
               color: "var(--primary-color)",
               marginTop: "10px",
               fontSize: "16pt",
+              fontFamily: '"Lexend", sans-serif',
             }}
             href={resource.link}
             target="_blank"
