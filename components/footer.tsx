@@ -24,9 +24,24 @@ export default function Footer() {
           marginBottom: "40px",
         }}
       >
-        <Link href="/api/logout">Logout</Link>
-        <Link href="/about">About Us</Link>
-        <Link href="/faq">FAQ</Link>
+        <Link href="/about" target="_blank" rel="noopener noreferrer">
+          About Us
+        </Link>
+        <Link href="/faq" target="_blank" rel="noopener noreferrer">
+          FAQ
+        </Link>
+        <Link href="/AccessiScan Terms of Service.pdf" target="_blank" rel="noopener noreferrer">
+          Terms of Service
+        </Link>
+        <Link href="/AccessiScan Privacy Policy.pdf" target="_blank" rel="noopener noreferrer">
+          Privacy
+        </Link>
+        <Link href="/AccessiScan Code of Conduct.pdf" target="_blank" rel="noopener noreferrer">
+          Code of Conduct
+        </Link>
+        <Link href="https://github.com/AccessiScan-XC475" target="_blank" rel="noopener noreferrer">
+          GitHub
+        </Link>
       </div>
       <Image
         src="/updated_logo_horizontal.png"

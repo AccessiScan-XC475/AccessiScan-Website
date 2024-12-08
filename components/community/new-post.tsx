@@ -53,7 +53,7 @@ export default function NewPost({
           onClick={handleCancel}
           className="rounded-xl px-6 p-2 text-[#1B6AAA] hover:bg-gray-300 m-2"
         >
-          Cancel
+          Clear
         </button>
       <button
         onClick={() => {
