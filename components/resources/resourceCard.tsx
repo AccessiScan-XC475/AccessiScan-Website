@@ -39,6 +39,7 @@ const ResourceCard = ({ resource }: { resource: ResourceCardProps }) => {
           flexDirection: "column",
           justifyContent: "space-between",
           height: "100%",
+          lineHeight: "2.0"
         }}
       >
         <div>
@@ -46,10 +47,10 @@ const ResourceCard = ({ resource }: { resource: ResourceCardProps }) => {
             gutterBottom
             variant="h5"
             component="div"
-            style={{ fontSize: "18pt", color: "var(--card-text)", fontFamily: '"Lexend", sans-serif' }}
+            style={{ fontSize: "18pt", color: "var(--card-text)", fontFamily: '"Lexend", sans-serif', fontWeight: "bold" }}
           >
             {icon}
-            <span style={{ marginLeft: "8px", fontFamily: '"Lexend", sans-serif' }}>{label}</span>
+            <span style={{ marginLeft: "8px", fontFamily: '"Lexend", sans-serif'}}>{label}</span>
             {resource.title}
           </Typography>
           <Typography
