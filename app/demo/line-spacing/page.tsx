@@ -14,8 +14,8 @@ export default function LineSpacingDemoPage() {
       </div>
       <div className="w-3/5">
         <div className="text-center p-3">
-          <h1 className="text-5xl p-1 text-[#1B6AAA] font-semibold">Line Spacing Demo</h1>
-          <p className="p-1 text-lg text-[#1B6AAA] font-medium">
+          <h1 className="text-5xl p-1 text-primary font-semibold leading-10">Line Spacing Demo</h1>
+          <p className="p-1 text-lg text-primary">
             Adjust the line spacing on this page until the text meets
             accessibility standards for readability. To adjust the line spacing, 
             simply select the text below to access the adjusters.

@@ -10,12 +10,11 @@ export default function ColorContrastDemoPage() {
         <Link href="/demo" className="text-[#49A776]">
           <ArrowBack /> Back to Demo options
         </Link>
-      </h6>
-      </div>
+      </h6></div>
       <div className="w-3/5">
         <div className="text-center p-3">
-          <h1 className="text-5xl p-1 text-[#1B6AAA] font-semibold">Color Contrast Demo</h1>
-          <p className="p-1 text-lg text-[#1B6AAA] font-medium">
+        <h1 className="text-5xl p-1 text-primary font-semibold">Color Contrast Demo</h1>
+        <p className="p-1 text-lg text-primary">
           Edit the colors on this page until the adjacent colors adequately contrast with each other. 
           To edit the text color, simply select the text to access the color adjusters. To edit the background color, 
           simply select the color adjusters to the right of each section.
