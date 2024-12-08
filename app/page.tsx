@@ -56,20 +56,7 @@ export default function HomePage() {
         >
           Empowering developers to build accessible websites
         </p>
-      </section>
-      {/* Download and Image Section */}
-      <section className="flex flex-col md:flex-row items-center justify-between px-6 md:px-16 py-5 gap-0">
-        {/* Left Content */}
         <DLExtension />
-        {/* Right Visual */}
-        <div className="flex-1 flex items-center justify-center">
-        <Image
-          src="/scan_textsize.png"
-          alt="AccessiScan logo"
-          height={100.78}
-          width={300}
-        />
-        </div>
       </section>
       {/* Pages Section */}
       <section >
