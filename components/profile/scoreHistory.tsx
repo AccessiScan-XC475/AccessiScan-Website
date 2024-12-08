@@ -20,7 +20,7 @@ export default function ScoreHistory({
     .filter((elem) => typeFilter === null || elem.type === typeFilter);
 
   return (
-    <div className="p-4 w-[65vw]">
+    <div className="p-4 w-[60vw]">
       <h3 className="text-xl">Score History</h3>
       <FilterSelection
         selected={hrefFilter}

@@ -1,7 +1,7 @@
 import { AccessiScanProfileSelf } from "@/app/profile/page";
 import Image from "next/image";
 import ScoreHistory from "./scoreHistory";
-import Secret from "./secret";
+import Link from "next/link";
 
 export default function SelfProfileDisplay({
   profile,
@@ -9,7 +9,7 @@ export default function SelfProfileDisplay({
   profile: AccessiScanProfileSelf;
 }) {
   return (
-    <div>
+    <div className="flex flex-col items-center">
       <div className="flex flex-col items-center mt-8">
         <div className="flex items-center">
           <Image
@@ -28,12 +28,14 @@ export default function SelfProfileDisplay({
         <div className="flex flex-col w-72 p-3 m-1 text-xl">
           <p>{profile.name}</p>
           <p>{profile.githubProfile.email}</p>
-          <Secret />
         </div>
       </div>
       <div className="flex justify-center">
         <ScoreHistory inputHistory={profile.scoreHistory} />
       </div>
+      <Link href="/api/logout" className="m-2" prefetch={false}>
+        Sign Out
+      </Link>
     </div>
   );
 }
