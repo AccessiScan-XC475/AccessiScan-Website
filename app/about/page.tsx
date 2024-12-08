@@ -37,6 +37,7 @@ const TeamMember = ({
           fontSize: "18pt",
           fontWeight: "bold",
           color: "#1b6aaa",
+          fontFamily: '"Lexend", sans-serif'
         }}
         gutterBottom
       >
@@ -48,6 +49,7 @@ const TeamMember = ({
           fontSize: "14pt",
           color: "#555555",
           lineHeight: "1.6",
+          fontFamily: '"Lexend", sans-serif'
         }}
       >
         Role: {role}
@@ -58,6 +60,7 @@ const TeamMember = ({
           fontSize: "14pt",
           color: "#555555",
           lineHeight: "1.6",
+          fontFamily: '"Lexend", sans-serif'
         }}
       >
         Age: {age}
@@ -68,6 +71,7 @@ const TeamMember = ({
           fontSize: "14pt",
           color: "#555555",
           lineHeight: "1.6",
+          fontFamily: '"Lexend", sans-serif'
         }}
       >
         Major: {major}
@@ -85,8 +89,9 @@ export default function AboutPage() {
           textAlign: "center",
           my: 4,
           color: "#1B6AAA",
-          fontWeight: 800,
           fontSize: "2rem",
+          fontWeight: 800,
+          fontFamily: '"Lexend", sans-serif'
         }}
       >
         Our Mission
