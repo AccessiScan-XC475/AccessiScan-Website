@@ -165,7 +165,7 @@ export default function AboutPage() {
         <TeamMember
           name="Ethan"
           role="Developer"
-          age={20}
+          age={21}
           major="Computer Science"
         />
         <TeamMember
